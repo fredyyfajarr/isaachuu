@@ -3,37 +3,52 @@ import React from 'react';
 import Image from 'next/image';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
 
-// 1. Definisikan data proyek Anda di sini
+// Definisikan data proyek Anda di sini
 const projectData = [
   {
-    title: 'Sacket - Ticketing Website',
+    title: 'Dibelajarin - Learning Management System (Backend)',
     description:
-      'Sebuah platform pemesanan tiket konser yang dibangun untuk menyediakan alur pemesanan yang cepat dan aman bagi pengguna. Proyek ini menangani semua proses mulai dari pemilihan event hingga integrasi pembayaran.',
+      'Merancang dan membangun keseluruhan sistem backend untuk platform E-Learning (LMS) "Dibelajarin" menggunakan framework Laravel. Fokus utama pada pembangunan panel admin yang komprehensif dengan Filament dan sistem otentikasi dengan Breeze.',
     features: [
-      'Sistem otentikasi pengguna (Login & Register)',
-      'Katalog event dengan fitur pencarian dan filter',
+      'Implementasi sistem otentikasi pengguna (Laravel Breeze)',
+      'Panel admin full-featured untuk manajemen data (Filament)',
+      'Desain database relasional untuk fitur LMS',
+      'Logika custom untuk pelacakan progres belajar',
+    ],
+    tags: ['Laravel', 'PHP', 'Filament', 'Breeze', 'MySQL', 'Railway'],
+    liveUrl: 'https://dibelajarin.up.railway.app/',
+    repoUrl: 'https://github.com/fredyyfajarr/dibelajarin_2.0', // URL diperbarui
+    imageUrl: '/images/dibelajarin-preview.png',
+  },
+  {
+    title: 'Sacket - Ticketing Website (Full-Stack)',
+    description:
+      'Mengembangkan aplikasi pemesanan tiket secara full-stack, mulai dari desain database dan REST API di sisi backend hingga membangun antarmuka pengguna yang responsif di sisi frontend menggunakan framework Laravel.',
+    features: [
+      'Pengembangan end-to-end (backend & frontend)',
+      'Sistem otentikasi dan manajemen event',
       'Proses booking tiket multi-langkah',
-      'Integrasi Midtrans sebagai payment gateway',
+      'Integrasi payment gateway Midtrans',
     ],
     tags: ['Laravel', 'PHP', 'MySQL', 'Bootstrap', 'Midtrans API'],
     liveUrl: 'https://sacket-x0j8k.sevalla.app/',
-    repoUrl: 'https://github.com/fredyyfajarr/ticketing-project', // Ganti dengan URL repo Anda
-    imageUrl: '/images/sacket-preview.png', // Pastikan gambar ada di public/images
+    repoUrl: 'https://github.com/fredyyfajarr/sacket', // URL diperbarui
+    imageUrl: '/images/sacket-preview.png',
   },
   {
-    title: 'Frevan - E-commerce Store',
+    title: 'Frevan - E-commerce Store (Backend)',
     description:
-      'Website e-commerce fungsional yang dibuat dengan MERN stack. Pengguna dapat menelusuri produk, menambahkannya ke keranjang, dan melakukan checkout. Dilengkapi juga dengan dashboard admin untuk manajemen produk.',
+      'Bertanggung jawab atas seluruh pengembangan sisi backend untuk platform e-commerce fungsional. Fokus pada pembuatan REST API yang aman dan efisien untuk menangani semua logika bisnis, mulai dari manajemen produk hingga proses checkout.',
     features: [
-      'Manajemen state global dengan Redux Toolkit',
-      'Keranjang belanja dan alur checkout fungsional',
       'REST API yang aman dengan otentikasi JWT',
-      'Dashboard admin untuk operasi CRUD pada produk',
+      'Logika bisnis untuk keranjang belanja & alur checkout',
+      'API untuk operasi CRUD pada produk dari dashboard admin',
+      'Manajemen database produk dan pengguna',
     ],
-    tags: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Redux'],
+    tags: ['Node.js', 'Express.js', 'MongoDB', 'JWT'], // Tags diperbarui (frontend dihapus)
     liveUrl: 'https://frevan.vercel.app/',
-    repoUrl: 'https://github.com/fredyyfajarr/mern-fe-ecommerce', // Ganti dengan URL repo Anda
-    imageUrl: '/images/frevan-shop-preview.png', // Pastikan gambar ada di public/images
+    repoUrl: 'https://github.com/fredyyfajarr/be-ecommerce-isaac', // URL diperbarui
+    imageUrl: '/images/frevan-shop-preview.png',
   },
 ];
 
@@ -52,7 +67,6 @@ const Projects = () => {
             key={index}
             className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
           >
-            {/* Kolom Gambar */}
             <div
               className={`relative group ${
                 index % 2 === 0 ? 'md:order-1' : 'md:order-2'
@@ -74,9 +88,8 @@ const Projects = () => {
               </a>
             </div>
 
-            {/* Kolom Deskripsi */}
             <div
-              className={`text-left md:text-right ${
+              className={`text-left ${
                 index % 2 === 0
                   ? 'md:order-2 md:text-right'
                   : 'md:order-1 md:text-left'
