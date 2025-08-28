@@ -1,8 +1,5 @@
 # Portofolio Pribadi - Fredy Fajar Adi Putra
 
-![Tampilan Portofolio](./public/images/screenshot-porto.png)
----
-
 ### 🔗 **Live Demo:** [**[isaachuu.vercel.app]**]([isaachuu.vercel.app])
 
 Ini adalah repositori untuk kode sumber portofolio pribadi saya yang dibangun untuk menampilkan proyek-proyek, keahlian, dan perjalanan saya sebagai seorang developer. Dibuat dengan teknologi web modern untuk memastikan performa yang cepat dan pengalaman pengguna yang dinamis.
