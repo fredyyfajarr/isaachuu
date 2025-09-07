@@ -5,8 +5,30 @@ import { FiGithub, FiExternalLink } from 'react-icons/fi';
 
 // Definisikan data proyek Anda di sini
 const projectData = [
+  // #####################################################################
+  // ## PROYEK LMS (NODE.JS) BARU DITAMBAHKAN DI SINI ##
+  // #####################################################################
   {
-    title: 'Dibelajarin - Learning Management System (Backend)',
+    title: 'DiBelajar.in - Learning Management System (MERN Stack) as Backend',
+    description:
+      'Mengembangkan sistem backend dan mengelola database untuk platform E-Learning "DiBelajar.in" menggunakan Node.js dan Express.js, serta mengintegrasikannya dengan frontend React. Bertanggung jawab atas API otentikasi, manajemen kursus, dan pelacakan progres belajar.',
+    features: [
+      'Backend Node.js & Express.js untuk API',
+      'Database MongoDB untuk penyimpanan data',
+      'Sistem otentikasi pengguna dengan JWT',
+      'Manajemen kursus dan pelacakan progres siswa',
+      'Frontend React.js yang terintegrasi', // Menunjukkan koneksi ke frontend
+    ],
+    tags: ['Node.js', 'Express.js', 'React.js', 'MongoDB', 'JWT', 'Vercel'],
+    liveUrl: 'https://di-belajar-in.vercel.app/',
+    repoUrl: 'https://github.com/fredyyfajarr/DiBelajar.in-NodeJs-Backend', // Link ke backend
+    // Anda bisa tambahkan link ke frontend repo di sini juga atau di deskripsi jika mau
+    // secondaryRepoUrl: 'https://github.com/fredyyfajarr/DiBelajar.in-NodeJs-Frontend',
+    imageUrl: '/images/dibelajarin-mern-preview.png',
+  },
+  // #####################################################################
+  {
+    title: 'Dibelajarin - Learning Management System (Laravel Backend)',
     description:
       'Merancang dan membangun keseluruhan sistem backend untuk platform E-Learning (LMS) "Dibelajarin" menggunakan framework Laravel. Fokus utama pada pembangunan panel admin yang komprehensif dengan Filament dan sistem otentikasi dengan Breeze.',
     features: [
@@ -17,7 +39,7 @@ const projectData = [
     ],
     tags: ['Laravel', 'PHP', 'Filament', 'Breeze', 'MySQL', 'Railway'],
     liveUrl: 'https://dibelajarin.up.railway.app/',
-    repoUrl: 'https://github.com/fredyyfajarr/dibelajarin_2.0', // URL diperbarui
+    repoUrl: 'https://github.com/fredyyfajarr/dibelajarin_2.0',
     imageUrl: '/images/dibelajarin-preview.png',
   },
   {
@@ -32,7 +54,7 @@ const projectData = [
     ],
     tags: ['Laravel', 'PHP', 'MySQL', 'Bootstrap', 'Midtrans API'],
     liveUrl: 'https://sacket-x0j8k.sevalla.app/',
-    repoUrl: 'https://github.com/fredyyfajarr/sacket', // URL diperbarui
+    repoUrl: 'https://github.com/fredyyfajarr/sacket',
     imageUrl: '/images/sacket-preview.png',
   },
   {
@@ -45,9 +67,9 @@ const projectData = [
       'API untuk operasi CRUD pada produk dari dashboard admin',
       'Manajemen database produk dan pengguna',
     ],
-    tags: ['Node.js', 'Express.js', 'MongoDB', 'JWT'], // Tags diperbarui (frontend dihapus)
+    tags: ['Node.js', 'Express.js', 'MongoDB', 'JWT'],
     liveUrl: 'https://frevan.vercel.app/',
-    repoUrl: 'https://github.com/fredyyfajarr/be-ecommerce-isaac', // URL diperbarui
+    repoUrl: 'https://github.com/fredyyfajarr/be-ecommerce-isaac',
     imageUrl: '/images/frevan-shop-preview.png',
   },
 ];
