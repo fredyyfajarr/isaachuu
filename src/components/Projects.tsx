@@ -1,15 +1,13 @@
 // components/Projects.tsx
 import React from 'react';
 import Image from 'next/image';
-import { FiGithub, FiExternalLink } from 'react-icons/fi';
+// Hapus FiGithub karena sudah tidak digunakan
+import { FiExternalLink } from 'react-icons/fi';
 
 // Definisikan data proyek Anda di sini
 const projectData = [
-  // #####################################################################
-  // ## PROYEK LMS (NODE.JS) BARU DITAMBAHKAN DI SINI ##
-  // #####################################################################
   {
-    title: 'DiBelajar.in - Learning Management System (MERN Stack) as Backend',
+    title: 'DiBelajar.in - Learning Management System (MERN Stack)',
     description:
       'Mengembangkan sistem backend dan mengelola database untuk platform E-Learning "DiBelajar.in" menggunakan Node.js dan Express.js, serta mengintegrasikannya dengan frontend React. Bertanggung jawab atas API otentikasi, manajemen kursus, dan pelacakan progres belajar.',
     features: [
@@ -21,12 +19,9 @@ const projectData = [
     ],
     tags: ['Node.js', 'Express.js', 'React.js', 'MongoDB', 'JWT', 'Vercel'],
     liveUrl: 'https://di-belajar-in.vercel.app/',
-    repoUrl: 'https://github.com/fredyyfajarr/DiBelajar.in-NodeJs-Backend', // Link ke backend
-    // Anda bisa tambahkan link ke frontend repo di sini juga atau di deskripsi jika mau
-    // secondaryRepoUrl: 'https://github.com/fredyyfajarr/DiBelajar.in-NodeJs-Frontend',
+    // repoUrl dihapus dari data
     imageUrl: '/images/dibelajarin-mern-preview.png',
   },
-  // #####################################################################
   {
     title: 'Dibelajarin - Learning Management System (Laravel Backend)',
     description:
@@ -39,7 +34,6 @@ const projectData = [
     ],
     tags: ['Laravel', 'PHP', 'Filament', 'Breeze', 'MySQL', 'Railway'],
     liveUrl: 'https://dibelajarin.up.railway.app/',
-    repoUrl: 'https://github.com/fredyyfajarr/dibelajarin_2.0',
     imageUrl: '/images/dibelajarin-preview.png',
   },
   {
@@ -54,7 +48,6 @@ const projectData = [
     ],
     tags: ['Laravel', 'PHP', 'MySQL', 'Bootstrap', 'Midtrans API'],
     liveUrl: 'https://sacket-x0j8k.sevalla.app/',
-    repoUrl: 'https://github.com/fredyyfajarr/sacket',
     imageUrl: '/images/sacket-preview.png',
   },
   {
@@ -69,7 +62,6 @@ const projectData = [
     ],
     tags: ['Node.js', 'Express.js', 'MongoDB', 'JWT'],
     liveUrl: 'https://frevan.vercel.app/',
-    repoUrl: 'https://github.com/fredyyfajarr/be-ecommerce-isaac',
     imageUrl: '/images/frevan-shop-preview.png',
   },
 ];
@@ -151,19 +143,13 @@ const Projects = () => {
                 ))}
               </ul>
 
+              {/* BAGIAN INI DIUBAH */}
               <div
                 className={`flex items-center gap-4 ${
                   index % 2 === 0 ? 'md:justify-end' : 'md:justify-start'
                 }`}
               >
-                <a
-                  href={project.repoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate hover:text-primary-blue transition-colors duration-300"
-                >
-                  <FiGithub size={24} />
-                </a>
+                {/* Link GitHub dihapus */}
                 <a
                   href={project.liveUrl}
                   target="_blank"
