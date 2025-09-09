@@ -31,10 +31,11 @@ export default function Home() {
           <About />
         </motion.div>
 
+        {/* PERUBAHAN DI SINI */}
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true }} // Properti 'amount' dihapus
           transition={{ duration: 0.6 }}
           variants={sectionVariants}
         >
