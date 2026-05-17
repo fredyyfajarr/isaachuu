@@ -4,7 +4,7 @@ Personal portfolio for Fredy Fajar Adi Putra, a backend engineer focused on REST
 
 ## Overview
 
-This portfolio highlights selected production-style projects, backend responsibilities, and supporting GitHub projects. The site is built with Next.js, React, TypeScript, Tailwind CSS, and Framer Motion.
+This portfolio highlights selected production-style projects, backend responsibilities, and public GitHub projects in one consistent project flow. The site is built with Next.js, React, TypeScript, Tailwind CSS, and Framer Motion.
 
 ## Featured Work
 
@@ -12,6 +12,14 @@ This portfolio highlights selected production-style projects, backend responsibi
 - Dibelajarin LMS, a Laravel and Filament learning platform with role-based dashboards and relational database design.
 - Sacket, a Laravel ticketing platform with booking flow, event management, Midtrans payment integration, and admin tooling.
 - Frevan, an e-commerce backend focused on secure REST APIs, JWT authentication, product management, cart flow, and checkout logic.
+- Additional public GitHub projects, including SwapSkill, Random Skill Gen-ZRator, DiBelajar.in frontend repositories, BI-DOM, Gelora Library, ProjectUAS, Isaac Cloth, and Isaacpedia.
+
+## Features
+
+- English and Indonesian language switcher.
+- Consistent project layout for featured work and GitHub-only projects.
+- Empty project media placeholders for repositories that do not have screenshots yet.
+- SEO metadata for recruiter-friendly previews.
 
 ## Tech Stack
 
@@ -60,6 +68,9 @@ src/components
   Footer.tsx
   Navbar.tsx
   SocialLinks.tsx
+
+src/lib
+  content.ts       # Bilingual copy and portfolio project data
 ```
 
 ## Contact

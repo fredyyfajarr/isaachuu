@@ -1,6 +1,7 @@
 // app/page.tsx
-'use client'; // Tambahkan ini di baris paling atas!
+'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
@@ -8,8 +9,11 @@ import About from '@/components/About';
 import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import type { Locale } from '@/lib/content';
 
 export default function Home() {
+  const [locale, setLocale] = useState<Locale>('en');
+
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0 },
@@ -17,9 +21,9 @@ export default function Home() {
 
   return (
     <>
-      <Navbar />
+      <Navbar locale={locale} onLocaleChange={setLocale} />
       <main className="mx-auto max-w-4xl px-6">
-        <Hero />
+        <Hero locale={locale} />
 
         <motion.div
           initial="hidden"
@@ -28,18 +32,17 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           variants={sectionVariants}
         >
-          <About />
+          <About locale={locale} />
         </motion.div>
 
-        {/* PERUBAHAN DI SINI */}
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }} // Properti 'amount' dihapus
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           variants={sectionVariants}
         >
-          <Projects />
+          <Projects locale={locale} />
         </motion.div>
 
         <motion.div
@@ -49,10 +52,10 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           variants={sectionVariants}
         >
-          <Contact />
+          <Contact locale={locale} />
         </motion.div>
       </main>
-      <Footer />
+      <Footer locale={locale} />
     </>
   );
 }

@@ -6,7 +6,7 @@ import SocialLinks from '@/components/SocialLinks';
 const siteUrl = 'https://github.com/fredyyfajarr/isaachuu';
 const siteTitle = 'Fredy Fajar Adi Putra | Backend Engineer';
 const siteDescription =
-  'Portfolio of Fredy Fajar Adi Putra, a backend engineer focused on REST APIs, database design, Laravel, Node.js, and full-stack web applications.';
+  'Bilingual portfolio of Fredy Fajar Adi Putra, a backend engineer focused on REST APIs, database design, Laravel, Node.js, and full-stack web applications.';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
