@@ -17,9 +17,11 @@ This portfolio highlights selected production-style projects, backend responsibi
 ## Features
 
 - English and Indonesian language switcher.
-- Consistent project layout for featured work and GitHub-only projects.
+- Featured and Other Projects sections for clearer recruiter scanning.
+- Role, scope, stack, and status metadata for every project.
 - Combined full-stack project entries with separate repository links for backend and frontend code.
-- Empty project media placeholders for repositories that do not have screenshots yet.
+- Branded media placeholders for repositories that do not have screenshots yet.
+- Mobile navigation and saved language preference.
 - SEO metadata for recruiter-friendly previews.
 
 ## Tech Stack

@@ -4,6 +4,8 @@ type LocalizedText = Record<Locale, string>;
 
 type LocalizedList = Record<Locale, string[]>;
 
+export type ProjectTier = 'featured' | 'other';
+
 export type RepoLink = {
   label: LocalizedText;
   url: string;
@@ -11,9 +13,13 @@ export type RepoLink = {
 
 export type Project = {
   title: string;
+  tier: ProjectTier;
   label: LocalizedText;
   description: LocalizedText;
   features: LocalizedList;
+  role: LocalizedText;
+  scope: LocalizedText;
+  status: LocalizedText;
   tags: string[];
   liveUrl?: string;
   repoLinks: RepoLink[];
@@ -70,9 +76,33 @@ export const aboutContent = {
 export const projectsContent = {
   en: {
     title: 'Some Things I have Built',
+    featuredTitle: 'Featured Projects',
+    featuredIntro:
+      'A curated set of larger products where my backend and full-stack work is easiest to evaluate.',
+    otherTitle: 'Other Projects',
+    otherHeading: 'Repositories and code samples',
+    otherIntro:
+      'More public repositories, experiments, academic work, and code samples from my GitHub.',
+    role: 'Role',
+    scope: 'Scope',
+    stack: 'Stack',
+    status: 'Status',
+    live: 'Live',
   },
   id: {
     title: 'Beberapa Project yang Saya Bangun',
+    featuredTitle: 'Project Unggulan',
+    featuredIntro:
+      'Pilihan project yang paling kuat untuk menunjukkan kemampuan backend dan full-stack saya.',
+    otherTitle: 'Project Lainnya',
+    otherHeading: 'Repository dan contoh kode',
+    otherIntro:
+      'Repository publik lain, eksperimen, project akademik, dan contoh kode dari GitHub saya.',
+    role: 'Role',
+    scope: 'Scope',
+    stack: 'Stack',
+    status: 'Status',
+    live: 'Live',
   },
 };
 
@@ -110,6 +140,7 @@ export const skills = [
 export const projects: Project[] = [
   {
     title: 'DiBelajar.in - Learning Management System (MERN Stack)',
+    tier: 'featured',
     label: {
       en: 'Featured Project',
       id: 'Project Unggulan',
@@ -132,6 +163,18 @@ export const projects: Project[] = [
         'Alur kursus, materi, tugas, diskusi, dan notifikasi',
       ],
     },
+    role: {
+      en: 'Backend Engineer / Full-Stack Collaborator',
+      id: 'Backend Engineer / Kolaborator Full-Stack',
+    },
+    scope: {
+      en: 'Auth, API, database, course flow, and frontend integration',
+      id: 'Auth, API, database, alur kursus, dan integrasi frontend',
+    },
+    status: {
+      en: 'Live demo + source code',
+      id: 'Demo live + source code',
+    },
     tags: ['Node.js', 'Express.js', 'React.js', 'MongoDB', 'JWT', 'Vercel'],
     liveUrl: 'https://di-belajar-in.vercel.app/',
     repoLinks: [
@@ -152,6 +195,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Dibelajarin - Learning Management System (Laravel Full-Stack)',
+    tier: 'featured',
     label: {
       en: 'Featured Project',
       id: 'Project Unggulan',
@@ -174,6 +218,18 @@ export const projects: Project[] = [
         'Logic custom untuk progress belajar dan role user',
       ],
     },
+    role: {
+      en: 'Backend Engineer',
+      id: 'Backend Engineer',
+    },
+    scope: {
+      en: 'Laravel backend, Filament admin, auth, and LMS data model',
+      id: 'Backend Laravel, admin Filament, auth, dan model data LMS',
+    },
+    status: {
+      en: 'Live demo + source code',
+      id: 'Demo live + source code',
+    },
     tags: ['Laravel', 'PHP', 'Filament', 'Breeze', 'MySQL', 'Railway'],
     liveUrl: 'https://dibelajarin.up.railway.app/',
     repoLinks: [
@@ -186,6 +242,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Sacket - Ticketing Website (Full-Stack)',
+    tier: 'featured',
     label: {
       en: 'Featured Project',
       id: 'Project Unggulan',
@@ -208,6 +265,18 @@ export const projects: Project[] = [
         'Integrasi payment gateway Midtrans',
       ],
     },
+    role: {
+      en: 'Full-Stack Developer',
+      id: 'Full-Stack Developer',
+    },
+    scope: {
+      en: 'Booking flow, admin panel, roles, QR tickets, and payment',
+      id: 'Booking flow, admin panel, role, tiket QR, dan pembayaran',
+    },
+    status: {
+      en: 'Live demo + source code',
+      id: 'Demo live + source code',
+    },
     tags: ['Laravel', 'PHP', 'MySQL', 'Bootstrap', 'Midtrans API'],
     liveUrl: 'https://sacket-x0j8k.sevalla.app/',
     repoLinks: [
@@ -220,6 +289,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Frevan - E-commerce Store (Full-Stack)',
+    tier: 'featured',
     label: {
       en: 'Featured Project',
       id: 'Project Unggulan',
@@ -242,6 +312,18 @@ export const projects: Project[] = [
         'Manajemen data MongoDB untuk produk dan user',
       ],
     },
+    role: {
+      en: 'Backend-focused Full-Stack Developer',
+      id: 'Full-Stack Developer fokus Backend',
+    },
+    scope: {
+      en: 'REST API, product CRUD, cart, checkout, and React storefront',
+      id: 'REST API, CRUD produk, cart, checkout, dan storefront React',
+    },
+    status: {
+      en: 'Live demo + source code',
+      id: 'Demo live + source code',
+    },
     tags: ['Node.js', 'Express.js', 'React', 'Vite', 'MongoDB', 'JWT'],
     liveUrl: 'https://frevan.vercel.app/',
     repoLinks: [
@@ -258,6 +340,7 @@ export const projects: Project[] = [
   },
   {
     title: 'SwapSkill - Student Skill Barter Platform',
+    tier: 'featured',
     label: {
       en: 'GitHub Project',
       id: 'Project GitHub',
@@ -280,6 +363,18 @@ export const projects: Project[] = [
         'Panel admin Filament dan clean architecture pragmatis',
       ],
     },
+    role: {
+      en: 'Full-Stack Developer',
+      id: 'Full-Stack Developer',
+    },
+    scope: {
+      en: 'Skill board, profile, offer, review, notification, and admin flows',
+      id: 'Skill board, profil, tawaran, review, notifikasi, dan admin',
+    },
+    status: {
+      en: 'Source code',
+      id: 'Source code',
+    },
     tags: ['Laravel', 'Next.js', 'Sanctum', 'Filament', 'MySQL'],
     repoLinks: [
       {
@@ -294,6 +389,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Random Skill Gen-ZRator',
+    tier: 'other',
     label: {
       en: 'GitHub Project',
       id: 'Project GitHub',
@@ -316,6 +412,18 @@ export const projects: Project[] = [
         'Struktur MVVM dengan ViewModel dan LiveData',
       ],
     },
+    role: {
+      en: 'Android Developer',
+      id: 'Android Developer',
+    },
+    scope: {
+      en: 'Daily quest, XP system, local database, and Firebase sync',
+      id: 'Daily quest, sistem XP, database lokal, dan sync Firebase',
+    },
+    status: {
+      en: 'Source code',
+      id: 'Source code',
+    },
     tags: ['Android', 'Java', 'Firebase', 'Room', 'MVVM'],
     repoLinks: [
       {
@@ -326,6 +434,7 @@ export const projects: Project[] = [
   },
   {
     title: 'LMS Aachuu',
+    tier: 'other',
     label: {
       en: 'GitHub Project',
       id: 'Project GitHub',
@@ -348,6 +457,18 @@ export const projects: Project[] = [
         'Alur kolaborasi frontend dan backend',
       ],
     },
+    role: {
+      en: 'Backend Engineer',
+      id: 'Backend Engineer',
+    },
+    scope: {
+      en: 'Learning platform concept and team backend contribution',
+      id: 'Konsep platform belajar dan kontribusi backend dalam tim',
+    },
+    status: {
+      en: 'Source code',
+      id: 'Source code',
+    },
     tags: ['LMS', 'Laravel', 'React', 'Backend'],
     repoLinks: [
       {
@@ -358,6 +479,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Image Quantization App',
+    tier: 'other',
     label: {
       en: 'GitHub Project',
       id: 'Project GitHub',
@@ -380,6 +502,18 @@ export const projects: Project[] = [
         'Statistik kompresi dan resizing anti-lag',
       ],
     },
+    role: {
+      en: 'Python Developer / Team Contributor',
+      id: 'Python Developer / Kontributor Tim',
+    },
+    scope: {
+      en: 'Image quantization, histogram, compression stats, and Streamlit UI',
+      id: 'Kuantisasi citra, histogram, statistik kompresi, dan UI Streamlit',
+    },
+    status: {
+      en: 'Source code',
+      id: 'Source code',
+    },
     tags: ['Python', 'Streamlit', 'Image Processing'],
     repoLinks: [
       {
@@ -390,6 +524,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Deteksi Penyakit',
+    tier: 'other',
     label: {
       en: 'GitHub Project',
       id: 'Project GitHub',
@@ -412,6 +547,18 @@ export const projects: Project[] = [
         'Latihan implementasi frontend',
       ],
     },
+    role: {
+      en: 'Frontend Developer',
+      id: 'Frontend Developer',
+    },
+    scope: {
+      en: 'Next.js app structure and disease-detection product concept',
+      id: 'Struktur app Next.js dan konsep produk deteksi penyakit',
+    },
+    status: {
+      en: 'Source code',
+      id: 'Source code',
+    },
     tags: ['Next.js', 'React', 'Web App'],
     repoLinks: [
       {
@@ -422,6 +569,7 @@ export const projects: Project[] = [
   },
   {
     title: 'BI-DOM - Full-Stack Web App',
+    tier: 'other',
     label: {
       en: 'GitHub Project',
       id: 'Project GitHub',
@@ -444,6 +592,18 @@ export const projects: Project[] = [
         'Contoh integrasi full-stack',
       ],
     },
+    role: {
+      en: 'Full-Stack Developer',
+      id: 'Full-Stack Developer',
+    },
+    scope: {
+      en: 'Laravel backend, Next.js frontend, and integration sample',
+      id: 'Backend Laravel, frontend Next.js, dan contoh integrasi',
+    },
+    status: {
+      en: 'Source code',
+      id: 'Source code',
+    },
     tags: ['Laravel', 'Next.js', 'PHP', 'React', 'Full-Stack'],
     repoLinks: [
       {
@@ -458,6 +618,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Gelora Library',
+    tier: 'other',
     label: {
       en: 'GitHub Project',
       id: 'Project GitHub',
@@ -480,6 +641,18 @@ export const projects: Project[] = [
         'Latihan implementasi backend dan dashboard',
       ],
     },
+    role: {
+      en: 'Backend Developer',
+      id: 'Backend Developer',
+    },
+    scope: {
+      en: 'Laravel app foundation, document/export flow, and data model',
+      id: 'Fondasi Laravel, alur dokumen/export, dan model data',
+    },
+    status: {
+      en: 'Source code',
+      id: 'Source code',
+    },
     tags: ['Laravel', 'PHP', 'Library System', 'Database'],
     repoLinks: [
       {
@@ -490,6 +663,7 @@ export const projects: Project[] = [
   },
   {
     title: 'ProjectUAS Waroeng DFFFP',
+    tier: 'other',
     label: {
       en: 'GitHub Project',
       id: 'Project GitHub',
@@ -512,6 +686,18 @@ export const projects: Project[] = [
         'Project akademik pemesanan makanan',
       ],
     },
+    role: {
+      en: 'Desktop App Developer / Team Contributor',
+      id: 'Desktop App Developer / Kontributor Tim',
+    },
+    scope: {
+      en: 'Local installation, database import, and admin/user flow',
+      id: 'Instalasi lokal, import database, dan alur admin/user',
+    },
+    status: {
+      en: 'Source code',
+      id: 'Source code',
+    },
     tags: ['Desktop App', 'MySQL', 'Academic Project'],
     repoLinks: [
       {
@@ -522,6 +708,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Isaac Cloth 2',
+    tier: 'other',
     label: {
       en: 'GitHub Project',
       id: 'Project GitHub',
@@ -544,6 +731,18 @@ export const projects: Project[] = [
         'Contoh project portfolio awal',
       ],
     },
+    role: {
+      en: 'Web Developer',
+      id: 'Web Developer',
+    },
+    scope: {
+      en: 'Clothing-store concept and early storefront practice',
+      id: 'Konsep toko pakaian dan latihan storefront awal',
+    },
+    status: {
+      en: 'Archived source code',
+      id: 'Arsip source code',
+    },
     tags: ['Storefront', 'Web App', 'Portfolio Archive'],
     repoLinks: [
       {
@@ -554,6 +753,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Isaacpedia',
+    tier: 'other',
     label: {
       en: 'GitHub Project',
       id: 'Project GitHub',
@@ -575,6 +775,18 @@ export const projects: Project[] = [
         'Latihan penyajian konten',
         'Contoh struktur aplikasi web',
       ],
+    },
+    role: {
+      en: 'Web Developer',
+      id: 'Web Developer',
+    },
+    scope: {
+      en: 'Information app structure and content presentation',
+      id: 'Struktur aplikasi informasi dan penyajian konten',
+    },
+    status: {
+      en: 'Archived source code',
+      id: 'Arsip source code',
     },
     tags: ['Web App', 'Content App', 'Portfolio Archive'],
     repoLinks: [

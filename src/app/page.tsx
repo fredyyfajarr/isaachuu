@@ -1,7 +1,7 @@
 // app/page.tsx
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
@@ -11,8 +11,34 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import type { Locale } from '@/lib/content';
 
+const getInitialLocale = (): Locale => {
+  if (typeof window === 'undefined') {
+    return 'en';
+  }
+
+  const savedLocale = window.localStorage.getItem('portfolio-locale');
+
+  if (savedLocale === 'en' || savedLocale === 'id') {
+    return savedLocale;
+  }
+
+  return window.navigator.language.toLowerCase().startsWith('id') ? 'id' : 'en';
+};
+
 export default function Home() {
   const [locale, setLocale] = useState<Locale>('en');
+  const [localeReady, setLocaleReady] = useState(false);
+
+  useEffect(() => {
+    setLocale(getInitialLocale());
+    setLocaleReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (localeReady) {
+      window.localStorage.setItem('portfolio-locale', locale);
+    }
+  }, [locale, localeReady]);
 
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
