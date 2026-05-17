@@ -12,12 +12,13 @@ This portfolio highlights selected production-style projects, backend responsibi
 - Dibelajarin LMS, a Laravel and Filament learning platform with role-based dashboards and relational database design.
 - Sacket, a Laravel ticketing platform with booking flow, event management, Midtrans payment integration, and admin tooling.
 - Frevan, an e-commerce backend focused on secure REST APIs, JWT authentication, product management, cart flow, and checkout logic.
-- Additional public GitHub projects, including SwapSkill, Random Skill Gen-ZRator, DiBelajar.in frontend repositories, BI-DOM, Gelora Library, ProjectUAS, Isaac Cloth, and Isaacpedia.
+- Additional public GitHub projects, including combined full-stack entries for SwapSkill, DiBelajar.in, Frevan, and BI-DOM, plus Random Skill Gen-ZRator, Gelora Library, ProjectUAS, Isaac Cloth, and Isaacpedia.
 
 ## Features
 
 - English and Indonesian language switcher.
 - Consistent project layout for featured work and GitHub-only projects.
+- Combined full-stack project entries with separate repository links for backend and frontend code.
 - Empty project media placeholders for repositories that do not have screenshots yet.
 - SEO metadata for recruiter-friendly previews.
 

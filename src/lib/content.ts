@@ -4,6 +4,11 @@ type LocalizedText = Record<Locale, string>;
 
 type LocalizedList = Record<Locale, string[]>;
 
+export type RepoLink = {
+  label: LocalizedText;
+  url: string;
+};
+
 export type Project = {
   title: string;
   label: LocalizedText;
@@ -11,7 +16,7 @@ export type Project = {
   features: LocalizedList;
   tags: string[];
   liveUrl?: string;
-  repoUrl: string;
+  repoLinks: RepoLink[];
   imageUrl?: string;
 };
 
@@ -110,30 +115,43 @@ export const projects: Project[] = [
       id: 'Project Unggulan',
     },
     description: {
-      en: 'Built and maintained the backend system for an e-learning platform with Node.js, Express.js, MongoDB, and a React frontend integration.',
-      id: 'Membangun dan mengelola backend untuk platform e-learning menggunakan Node.js, Express.js, MongoDB, serta integrasi frontend React.',
+      en: 'Full-stack MERN learning platform with a Node.js API, MongoDB data model, and React frontend for role-based learning experiences.',
+      id: 'Platform LMS full-stack MERN dengan API Node.js, model data MongoDB, dan frontend React untuk pengalaman belajar berbasis role.',
     },
     features: {
       en: [
-        'REST API for authentication, course data, and learning progress',
+        'Node.js and Express API for authentication, courses, and progress',
         'MongoDB data modeling for LMS entities',
-        'JWT-based authentication and role-aware access flow',
-        'Frontend integration with React.js',
+        'React frontend with role-based dashboards and protected routes',
+        'Course, material, assignment, discussion, and notification flows',
       ],
       id: [
-        'REST API untuk autentikasi, data kursus, dan progress belajar',
+        'API Node.js dan Express untuk autentikasi, kursus, dan progress',
         'Pemodelan data MongoDB untuk kebutuhan LMS',
-        'Autentikasi JWT dan alur akses berbasis role',
-        'Integrasi frontend dengan React.js',
+        'Frontend React dengan dashboard berbasis role dan protected routes',
+        'Alur kursus, materi, tugas, diskusi, dan notifikasi',
       ],
     },
     tags: ['Node.js', 'Express.js', 'React.js', 'MongoDB', 'JWT', 'Vercel'],
     liveUrl: 'https://di-belajar-in.vercel.app/',
-    repoUrl: 'https://github.com/fredyyfajarr/DiBelajar.in-NodeJs-Backend',
+    repoLinks: [
+      {
+        label: { en: 'Backend', id: 'Backend' },
+        url: 'https://github.com/fredyyfajarr/DiBelajar.in-NodeJs-Backend',
+      },
+      {
+        label: { en: 'Frontend', id: 'Frontend' },
+        url: 'https://github.com/fredyyfajarr/DiBelajar.in-NodeJs-Frontend',
+      },
+      {
+        label: { en: 'Frontend v2', id: 'Frontend v2' },
+        url: 'https://github.com/fredyyfajarr/DiBelajar.in-NodeJs-Frontend-2',
+      },
+    ],
     imageUrl: '/images/dibelajarin-mern-preview.png',
   },
   {
-    title: 'Dibelajarin - Learning Management System (Laravel Backend)',
+    title: 'Dibelajarin - Learning Management System (Laravel Full-Stack)',
     label: {
       en: 'Featured Project',
       id: 'Project Unggulan',
@@ -158,7 +176,12 @@ export const projects: Project[] = [
     },
     tags: ['Laravel', 'PHP', 'Filament', 'Breeze', 'MySQL', 'Railway'],
     liveUrl: 'https://dibelajarin.up.railway.app/',
-    repoUrl: 'https://github.com/fredyyfajarr/dibelajarin_2.0',
+    repoLinks: [
+      {
+        label: { en: 'Repository', id: 'Repository' },
+        url: 'https://github.com/fredyyfajarr/dibelajarin_2.0',
+      },
+    ],
     imageUrl: '/images/dibelajarin-preview.png',
   },
   {
@@ -187,118 +210,87 @@ export const projects: Project[] = [
     },
     tags: ['Laravel', 'PHP', 'MySQL', 'Bootstrap', 'Midtrans API'],
     liveUrl: 'https://sacket-x0j8k.sevalla.app/',
-    repoUrl: 'https://github.com/fredyyfajarr/sacket',
+    repoLinks: [
+      {
+        label: { en: 'Repository', id: 'Repository' },
+        url: 'https://github.com/fredyyfajarr/sacket',
+      },
+    ],
     imageUrl: '/images/sacket-preview.png',
   },
   {
-    title: 'Frevan - E-commerce Store (Backend)',
+    title: 'Frevan - E-commerce Store (Full-Stack)',
     label: {
       en: 'Featured Project',
       id: 'Project Unggulan',
     },
     description: {
-      en: 'Built the backend foundation for an e-commerce platform, focusing on secure APIs, product operations, cart logic, and checkout flow.',
-      id: 'Membangun fondasi backend untuk platform e-commerce dengan fokus pada API yang aman, manajemen produk, logic keranjang, dan alur checkout.',
+      en: 'Full-stack e-commerce project with a secure Node.js backend and React storefront for product browsing, cart, and checkout flows.',
+      id: 'Project e-commerce full-stack dengan backend Node.js yang aman dan storefront React untuk alur produk, keranjang, dan checkout.',
     },
     features: {
       en: [
         'Secure REST API with JWT authentication',
         'Cart and checkout business logic',
-        'CRUD APIs for products and admin operations',
+        'React storefront built with Vite and Redux Toolkit',
         'MongoDB data management for products and users',
       ],
       id: [
         'REST API aman dengan autentikasi JWT',
         'Logic bisnis untuk keranjang dan checkout',
-        'API CRUD untuk produk dan operasi admin',
+        'Storefront React menggunakan Vite dan Redux Toolkit',
         'Manajemen data MongoDB untuk produk dan user',
       ],
     },
-    tags: ['Node.js', 'Express.js', 'MongoDB', 'JWT'],
+    tags: ['Node.js', 'Express.js', 'React', 'Vite', 'MongoDB', 'JWT'],
     liveUrl: 'https://frevan.vercel.app/',
-    repoUrl: 'https://github.com/fredyyfajarr/be-ecommerce-isaac',
+    repoLinks: [
+      {
+        label: { en: 'Backend', id: 'Backend' },
+        url: 'https://github.com/fredyyfajarr/be-ecommerce-isaac',
+      },
+      {
+        label: { en: 'Frontend', id: 'Frontend' },
+        url: 'https://github.com/fredyyfajarr/mern-fe-ecommerce',
+      },
+    ],
     imageUrl: '/images/frevan-shop-preview.png',
   },
   {
-    title: 'Frevan - E-commerce Store (Frontend)',
+    title: 'SwapSkill - Student Skill Barter Platform',
     label: {
       en: 'GitHub Project',
       id: 'Project GitHub',
     },
     description: {
-      en: 'React and Vite frontend for an e-commerce store, connected to product, cart, authentication, and checkout flows from the backend API.',
-      id: 'Frontend React dan Vite untuk toko e-commerce yang terhubung dengan alur produk, keranjang, autentikasi, dan checkout dari backend API.',
-    },
-    features: {
-      en: [
-        'React storefront built with Vite',
-        'State management with Redux Toolkit',
-        'Product browsing, cart, and checkout UI',
-        'API communication with Axios',
-      ],
-      id: [
-        'Storefront React menggunakan Vite',
-        'State management dengan Redux Toolkit',
-        'UI untuk produk, keranjang, dan checkout',
-        'Komunikasi API menggunakan Axios',
-      ],
-    },
-    tags: ['React', 'Vite', 'Redux Toolkit', 'Axios', 'Tailwind CSS'],
-    repoUrl: 'https://github.com/fredyyfajarr/mern-fe-ecommerce',
-  },
-  {
-    title: 'SwapSkill Backend',
-    label: {
-      en: 'GitHub Project',
-      id: 'Project GitHub',
-    },
-    description: {
-      en: 'Laravel API for a student skill-barter app with authentication, profiles, skill offers, bookmarks, reviews, notifications, statistics, and admin tooling.',
-      id: 'API Laravel untuk aplikasi barter skill mahasiswa dengan autentikasi, profil, tawaran skill, bookmark, review, notifikasi, statistik, dan panel admin.',
+      en: 'Full-stack skill-barter platform for students, combining a Laravel API with a Next.js frontend for discovery, offers, profiles, and reviews.',
+      id: 'Platform barter skill full-stack untuk mahasiswa, menggabungkan API Laravel dan frontend Next.js untuk discovery, tawaran, profil, dan review.',
     },
     features: {
       en: [
         'Token authentication with Laravel Sanctum',
         'Skill board, barter offers, bookmarks, and reviews',
-        'Personal statistics and notification flow',
+        'Next.js frontend with profile, settings, and notification UI',
         'Filament admin panel and pragmatic clean architecture',
       ],
       id: [
         'Autentikasi token menggunakan Laravel Sanctum',
         'Skill board, tawaran barter, bookmark, dan review',
-        'Statistik personal dan alur notifikasi',
+        'Frontend Next.js dengan UI profil, settings, dan notifikasi',
         'Panel admin Filament dan clean architecture pragmatis',
       ],
     },
-    tags: ['Laravel', 'Sanctum', 'Filament', 'MySQL'],
-    repoUrl: 'https://github.com/fredyyfajarr/swapskill-be',
-  },
-  {
-    title: 'SwapSkill Frontend',
-    label: {
-      en: 'GitHub Project',
-      id: 'Project GitHub',
-    },
-    description: {
-      en: 'Next.js frontend for SwapSkill with authentication, skill board, profile pages, bookmarks, reviews, notifications, and Laravel API integration.',
-      id: 'Frontend Next.js untuk SwapSkill dengan autentikasi, skill board, halaman profil, bookmark, review, notifikasi, dan integrasi API Laravel.',
-    },
-    features: {
-      en: [
-        'Next.js App Router and TypeScript',
-        'Skill search, filters, bookmarks, and recommendations',
-        'Profile, public profile, settings, and notification UI',
-        'Feature-based frontend structure',
-      ],
-      id: [
-        'Next.js App Router dan TypeScript',
-        'Search skill, filter, bookmark, dan rekomendasi',
-        'UI profil, profil publik, settings, dan notifikasi',
-        'Struktur frontend berbasis feature',
-      ],
-    },
-    tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
-    repoUrl: 'https://github.com/fredyyfajarr/swapskill-fe',
+    tags: ['Laravel', 'Next.js', 'Sanctum', 'Filament', 'MySQL'],
+    repoLinks: [
+      {
+        label: { en: 'Backend', id: 'Backend' },
+        url: 'https://github.com/fredyyfajarr/swapskill-be',
+      },
+      {
+        label: { en: 'Frontend', id: 'Frontend' },
+        url: 'https://github.com/fredyyfajarr/swapskill-fe',
+      },
+    ],
   },
   {
     title: 'Random Skill Gen-ZRator',
@@ -325,61 +317,12 @@ export const projects: Project[] = [
       ],
     },
     tags: ['Android', 'Java', 'Firebase', 'Room', 'MVVM'],
-    repoUrl: 'https://github.com/fredyyfajarr/RandomSkillGenZRator',
-  },
-  {
-    title: 'DiBelajar.in Node.js Frontend',
-    label: {
-      en: 'GitHub Project',
-      id: 'Project GitHub',
-    },
-    description: {
-      en: 'React and Vite frontend for the DiBelajar.in LMS with role-based dashboards, course flows, forms, notifications, and backend API integration.',
-      id: 'Frontend React dan Vite untuk LMS DiBelajar.in dengan dashboard berbasis role, alur kursus, form, notifikasi, dan integrasi backend API.',
-    },
-    features: {
-      en: [
-        'Role-based dashboards for admin, instructor, and student',
-        'React Query data fetching and Zustand state management',
-        'Protected routes and course interaction flows',
-        'Interactive forms and notification UI',
-      ],
-      id: [
-        'Dashboard berbasis role untuk admin, instruktur, dan siswa',
-        'Data fetching React Query dan state management Zustand',
-        'Protected routes dan alur interaksi kursus',
-        'Form interaktif dan UI notifikasi',
-      ],
-    },
-    tags: ['React', 'Vite', 'Zustand', 'React Query'],
-    repoUrl: 'https://github.com/fredyyfajarr/DiBelajar.in-NodeJs-Frontend',
-  },
-  {
-    title: 'DiBelajar.in Node.js Frontend 2',
-    label: {
-      en: 'GitHub Project',
-      id: 'Project GitHub',
-    },
-    description: {
-      en: 'Second frontend iteration for the DiBelajar.in Node.js LMS, focused on responsive UI, protected routes, role-based pages, and interactive course management.',
-      id: 'Iterasi kedua frontend LMS DiBelajar.in Node.js yang berfokus pada UI responsif, protected routes, halaman berbasis role, dan manajemen kursus interaktif.',
-    },
-    features: {
-      en: [
-        'Responsive React interface with Vite',
-        'Role-based navigation and dashboard behavior',
-        'Course, material, user, and category flows',
-        'Framer Motion interactions',
-      ],
-      id: [
-        'Interface React responsif dengan Vite',
-        'Navigasi dan dashboard berbasis role',
-        'Alur kursus, materi, user, dan kategori',
-        'Interaksi menggunakan Framer Motion',
-      ],
-    },
-    tags: ['React', 'Vite', 'Tailwind CSS', 'Framer Motion'],
-    repoUrl: 'https://github.com/fredyyfajarr/DiBelajar.in-NodeJs-Frontend-2',
+    repoLinks: [
+      {
+        label: { en: 'Repository', id: 'Repository' },
+        url: 'https://github.com/fredyyfajarr/RandomSkillGenZRator',
+      },
+    ],
   },
   {
     title: 'LMS Aachuu',
@@ -406,7 +349,12 @@ export const projects: Project[] = [
       ],
     },
     tags: ['LMS', 'Laravel', 'React', 'Backend'],
-    repoUrl: 'https://github.com/fredyyfajarr/lms-aachuu',
+    repoLinks: [
+      {
+        label: { en: 'Repository', id: 'Repository' },
+        url: 'https://github.com/fredyyfajarr/lms-aachuu',
+      },
+    ],
   },
   {
     title: 'Image Quantization App',
@@ -433,7 +381,12 @@ export const projects: Project[] = [
       ],
     },
     tags: ['Python', 'Streamlit', 'Image Processing'],
-    repoUrl: 'https://github.com/fredyyfajarr/tugas-kuantisasi-unpam-kel6',
+    repoLinks: [
+      {
+        label: { en: 'Repository', id: 'Repository' },
+        url: 'https://github.com/fredyyfajarr/tugas-kuantisasi-unpam-kel6',
+      },
+    ],
   },
   {
     title: 'Deteksi Penyakit',
@@ -460,61 +413,48 @@ export const projects: Project[] = [
       ],
     },
     tags: ['Next.js', 'React', 'Web App'],
-    repoUrl: 'https://github.com/fredyyfajarr/deteksi-penyakit',
+    repoLinks: [
+      {
+        label: { en: 'Repository', id: 'Repository' },
+        url: 'https://github.com/fredyyfajarr/deteksi-penyakit',
+      },
+    ],
   },
   {
-    title: 'BI-DOM Backend',
+    title: 'BI-DOM - Full-Stack Web App',
     label: {
       en: 'GitHub Project',
       id: 'Project GitHub',
     },
     description: {
-      en: 'Laravel backend repository for the BI-DOM project, built as a public code sample for backend structure, data flow, and implementation practice.',
-      id: 'Repository backend Laravel untuk project BI-DOM sebagai contoh publik untuk struktur backend, alur data, dan latihan implementasi.',
+      en: 'Full-stack BI-DOM project pairing a Laravel backend with a Next.js frontend as a public implementation sample.',
+      id: 'Project BI-DOM full-stack yang memasangkan backend Laravel dan frontend Next.js sebagai contoh implementasi publik.',
     },
     features: {
       en: [
         'Laravel backend foundation',
-        'PHP 8 application structure',
-        'Database-oriented application flow',
-        'Backend implementation sample',
-      ],
-      id: [
-        'Fondasi backend Laravel',
-        'Struktur aplikasi PHP 8',
-        'Alur aplikasi berbasis database',
-        'Contoh implementasi backend',
-      ],
-    },
-    tags: ['Laravel', 'PHP', 'Backend'],
-    repoUrl: 'https://github.com/fredyyfajarr/bi-dom-backend',
-  },
-  {
-    title: 'BI-DOM Frontend',
-    label: {
-      en: 'GitHub Project',
-      id: 'Project GitHub',
-    },
-    description: {
-      en: 'Next.js frontend repository for BI-DOM, paired with the backend implementation as a full-stack project sample.',
-      id: 'Repository frontend Next.js untuk BI-DOM yang dipasangkan dengan backend sebagai contoh project full-stack.',
-    },
-    features: {
-      en: [
         'Next.js frontend structure',
-        'Frontend pair for BI-DOM backend',
-        'Reusable UI foundation',
+        'Database-oriented application flow',
         'Full-stack integration sample',
       ],
       id: [
+        'Fondasi backend Laravel',
         'Struktur frontend Next.js',
-        'Pasangan frontend untuk backend BI-DOM',
-        'Fondasi UI reusable',
+        'Alur aplikasi berbasis database',
         'Contoh integrasi full-stack',
       ],
     },
-    tags: ['Next.js', 'React', 'Frontend'],
-    repoUrl: 'https://github.com/fredyyfajarr/bi-dom-frontend',
+    tags: ['Laravel', 'Next.js', 'PHP', 'React', 'Full-Stack'],
+    repoLinks: [
+      {
+        label: { en: 'Backend', id: 'Backend' },
+        url: 'https://github.com/fredyyfajarr/bi-dom-backend',
+      },
+      {
+        label: { en: 'Frontend', id: 'Frontend' },
+        url: 'https://github.com/fredyyfajarr/bi-dom-frontend',
+      },
+    ],
   },
   {
     title: 'Gelora Library',
@@ -541,7 +481,12 @@ export const projects: Project[] = [
       ],
     },
     tags: ['Laravel', 'PHP', 'Library System', 'Database'],
-    repoUrl: 'https://github.com/fredyyfajarr/gelora-library',
+    repoLinks: [
+      {
+        label: { en: 'Repository', id: 'Repository' },
+        url: 'https://github.com/fredyyfajarr/gelora-library',
+      },
+    ],
   },
   {
     title: 'ProjectUAS Waroeng DFFFP',
@@ -568,7 +513,12 @@ export const projects: Project[] = [
       ],
     },
     tags: ['Desktop App', 'MySQL', 'Academic Project'],
-    repoUrl: 'https://github.com/fredyyfajarr/projectUAS',
+    repoLinks: [
+      {
+        label: { en: 'Repository', id: 'Repository' },
+        url: 'https://github.com/fredyyfajarr/projectUAS',
+      },
+    ],
   },
   {
     title: 'Isaac Cloth 2',
@@ -595,7 +545,12 @@ export const projects: Project[] = [
       ],
     },
     tags: ['Storefront', 'Web App', 'Portfolio Archive'],
-    repoUrl: 'https://github.com/fredyyfajarr/isaac_cloth_2',
+    repoLinks: [
+      {
+        label: { en: 'Repository', id: 'Repository' },
+        url: 'https://github.com/fredyyfajarr/isaac_cloth_2',
+      },
+    ],
   },
   {
     title: 'Isaacpedia',
@@ -622,6 +577,11 @@ export const projects: Project[] = [
       ],
     },
     tags: ['Web App', 'Content App', 'Portfolio Archive'],
-    repoUrl: 'https://github.com/fredyyfajarr/isaacpedia',
+    repoLinks: [
+      {
+        label: { en: 'Repository', id: 'Repository' },
+        url: 'https://github.com/fredyyfajarr/isaacpedia',
+      },
+    ],
   },
 ];

@@ -2,7 +2,12 @@
 import React from 'react';
 import Image from 'next/image';
 import { FiExternalLink, FiGithub } from 'react-icons/fi';
-import { projects, projectsContent, type Locale, type Project } from '@/lib/content';
+import {
+  projects,
+  projectsContent,
+  type Locale,
+  type Project,
+} from '@/lib/content';
 
 type ProjectsProps = {
   locale: Locale;
@@ -41,9 +46,11 @@ const ProjectMedia = ({
 
 const ProjectLinks = ({
   project,
+  locale,
   alignRight = false,
 }: {
   project: Project;
+  locale: Locale;
   alignRight?: boolean;
 }) => (
   <div
@@ -51,15 +58,19 @@ const ProjectLinks = ({
       alignRight ? 'md:justify-end' : 'md:justify-start'
     }`}
   >
-    <a
-      href={project.repoUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={`Open ${project.title} repository`}
-      className="text-slate hover:text-primary-blue transition-colors duration-300"
-    >
-      <FiGithub size={24} />
-    </a>
+    {project.repoLinks.map((repo) => (
+      <a
+        key={repo.url}
+        href={repo.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Open ${project.title} ${repo.label[locale]} repository`}
+        className="inline-flex items-center gap-2 text-slate hover:text-primary-blue transition-colors duration-300 font-mono text-sm"
+      >
+        <FiGithub size={20} />
+        <span>{repo.label[locale]}</span>
+      </a>
+    ))}
     {project.liveUrl && (
       <a
         href={project.liveUrl}
@@ -88,7 +99,7 @@ const Projects = ({ locale }: ProjectsProps) => {
       <div className="space-y-20">
         {projects.map((project, index) => {
           const alignRight = index % 2 === 0;
-          const primaryHref = project.liveUrl ?? project.repoUrl;
+          const primaryHref = project.liveUrl ?? project.repoLinks[0].url;
 
           return (
             <div
@@ -144,7 +155,11 @@ const Projects = ({ locale }: ProjectsProps) => {
                   ))}
                 </ul>
 
-                <ProjectLinks project={project} alignRight={alignRight} />
+                <ProjectLinks
+                  project={project}
+                  locale={locale}
+                  alignRight={alignRight}
+                />
               </div>
             </div>
           );
