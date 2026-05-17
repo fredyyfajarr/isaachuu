@@ -3,6 +3,11 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import SocialLinks from '@/components/SocialLinks';
 
+const siteUrl = 'https://github.com/fredyyfajarr/isaachuu';
+const siteTitle = 'Fredy Fajar Adi Putra | Backend Engineer';
+const siteDescription =
+  'Portfolio of Fredy Fajar Adi Putra, a backend engineer focused on REST APIs, database design, Laravel, Node.js, and full-stack web applications.';
+
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -14,23 +19,44 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Isaachuu | Backend Engineer',
-  description:
-    'Portofolio pribadi milik Fredy Fajar Adi Putra, seorang backend engineer yang berfokus pada pembuatan pengalaman digital yang luar biasa.',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteTitle,
+    template: '%s | Fredy Fajar Adi Putra',
+  },
+  description: siteDescription,
+  keywords: [
+    'Fredy Fajar Adi Putra',
+    'Isaachuu',
+    'Backend Engineer',
+    'Laravel Developer',
+    'Node.js Developer',
+    'REST API',
+    'MongoDB',
+    'MySQL',
+    'Next.js',
+  ],
+  authors: [{ name: 'Fredy Fajar Adi Putra' }],
+  creator: 'Fredy Fajar Adi Putra',
+  alternates: {
+    canonical: siteUrl,
+  },
   openGraph: {
-    title: 'Isaachuu | Backend Engineer',
-    description: 'Jelajahi proyek-proyek dan skill yang saya miliki.',
-    url: 'https://your-domain.com', // Ganti dengan domain Anda nanti
-    siteName: 'IsaachuuSite',
-    images: [
-      {
-        url: '/og-image.png', // Buat gambar preview berukuran 1200x630px
-        width: 1200,
-        height: 630,
-      },
-    ],
+    title: siteTitle,
+    description: siteDescription,
+    url: siteUrl,
+    siteName: 'Isaachuu Portfolio',
     locale: 'id_ID',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: siteTitle,
+    description: siteDescription,
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

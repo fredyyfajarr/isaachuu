@@ -13,16 +13,13 @@ const Hero = () => {
           Fredy Fajar Adi Putra
         </h1>
         <h2 className="text-4xl md:text-6xl font-bold text-slate mb-8">
-          I build the engine behind the web.
+          I build reliable backends for real products.
         </h2>
         <p className="max-w-xl text-slate mb-8">
-          I am a Backend Developer passionate about architecting robust and
-          efficient systems. While I specialize in building APIs and managing
-          databases, I also enjoy bringing entire applications to life, from
-          concept to a finished product.I am a Backend Developer passionate
-          about architecting robust and efficient systems. While I specialize in
-          building APIs and managing databases, I also enjoy bringing entire
-          applications to life, from concept to a finished product.
+          Backend engineer focused on building secure APIs, clean database
+          flows, and practical full-stack applications. I enjoy turning product
+          ideas into systems that are maintainable, scalable, and ready for
+          real users.
         </p>
         <a
           href="#projects"

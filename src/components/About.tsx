@@ -16,7 +16,7 @@ const About = () => {
   return (
     <section id="about" className="container mx-auto px-6 py-20">
       <h2 className="text-3xl font-bold mb-8 flex items-center">
-        <span className="text-primary-blue font-mono mr-2">02.</span>
+        <span className="text-primary-blue font-mono mr-2">01.</span>
         About Me
         <span className="flex-grow ml-4 h-px bg-slate/30"></span>
       </h2>
