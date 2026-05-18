@@ -1,10 +1,10 @@
 # Fredy Fajar Adi Putra Portfolio
 
-Personal portfolio for Fredy Fajar Adi Putra, a backend engineer focused on REST APIs, database design, Laravel, Node.js, and practical full-stack web applications.
+Interactive bilingual portfolio for Fredy Fajar Adi Putra, a full-stack developer focused on REST APIs, database design, Laravel, Node.js, Next.js, and practical product systems.
 
 ## Overview
 
-This portfolio highlights selected production-style projects, backend responsibilities, and public GitHub projects in one consistent project flow. The site is built with Next.js, React, TypeScript, Tailwind CSS, and Framer Motion.
+This portfolio uses a code-driven visual direction inspired by experimental developer portfolios: dark interface, terminal-like copy, custom cursor, animated transitions, and recruiter-friendly project scanning.
 
 ## Featured Work
 
@@ -16,12 +16,15 @@ This portfolio highlights selected production-style projects, backend responsibi
 
 ## Features
 
-- English and Indonesian language switcher.
-- Featured and Other Projects sections for clearer recruiter scanning.
+- English and Indonesian language switcher with saved preference.
+- `Start />`, `Work />`, `Lab />`, `About />`, and `Contact />` flow.
+- Interactive Work section with numbered featured projects and live preview panel.
+- Lab section for smaller repositories, experiments, academic work, and archives.
 - Role, scope, stack, and status metadata for every project.
 - Combined full-stack project entries with separate repository links for backend and frontend code.
-- Branded media placeholders for repositories that do not have screenshots yet.
-- Mobile navigation and saved language preference.
+- Branded media placeholders for repositories that do not have screenshots.
+- Custom cursor, hover states, scroll rail, and Framer Motion transitions.
+- Mobile navigation.
 - SEO metadata for recruiter-friendly previews.
 
 ## Tech Stack

@@ -1,5 +1,6 @@
-// components/Navbar.tsx
-import React, { useState } from 'react';
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { navContent, type Locale } from '@/lib/content';
@@ -15,37 +16,44 @@ const Navbar = ({ locale, onLocaleChange }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const copy = navContent[locale];
   const links = [
+    { href: '#start', label: copy.start },
+    { href: '#work', label: copy.work },
+    { href: '#lab', label: copy.lab },
     { href: '#about', label: copy.about },
-    { href: '#projects', label: copy.projects },
     { href: '#contact', label: copy.contact },
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-10 bg-dark-blue/80 backdrop-blur-sm">
-      <nav className="container mx-auto px-6 py-4 flex justify-between items-center gap-4 relative">
+    <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/5 bg-void/65 backdrop-blur-xl">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 md:px-8">
         <Link
-          href="/"
-          className="text-2xl font-bold font-mono text-primary-blue hover:text-primary-purple transition-colors duration-300"
+          href="#start"
+          className="font-mono text-2xl font-black tracking-normal text-paper transition-colors duration-300 hover:text-accent-2"
           onClick={() => setIsOpen(false)}
         >
-          Isaachuu
+          <span className="text-accent">{'<'}</span>
+          ISAAC
+          <span className="text-accent-2">{'/>'}</span>
         </Link>
 
-        <div className="flex items-center gap-4 md:gap-8">
-          <ul className="hidden md:flex items-center space-x-8 font-mono">
+        <div className="flex items-center gap-3 md:gap-8">
+          <ul className="hidden items-center gap-7 font-mono text-sm font-bold text-soft md:flex">
             {links.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="hover:text-primary-blue transition-colors duration-300"
+                  className="group transition-colors duration-300 hover:text-paper"
                 >
-                  {link.label}
+                  <span>{link.label}</span>
+                  <span className="ml-1 text-muted transition-colors duration-300 group-hover:text-accent">
+                    /&gt;
+                  </span>
                 </a>
               </li>
             ))}
           </ul>
 
-          <div className="flex items-center rounded border border-primary-blue/50 font-mono text-sm overflow-hidden">
+          <div className="flex items-center border border-line bg-panel/70 font-mono text-xs font-bold">
             {languages.map((language) => (
               <button
                 key={language}
@@ -56,8 +64,8 @@ const Navbar = ({ locale, onLocaleChange }: NavbarProps) => {
                 }}
                 className={`px-3 py-2 transition-colors duration-300 ${
                   locale === language
-                    ? 'bg-primary-blue text-dark-blue'
-                    : 'text-primary-blue hover:bg-primary-blue/10'
+                    ? 'bg-paper text-void'
+                    : 'text-soft hover:bg-white/5 hover:text-paper'
                 }`}
                 aria-pressed={locale === language}
               >
@@ -69,32 +77,33 @@ const Navbar = ({ locale, onLocaleChange }: NavbarProps) => {
           <button
             type="button"
             onClick={() => setIsOpen((current) => !current)}
-            className="md:hidden text-primary-blue hover:text-primary-purple transition-colors duration-300"
+            className="text-paper transition-colors duration-300 hover:text-accent-2 md:hidden"
             aria-label="Toggle navigation"
             aria-expanded={isOpen}
           >
             {isOpen ? <FiX size={26} /> : <FiMenu size={26} />}
           </button>
         </div>
-
-        {isOpen && (
-          <div className="absolute left-6 right-6 top-full mt-3 rounded-md border border-slate/10 bg-navy-light shadow-lg md:hidden">
-            <ul className="flex flex-col font-mono">
-              {links.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className="block px-5 py-4 text-slate hover:text-primary-blue transition-colors duration-300"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
       </nav>
+
+      {isOpen && (
+        <div className="mx-5 mb-5 border border-line bg-panel/95 p-4 shadow-2xl md:hidden">
+          <ul className="grid gap-2 font-mono text-lg font-bold">
+            {links.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center justify-between px-2 py-3 text-soft transition-colors duration-300 hover:text-paper"
+                >
+                  {link.label}
+                  <span className="text-accent">/&gt;</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </header>
   );
 };

@@ -28,13 +28,17 @@ export type Project = {
 
 export const navContent = {
   en: {
+    start: 'Start',
+    work: 'Work',
+    lab: 'Lab',
     about: 'About',
-    projects: 'Projects',
     contact: 'Contact',
   },
   id: {
+    start: 'Mulai',
+    work: 'Karya',
+    lab: 'Lab',
     about: 'Tentang',
-    projects: 'Proyek',
     contact: 'Kontak',
   },
 };
@@ -42,15 +46,15 @@ export const navContent = {
 export const heroContent = {
   en: {
     intro: 'Hi, my name is',
-    headline: 'I build reliable backends for real products.',
+    headline: 'i design APIs and develop product systems',
     body: 'Backend engineer focused on building secure APIs, clean database flows, and practical full-stack applications. I enjoy turning product ideas into systems that are maintainable, scalable, and ready for real users.',
-    cta: 'Check out my projects!',
+    cta: 'Let me show you',
   },
   id: {
     intro: 'Halo, nama saya',
-    headline: 'Saya membangun backend yang andal untuk produk nyata.',
+    headline: 'saya merancang API dan membangun sistem produk',
     body: 'Backend engineer yang berfokus pada API yang aman, alur database yang rapi, dan aplikasi full-stack yang praktis. Saya senang mengubah ide produk menjadi sistem yang mudah dirawat, scalable, dan siap digunakan user.',
-    cta: 'Lihat proyek saya!',
+    cta: 'Lihat karya saya',
   },
 };
 
@@ -75,12 +79,12 @@ export const aboutContent = {
 
 export const projectsContent = {
   en: {
-    title: 'Some Things I have Built',
-    featuredTitle: 'Featured Projects',
+    title: 'Work',
+    featuredTitle: 'Selected full-stack and backend projects...',
     featuredIntro:
       'A curated set of larger products where my backend and full-stack work is easiest to evaluate.',
-    otherTitle: 'Other Projects',
-    otherHeading: 'Repositories and code samples',
+    otherTitle: 'Lab',
+    otherHeading: 'Repositories, experiments, archived work and code samples.',
     otherIntro:
       'More public repositories, experiments, academic work, and code samples from my GitHub.',
     role: 'Role',
@@ -90,12 +94,12 @@ export const projectsContent = {
     live: 'Live',
   },
   id: {
-    title: 'Beberapa Project yang Saya Bangun',
-    featuredTitle: 'Project Unggulan',
+    title: 'Karya',
+    featuredTitle: 'Pilihan project full-stack dan backend...',
     featuredIntro:
       'Pilihan project yang paling kuat untuk menunjukkan kemampuan backend dan full-stack saya.',
-    otherTitle: 'Project Lainnya',
-    otherHeading: 'Repository dan contoh kode',
+    otherTitle: 'Lab',
+    otherHeading: 'Repository, eksperimen, arsip karya, dan contoh kode.',
     otherIntro:
       'Repository publik lain, eksperimen, project akademik, dan contoh kode dari GitHub saya.',
     role: 'Role',

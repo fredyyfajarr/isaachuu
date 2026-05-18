@@ -1,49 +1,38 @@
-// components/SocialLinks.tsx
-import React from 'react';
-// Impor ikon Instagram dan WhatsApp
-import { FiInstagram, FiLinkedin } from 'react-icons/fi';
+import { FiGithub, FiInstagram, FiLinkedin } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 
 const SocialLinks = () => {
+  const socialLinks = [
+    { icon: <FiGithub size={18} />, label: 'GitHub', url: 'https://github.com/fredyyfajarr' },
+    {
+      icon: <FiLinkedin size={18} />,
+      label: 'LinkedIn',
+      url: 'https://www.linkedin.com/in/fredy-fajar-adi-putra-a51935368/',
+    },
+    {
+      icon: <FiInstagram size={18} />,
+      label: 'Instagram',
+      url: 'https://www.instagram.com/fredyyfajarr_/',
+    },
+    { icon: <FaWhatsapp size={18} />, label: 'WhatsApp', url: 'https://wa.me/6285155088581' },
+  ];
+
   return (
-    <div className="hidden md:flex flex-col fixed bottom-0 left-8 z-10 items-center">
-      <ul className="flex flex-col items-center space-y-6">
-        {/* Link Instagram */}
-        <li>
-          <a
-            href="https://www.instagram.com/fredyyfajarr_/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-slate hover:text-primary-blue transition-all duration-300 hover:-translate-y-1 block"
-          >
-            <FiInstagram size={24} />
-          </a>
-        </li>
-        {/* Link LinkedIn */}
-        <li>
-          <a
-            href="https://www.linkedin.com/in/fredy-fajar-adi-putra-a51935368/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-slate hover:text-primary-blue transition-all duration-300 hover:-translate-y-1 block"
-          >
-            <FiLinkedin size={24} />
-          </a>
-        </li>
-        {/* Link WhatsApp */}
-        <li>
-          <a
-            href="https://wa.me/6285155088581"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-slate hover:text-primary-blue transition-all duration-300 hover:-translate-y-1 block"
-          >
-            <FaWhatsapp size={24} />
-          </a>
-        </li>
-      </ul>
-      <div className="h-24 w-px bg-slate mt-6"></div>
-    </div>
+    <aside className="fixed bottom-0 right-8 z-30 hidden flex-col items-center gap-5 md:flex">
+      {socialLinks.map((link) => (
+        <a
+          key={link.url}
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={link.label}
+          className="text-muted transition-all duration-300 hover:-translate-y-1 hover:text-accent-2"
+        >
+          {link.icon}
+        </a>
+      ))}
+      <div className="h-24 w-px bg-line" />
+    </aside>
   );
 };
 

@@ -4,9 +4,9 @@ import './globals.css';
 import SocialLinks from '@/components/SocialLinks';
 
 const siteUrl = 'https://github.com/fredyyfajarr/isaachuu';
-const siteTitle = 'Fredy Fajar Adi Putra | Backend Engineer';
+const siteTitle = 'Fredy Fajar Adi Putra | Full-Stack Developer';
 const siteDescription =
-  'Bilingual portfolio of Fredy Fajar Adi Putra, a backend engineer focused on REST APIs, database design, Laravel, Node.js, and full-stack web applications.';
+  'Interactive bilingual portfolio of Fredy Fajar Adi Putra, a full-stack developer focused on REST APIs, database design, Laravel, Node.js, Next.js, and product-ready web applications.';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -28,6 +28,7 @@ export const metadata: Metadata = {
   keywords: [
     'Fredy Fajar Adi Putra',
     'Isaachuu',
+    'Full-Stack Developer',
     'Backend Engineer',
     'Laravel Developer',
     'Node.js Developer',
