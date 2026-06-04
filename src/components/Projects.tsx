@@ -1,15 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FiArrowUpRight, FiExternalLink, FiGithub } from 'react-icons/fi';
 import {
-  projects,
   projectsContent,
   type Locale,
   type Project,
 } from '@/lib/content';
+import { getFallbackProjects, getPortfolioProjects } from '@/lib/projectSource';
 
 type ProjectsProps = {
   locale: Locale;
@@ -220,12 +220,30 @@ const LabProject = ({
 
 const Projects = ({ locale }: ProjectsProps) => {
   const copy = projectsContent[locale];
-  const featuredProjects = projects.filter(
+  const [portfolioProjects, setPortfolioProjects] = useState<Project[]>(
+    getFallbackProjects()
+  );
+  const featuredProjects = portfolioProjects.filter(
     (project) => project.tier === 'featured'
   );
-  const otherProjects = projects.filter((project) => project.tier === 'other');
+  const otherProjects = portfolioProjects.filter((project) => project.tier === 'other');
   const [activeProject, setActiveProject] = useState(0);
   const previewProject = featuredProjects[activeProject] ?? featuredProjects[0];
+
+  useEffect(() => {
+    let ignore = false;
+
+    getPortfolioProjects().then((nextProjects) => {
+      if (!ignore) {
+        setPortfolioProjects(nextProjects);
+        setActiveProject(0);
+      }
+    });
+
+    return () => {
+      ignore = true;
+    };
+  }, []);
 
   return (
     <>
@@ -289,6 +307,7 @@ const Projects = ({ locale }: ProjectsProps) => {
         </motion.div>
       </section>
 
+      {otherProjects.length > 0 && (
       <section id="lab" className="section-shell">
         <div className="pointer-events-none absolute left-4 top-24 hidden text-[18vw] font-black leading-none text-paper/[0.03] lg:block">
           LAB
@@ -325,6 +344,7 @@ const Projects = ({ locale }: ProjectsProps) => {
           </div>
         </motion.div>
       </section>
+      )}
     </>
   );
 };

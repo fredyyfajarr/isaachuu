@@ -18,7 +18,6 @@ const Navbar = ({ locale, onLocaleChange }: NavbarProps) => {
   const links = [
     { href: '#start', label: copy.start },
     { href: '#work', label: copy.work },
-    { href: '#lab', label: copy.lab },
     { href: '#about', label: copy.about },
     { href: '#contact', label: copy.contact },
   ];

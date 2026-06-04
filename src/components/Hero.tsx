@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { FiArrowDownRight } from 'react-icons/fi';
 import { heroContent, type Locale } from '@/lib/content';
 
@@ -30,6 +31,8 @@ const Hero = ({ locale }: HeroProps) => {
             Fredy
             <br />
             Fajar
+            <br />
+            <span className="text-soft">Adi Putra</span>
           </h1>
           <h2 className="mt-6 max-w-3xl text-balance font-mono text-[clamp(1.75rem,4.8vw,4.8rem)] font-black leading-tight text-soft">
             {copy.headline}
@@ -55,7 +58,25 @@ const Hero = ({ locale }: HeroProps) => {
           data-cursor="active"
         >
           <div className="absolute -inset-4 hidden border border-accent/20 md:block" />
-          <div className="relative border border-line bg-panel/70 p-5 font-mono text-sm shadow-2xl backdrop-blur">
+          <div className="relative overflow-hidden border border-line bg-panel/70 font-mono text-sm shadow-2xl backdrop-blur">
+            <div className="relative aspect-[4/3] border-b border-line bg-ink">
+              <Image
+                src="/images/fredy-profile.png"
+                alt="Fredy Fajar Adi Putra"
+                fill
+                priority
+                sizes="(min-width: 768px) 42vw, 90vw"
+                className="object-cover object-[50%_28%] grayscale-[20%]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-panel via-transparent to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4">
+                <p className="text-xs text-accent-2">profile.image()</p>
+                <p className="mt-1 text-2xl font-black text-paper">
+                  Fredy Fajar Adi Putra
+                </p>
+              </div>
+            </div>
+            <div className="p-5">
             <div className="mb-5 flex items-center gap-2 border-b border-line pb-4 text-xs text-muted">
               <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
               <span className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
@@ -85,6 +106,7 @@ const Hero = ({ locale }: HeroProps) => {
                 {'\n  }\n}'}
               </code>
             </pre>
+            </div>
           </div>
         </motion.div>
       </div>

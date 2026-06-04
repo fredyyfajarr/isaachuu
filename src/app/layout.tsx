@@ -39,6 +39,10 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Fredy Fajar Adi Putra' }],
   creator: 'Fredy Fajar Adi Putra',
+  icons: {
+    icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
+    shortcut: ['/icon.svg'],
+  },
   alternates: {
     canonical: siteUrl,
   },
