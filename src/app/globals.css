@@ -70,6 +70,11 @@ button {
   cursor: inherit;
 }
 
+[data-native-cursor],
+[data-native-cursor] * {
+  cursor: auto;
+}
+
 .text-balance {
   text-wrap: balance;
 }
@@ -200,11 +205,16 @@ button {
       0 0 22px rgba(0, 215, 255, 0.24),
       inset 0 0 18px rgba(123, 44, 255, 0.15);
     transition:
+      opacity 120ms ease,
       width 160ms ease,
       height 160ms ease,
       border-color 160ms ease,
       background-color 160ms ease,
       box-shadow 160ms ease;
+  }
+
+  .cursor-ring.is-hidden {
+    opacity: 0;
   }
 
   .cursor-core {

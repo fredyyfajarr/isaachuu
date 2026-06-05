@@ -491,13 +491,14 @@ export default function AdminPage() {
       <p className="mt-4 text-sm leading-6 text-soft">
         Selesaikan verifikasi manusia terlebih dahulu, lalu lanjut dengan
         Google Sign-In. Setelah login, Firestore Rules hanya menerima akun
-        Google portfolio: <code className="text-accent-2">{adminEmail}</code>.
+        Google admin yang sudah dikonfigurasi.
       </p>
 
       {!hasFirebaseConfig && (
         <div className="mt-5 border border-warm/50 bg-warm/10 p-4 text-sm text-warm">
-          Firebase env belum tersedia. Isi <code>.env.local</code> dari{' '}
-          <code>.env.example</code>.
+          Firebase env belum tersedia. Untuk production, isi Firebase
+          Environment Variables di Vercel. Untuk local, isi{' '}
+          <code>.env.local</code> dari <code>.env.example</code>.
         </div>
       )}
 
@@ -512,7 +513,7 @@ export default function AdminPage() {
           Step 1 - Human verification
         </p>
         {recaptchaSiteKey ? (
-          <div className="min-h-[78px]">
+          <div className="min-h-[78px]" data-native-cursor>
             <div ref={captchaRef} />
             {!captchaLoaded && (
               <p className="mt-3 text-sm text-soft">Loading reCAPTCHA...</p>
