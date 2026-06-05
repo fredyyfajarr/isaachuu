@@ -25,11 +25,6 @@ const getPrimaryHref = (project: Project) =>
   project.liveUrl ??
   project.repoLinks.find((repo) => repo.isPublic !== false)?.url;
 
-const fadeIn = {
-  hidden: { opacity: 0, y: 34 },
-  visible: { opacity: 1, y: 0 },
-};
-
 const ProjectVisual = ({ project }: { project: Project }) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -172,7 +167,6 @@ const FeaturedProjectRow = ({
 
   return (
     <motion.article
-      variants={fadeIn}
       whileHover={{ x: 14 }}
       transition={{ type: 'spring', stiffness: 260, damping: 24 }}
       onMouseEnter={onActivate}
@@ -240,7 +234,6 @@ const LabProject = ({
 
   return (
     <motion.article
-      variants={fadeIn}
       data-cursor="active"
       className="group border-t border-line py-6 transition-colors duration-300 hover:border-accent-2/70"
     >
@@ -312,14 +305,8 @@ const Projects = ({ locale }: ProjectsProps) => {
           WORK
         </div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.14 }}
-          transition={{ staggerChildren: 0.08 }}
-          className="mx-auto w-full max-w-[calc(100vw-2.5rem)] xl:max-w-7xl"
-        >
-          <motion.div variants={fadeIn} className="mb-14 md:ml-[7rem]">
+        <div className="mx-auto w-full max-w-[calc(100vw-2.5rem)] xl:max-w-7xl">
+          <div className="mb-14 md:ml-[7rem]">
             <p className="font-mono text-sm text-accent">
               {copy.title} <span className="text-muted">/&gt;</span>
             </p>
@@ -329,7 +316,7 @@ const Projects = ({ locale }: ProjectsProps) => {
             <p className="mt-5 max-w-2xl text-lg leading-8 text-soft">
               {copy.featuredIntro}
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid min-w-0 gap-12 lg:grid-cols-[minmax(0,1fr)_31rem]">
             <div className="min-w-0">
@@ -345,10 +332,7 @@ const Projects = ({ locale }: ProjectsProps) => {
               ))}
             </div>
 
-            <motion.aside
-              variants={fadeIn}
-              className="sticky top-28 hidden h-fit lg:block"
-            >
+            <aside className="sticky top-28 hidden h-fit lg:block">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={previewProject.id}
@@ -374,9 +358,9 @@ const Projects = ({ locale }: ProjectsProps) => {
                   </p>
                 </motion.div>
               </AnimatePresence>
-            </motion.aside>
+            </aside>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {otherProjects.length > 0 && (
@@ -385,14 +369,8 @@ const Projects = ({ locale }: ProjectsProps) => {
           LAB
         </div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ staggerChildren: 0.05 }}
-          className="mx-auto w-full max-w-[calc(100vw-2.5rem)] xl:max-w-7xl"
-        >
-          <motion.div variants={fadeIn} className="mb-12 md:ml-[7rem]">
+        <div className="mx-auto w-full max-w-[calc(100vw-2.5rem)] xl:max-w-7xl">
+          <div className="mb-12 md:ml-[7rem]">
             <p className="font-mono text-sm text-accent">
               {copy.otherTitle} <span className="text-muted">/&gt;</span>
             </p>
@@ -402,7 +380,7 @@ const Projects = ({ locale }: ProjectsProps) => {
             <p className="mt-5 max-w-2xl text-lg leading-8 text-soft">
               {copy.otherIntro}
             </p>
-          </motion.div>
+          </div>
 
           <div>
             {otherProjects.map((project, index) => (
@@ -414,7 +392,7 @@ const Projects = ({ locale }: ProjectsProps) => {
               />
             ))}
           </div>
-        </motion.div>
+        </div>
       </section>
       )}
     </>
