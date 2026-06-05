@@ -4,10 +4,7 @@ service cloud.firestore {
   match /databases/{database}/documents {
     function isAdmin() {
       return request.auth != null
-        && request.auth.token.email in [
-          "fredyfajar46@gmail.com",
-          "fredyfajaradiputra08@gmail.com"
-        ];
+        && request.auth.token.email == "fredyfajaradiputra08@gmail.com";
     }
 
     function validLocalizedText(value) {
