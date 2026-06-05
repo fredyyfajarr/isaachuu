@@ -10,8 +10,16 @@ const CustomCursor = () => {
   const [active, setActive] = useState(false);
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
-  const ringX = useSpring(cursorX, { stiffness: 420, damping: 34, mass: 0.7 });
-  const ringY = useSpring(cursorY, { stiffness: 420, damping: 34, mass: 0.7 });
+  const cursorSpringX = useSpring(cursorX, {
+    stiffness: 820,
+    damping: 42,
+    mass: 0.35,
+  });
+  const cursorSpringY = useSpring(cursorY, {
+    stiffness: 820,
+    damping: 42,
+    mass: 0.35,
+  });
 
   useEffect(() => {
     const finePointer = window.matchMedia('(pointer: fine)').matches;
@@ -48,13 +56,12 @@ const CustomCursor = () => {
   }
 
   return (
-    <>
-      <motion.div className="cursor-dot" style={{ x: cursorX, y: cursorY }} />
-      <motion.div
-        className={`cursor-ring${active ? ' is-active' : ''}`}
-        style={{ x: ringX, y: ringY }}
-      />
-    </>
+    <motion.div
+      className={`cursor-ring${active ? ' is-active' : ''}`}
+      style={{ x: cursorSpringX, y: cursorSpringY }}
+    >
+      <span className="cursor-core" />
+    </motion.div>
   );
 };
 

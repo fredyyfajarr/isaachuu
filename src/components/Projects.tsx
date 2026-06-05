@@ -2,7 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from 'framer-motion';
 import { FiArrowUpRight, FiExternalLink, FiGithub } from 'react-icons/fi';
 import {
   projectsContent,
@@ -16,47 +22,99 @@ type ProjectsProps = {
 };
 
 const getPrimaryHref = (project: Project) =>
-  project.liveUrl ?? project.repoLinks[0].url;
+  project.liveUrl ??
+  project.repoLinks.find((repo) => repo.isPublic !== false)?.url;
 
 const fadeIn = {
   hidden: { opacity: 0, y: 34 },
   visible: { opacity: 1, y: 0 },
 };
 
-const ProjectVisual = ({ project }: { project: Project }) => (
-  <div className="relative aspect-[16/10] overflow-hidden border border-line bg-ink">
-    {project.imageUrl ? (
-      <Image
-        src={project.imageUrl}
-        alt={project.title}
-        fill
-        sizes="(min-width: 1024px) 36vw, 90vw"
-        className="object-cover opacity-80 grayscale transition duration-500 group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0"
+const ProjectVisual = ({ project }: { project: Project }) => {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [9, -9]), {
+    stiffness: 220,
+    damping: 22,
+  });
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-10, 10]), {
+    stiffness: 220,
+    damping: 22,
+  });
+  const imageX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-16, 16]), {
+    stiffness: 170,
+    damping: 24,
+  });
+  const imageY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-14, 14]), {
+    stiffness: 170,
+    damping: 24,
+  });
+
+  return (
+    <motion.div
+      onMouseMove={(event) => {
+        const rect = event.currentTarget.getBoundingClientRect();
+        mouseX.set((event.clientX - rect.left) / rect.width - 0.5);
+        mouseY.set((event.clientY - rect.top) / rect.height - 0.5);
+      }}
+      onMouseLeave={() => {
+        mouseX.set(0);
+        mouseY.set(0);
+      }}
+      style={{ rotateX, rotateY, transformPerspective: 900 }}
+      className="relative aspect-[16/10] overflow-hidden border border-line bg-ink shadow-[0_24px_80px_rgba(0,0,0,0.38)]"
+    >
+      <motion.div
+        style={{ x: imageX, y: imageY }}
+        className="absolute -inset-6"
+      >
+        {project.imageUrl ? (
+          <Image
+            src={project.imageUrl}
+            alt={project.title}
+            fill
+            sizes="(min-width: 1024px) 36vw, 90vw"
+            className="object-cover opacity-80 grayscale transition duration-500 group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0"
+          />
+        ) : (
+          <div className="absolute inset-0 flex flex-col justify-between bg-[radial-gradient(circle_at_30%_20%,rgba(0,215,255,0.18),transparent_32%),radial-gradient(circle_at_80%_80%,rgba(123,44,255,0.28),transparent_35%)] p-10">
+            <div className="flex items-center justify-between font-mono text-xs text-accent-2">
+              <span>{project.label.en}</span>
+              <FiGithub size={18} />
+            </div>
+            <div>
+              <p className="mb-2 font-mono text-xs text-muted">
+                preview_pending()
+              </p>
+              <h4 className="max-w-sm text-3xl font-black leading-tight text-paper">
+                {project.title}
+              </h4>
+            </div>
+          </div>
+        )}
+      </motion.div>
+      <div className="absolute inset-0 bg-gradient-to-tr from-void via-transparent to-accent/20" />
+      <motion.div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-0 mix-blend-screen transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background:
+            'linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.28) 48%, transparent 55%)',
+          x: imageX,
+        }}
       />
-    ) : (
-      <div className="absolute inset-0 flex flex-col justify-between p-6">
-        <div className="flex items-center justify-between font-mono text-xs text-accent-2">
-          <span>{project.label.en}</span>
-          <FiGithub size={18} />
-        </div>
-        <div>
-          <p className="mb-2 font-mono text-xs text-muted">preview_pending()</p>
-          <h4 className="max-w-sm text-3xl font-black leading-tight text-paper">
-            {project.title}
-          </h4>
-        </div>
-      </div>
-    )}
-    <div className="absolute inset-0 bg-gradient-to-tr from-void via-transparent to-accent/20" />
-  </div>
-);
+    </motion.div>
+  );
+};
 
 const ProjectLinks = ({ project, locale }: { project: Project; locale: Locale }) => {
   const copy = projectsContent[locale];
 
   return (
     <div className="flex flex-wrap items-center gap-3">
-      {project.repoLinks.map((repo) => (
+      {project.repoLinks
+        .filter((repo) => repo.isPublic !== false)
+        .map((repo) => (
         <a
           key={repo.url}
           href={repo.url}
@@ -115,6 +173,8 @@ const FeaturedProjectRow = ({
   return (
     <motion.article
       variants={fadeIn}
+      whileHover={{ x: 14 }}
+      transition={{ type: 'spring', stiffness: 260, damping: 24 }}
       onMouseEnter={onActivate}
       onFocus={onActivate}
       data-cursor="active"
@@ -289,19 +349,31 @@ const Projects = ({ locale }: ProjectsProps) => {
               variants={fadeIn}
               className="sticky top-28 hidden h-fit lg:block"
             >
-              <a
-                href={getPrimaryHref(previewProject)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block"
-                aria-label={`Open ${previewProject.title}`}
-              >
-                <ProjectVisual project={previewProject} />
-              </a>
-              <p className="mt-4 font-mono text-xs text-muted">
-                active_project ={' '}
-                <span className="text-accent-2">{previewProject.title}</span>
-              </p>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={previewProject.id}
+                  initial={{ opacity: 0, y: 22, filter: 'blur(14px)' }}
+                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0, y: -22, filter: 'blur(14px)' }}
+                  transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <a
+                    href={getPrimaryHref(previewProject)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block"
+                    aria-label={`Open ${previewProject.title}`}
+                  >
+                    <ProjectVisual project={previewProject} />
+                  </a>
+                  <p className="mt-4 font-mono text-xs text-muted">
+                    active_project ={' '}
+                    <span className="text-accent-2">
+                      {previewProject.title}
+                    </span>
+                  </p>
+                </motion.div>
+              </AnimatePresence>
             </motion.aside>
           </div>
         </motion.div>

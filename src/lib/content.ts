@@ -11,6 +11,7 @@ export type ProjectTier = 'featured' | 'other';
 export type RepoLink = {
   label: LocalizedText;
   url: string;
+  isPublic?: boolean;
 };
 
 export type Project = {
@@ -51,13 +52,15 @@ export const navContent = {
 export const heroContent = {
   en: {
     intro: 'Hi, my name is',
-    headline: 'i design APIs and build product systems',
+    headline: 'i design APIs and build',
+    rotatingWords: ['systems', 'websites', 'LMS platforms', 'ticketing flows', 'admin dashboards'],
     body: 'Full-stack developer focused on Laravel, Node.js, database design, and practical product systems. I build APIs, admin flows, and user-facing applications that are maintainable enough to be evaluated beyond a classroom demo.',
     cta: 'View selected work',
   },
   id: {
     intro: 'Halo, nama saya',
-    headline: 'saya merancang API dan membangun sistem produk',
+    headline: 'saya merancang API dan membangun',
+    rotatingWords: ['sistem', 'website', 'platform LMS', 'alur ticketing', 'admin dashboard'],
     body: 'Full-stack developer yang fokus pada Laravel, Node.js, desain database, dan sistem produk yang praktis. Saya membangun API, admin flow, dan aplikasi user-facing yang cukup rapi untuk dinilai lebih dari sekadar demo kelas.',
     cta: 'Lihat karya terpilih',
   },

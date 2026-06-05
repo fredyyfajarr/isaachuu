@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import { FiArrowDownRight } from 'react-icons/fi';
 import { heroContent, type Locale } from '@/lib/content';
@@ -11,6 +12,20 @@ type HeroProps = {
 
 const Hero = ({ locale }: HeroProps) => {
   const copy = heroContent[locale];
+  const [wordIndex, setWordIndex] = useState(0);
+  const activeWord = copy.rotatingWords[wordIndex % copy.rotatingWords.length];
+
+  useEffect(() => {
+    setWordIndex(0);
+  }, [locale]);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setWordIndex((current) => current + 1);
+    }, 1900);
+
+    return () => window.clearInterval(interval);
+  }, []);
 
   return (
     <section
@@ -35,8 +50,25 @@ const Hero = ({ locale }: HeroProps) => {
             <span className="text-soft">Adi Putra</span>
           </h1>
           <h2 className="mt-6 max-w-3xl text-balance font-mono text-[clamp(1.75rem,4.8vw,4.8rem)] font-black leading-tight text-soft">
-            {copy.headline}
-            <span className="ml-2 inline-block h-8 w-3 translate-y-1 bg-accent-2 md:h-14" style={{ animation: 'caret 1.1s steps(1) infinite' }} />
+            {copy.headline}{' '}
+            <span className="relative inline-grid min-w-[10ch] overflow-hidden align-bottom text-paper">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={`${locale}-${activeWord}`}
+                  initial={{ y: '110%', opacity: 0, filter: 'blur(8px)' }}
+                  animate={{ y: '0%', opacity: 1, filter: 'blur(0px)' }}
+                  exit={{ y: '-110%', opacity: 0, filter: 'blur(8px)' }}
+                  transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+                  className="col-start-1 row-start-1 text-accent-2"
+                >
+                  {activeWord}
+                </motion.span>
+              </AnimatePresence>
+            </span>
+            <span
+              className="ml-2 inline-block h-8 w-3 translate-y-1 bg-accent-2 md:h-14"
+              style={{ animation: 'caret 1.1s steps(1) infinite' }}
+            />
           </h2>
           <p className="mt-7 max-w-2xl text-lg leading-8 text-soft">
             {copy.body}
@@ -53,7 +85,13 @@ const Hero = ({ locale }: HeroProps) => {
         <motion.div
           initial={{ opacity: 0, y: 26 }}
           animate={{ opacity: 1, y: 0 }}
+          whileHover={{
+            rotateX: 3,
+            rotateY: -4,
+            y: -8,
+          }}
           transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
+          style={{ transformPerspective: 900 }}
           className="relative min-w-0"
           data-cursor="active"
         >

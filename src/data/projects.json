@@ -43,7 +43,8 @@
     "repoLinks": [
       {
         "label": { "en": "Repository", "id": "Repository" },
-        "url": "https://github.com/fredyyfajarr/sacket"
+        "url": "https://github.com/fredyyfajarr/sacket",
+        "isPublic": true
       }
     ],
     "imageUrl": "/images/sacket-preview.png"
@@ -92,7 +93,8 @@
     "repoLinks": [
       {
         "label": { "en": "Repository", "id": "Repository" },
-        "url": "https://github.com/fredyyfajarr/dibelajarin_2.0"
+        "url": "https://github.com/fredyyfajarr/dibelajarin_2.0",
+        "isPublic": true
       }
     ],
     "imageUrl": "/images/dibelajarin-preview.png"
@@ -142,15 +144,13 @@
     "repoLinks": [
       {
         "label": { "en": "Backend", "id": "Backend" },
-        "url": "https://github.com/fredyyfajarr/DiBelajar.in-NodeJs-Backend"
+        "url": "https://github.com/fredyyfajarr/DiBelajar.in-NodeJs-Backend",
+        "isPublic": true
       },
       {
         "label": { "en": "Frontend", "id": "Frontend" },
-        "url": "https://github.com/fredyyfajarr/DiBelajar.in-NodeJs-Frontend"
-      },
-      {
-        "label": { "en": "Frontend v2", "id": "Frontend v2" },
-        "url": "https://github.com/fredyyfajarr/DiBelajar.in-NodeJs-Frontend-2"
+        "url": "https://github.com/fredyyfajarr/DiBelajar.in-NodeJs-Frontend",
+        "isPublic": true
       }
     ],
     "imageUrl": "/images/dibelajarin-mern-preview.png"
@@ -200,11 +200,13 @@
     "repoLinks": [
       {
         "label": { "en": "Backend", "id": "Backend" },
-        "url": "https://github.com/fredyyfajarr/be-ecommerce-isaac"
+        "url": "https://github.com/fredyyfajarr/be-ecommerce-isaac",
+        "isPublic": true
       },
       {
         "label": { "en": "Frontend", "id": "Frontend" },
-        "url": "https://github.com/fredyyfajarr/mern-fe-ecommerce"
+        "url": "https://github.com/fredyyfajarr/mern-fe-ecommerce",
+        "isPublic": true
       }
     ],
     "imageUrl": "/images/frevan-shop-preview.png"
@@ -253,11 +255,13 @@
     "repoLinks": [
       {
         "label": { "en": "Backend", "id": "Backend" },
-        "url": "https://github.com/fredyyfajarr/swapskill-be"
+        "url": "https://github.com/fredyyfajarr/swapskill-be",
+        "isPublic": true
       },
       {
         "label": { "en": "Frontend", "id": "Frontend" },
-        "url": "https://github.com/fredyyfajarr/swapskill-fe"
+        "url": "https://github.com/fredyyfajarr/swapskill-fe",
+        "isPublic": true
       }
     ]
   },
@@ -305,11 +309,13 @@
     "repoLinks": [
       {
         "label": { "en": "Backend", "id": "Backend" },
-        "url": "https://github.com/fredyyfajarr/bi-dom-backend"
+        "url": "https://github.com/fredyyfajarr/bi-dom-backend",
+        "isPublic": true
       },
       {
         "label": { "en": "Frontend", "id": "Frontend" },
-        "url": "https://github.com/fredyyfajarr/bi-dom-frontend"
+        "url": "https://github.com/fredyyfajarr/bi-dom-frontend",
+        "isPublic": true
       }
     ]
   }

@@ -92,7 +92,6 @@ button {
   color: #00d7ff;
 }
 
-.cursor-dot,
 .cursor-ring {
   display: none;
 }
@@ -179,7 +178,6 @@ button {
     cursor: none;
   }
 
-  .cursor-dot,
   .cursor-ring {
     position: fixed;
     top: 0;
@@ -191,29 +189,50 @@ button {
     transform: translate3d(-50%, -50%, 0);
   }
 
-  .cursor-dot {
-    width: 8px;
-    height: 8px;
-    background: #f5f2ff;
-    mix-blend-mode: difference;
-  }
-
   .cursor-ring {
-    width: 36px;
-    height: 36px;
-    border: 1px solid rgba(123, 44, 255, 0.9);
+    display: grid;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    border: 1px solid rgba(0, 215, 255, 0.85);
+    background: rgba(9, 8, 18, 0.12);
+    box-shadow:
+      0 0 22px rgba(0, 215, 255, 0.24),
+      inset 0 0 18px rgba(123, 44, 255, 0.15);
     transition:
       width 160ms ease,
       height 160ms ease,
       border-color 160ms ease,
+      background-color 160ms ease,
+      box-shadow 160ms ease;
+  }
+
+  .cursor-core {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: #f5f2ff;
+    box-shadow: 0 0 14px rgba(245, 242, 255, 0.8);
+    transition:
+      width 160ms ease,
+      height 160ms ease,
       background-color 160ms ease;
   }
 
   .cursor-ring.is-active {
-    width: 76px;
-    height: 76px;
-    border-color: rgba(0, 215, 255, 0.8);
-    background: rgba(0, 215, 255, 0.08);
+    width: 68px;
+    height: 68px;
+    border-color: rgba(255, 191, 105, 0.85);
+    background: rgba(123, 44, 255, 0.08);
+    box-shadow:
+      0 0 38px rgba(123, 44, 255, 0.38),
+      inset 0 0 24px rgba(0, 215, 255, 0.18);
+  }
+
+  .cursor-ring.is-active .cursor-core {
+    width: 10px;
+    height: 10px;
+    background: #00d7ff;
   }
 }
 
