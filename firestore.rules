@@ -2,10 +2,79 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email in [
+          "fredyfajar46@gmail.com",
+          "fredyfajaradiputra08@gmail.com"
+        ];
+    }
+
+    function validLocalizedText(value) {
+      return value is map
+        && value.en is string
+        && value.id is string;
+    }
+
+    function validLocalizedList(value) {
+      return value is map
+        && value.en is list
+        && value.id is list;
+    }
+
+    function validProject(data) {
+      return data.keys().hasAll([
+        "id",
+        "order",
+        "published",
+        "title",
+        "tier",
+        "label",
+        "description",
+        "features",
+        "role",
+        "scope",
+        "status",
+        "tags",
+        "repoLinks"
+      ])
+      && data.keys().hasOnly([
+        "id",
+        "order",
+        "published",
+        "title",
+        "tier",
+        "label",
+        "description",
+        "features",
+        "role",
+        "scope",
+        "status",
+        "tags",
+        "repoLinks",
+        "liveUrl",
+        "imageUrl",
+        "updatedAt"
+      ])
+      && data.id is string
+      && data.order is number
+      && data.published is bool
+      && data.title is string
+      && data.tier in ["featured", "other"]
+      && validLocalizedText(data.label)
+      && validLocalizedText(data.description)
+      && validLocalizedList(data.features)
+      && validLocalizedText(data.role)
+      && validLocalizedText(data.scope)
+      && validLocalizedText(data.status)
+      && data.tags is list
+      && data.repoLinks is list;
+    }
+
     match /projects/{projectId} {
-      allow read: if resource.data.published == true;
-      allow write: if request.auth != null
-        && request.auth.token.email == "fredyfajar46@gmail.com";
+      allow get, list: if resource.data.published == true || isAdmin();
+      allow create, update: if isAdmin() && validProject(request.resource.data);
+      allow delete: if isAdmin();
     }
   }
 }
