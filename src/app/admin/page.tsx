@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
+import { FormEvent, useEffect, useMemo, useState } from 'react';
 import {
   GoogleAuthProvider,
   onAuthStateChanged,
@@ -53,34 +53,12 @@ type ProjectForm = {
   imageUrl: string;
 };
 
-type RecaptchaRenderOptions = {
-  sitekey: string;
-  callback: (token: string) => void;
-  'expired-callback': () => void;
-  'error-callback': () => void;
-};
-
-declare global {
-  interface Window {
-    grecaptcha?: {
-      render: (
-        container: HTMLElement,
-        options: RecaptchaRenderOptions
-      ) => number;
-      reset: (widgetId?: number) => void;
-    };
-    onAdminRecaptchaLoaded?: () => void;
-  }
-}
-
 const adminEmail = (
   process.env.NEXT_PUBLIC_FIREBASE_ADMIN_EMAIL ??
   'fredyfajar46@gmail.com'
 )
   .trim()
   .toLowerCase();
-
-const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? '';
 
 const initialForm: ProjectForm = {
   id: '',
@@ -207,10 +185,6 @@ export default function AdminPage() {
   const [status, setStatus] = useState('');
   const [saving, setSaving] = useState(false);
   const [loadingProjects, setLoadingProjects] = useState(false);
-  const [captchaToken, setCaptchaToken] = useState('');
-  const [captchaLoaded, setCaptchaLoaded] = useState(false);
-  const captchaRef = useRef<HTMLDivElement | null>(null);
-  const captchaWidgetId = useRef<number | null>(null);
 
   const isAllowed = useMemo(
     () =>
@@ -270,67 +244,9 @@ export default function AdminPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAllowed]);
 
-  useEffect(() => {
-    if (!authReady || isAllowed || !recaptchaSiteKey || !captchaRef.current) {
-      return;
-    }
-
-    const renderCaptcha = () => {
-      if (!window.grecaptcha || !captchaRef.current || captchaWidgetId.current !== null) {
-        return;
-      }
-
-      captchaWidgetId.current = window.grecaptcha.render(captchaRef.current, {
-        sitekey: recaptchaSiteKey,
-        callback: (token: string) => {
-          setCaptchaToken(token);
-          setCaptchaLoaded(true);
-        },
-        'expired-callback': () => setCaptchaToken(''),
-        'error-callback': () => setCaptchaToken(''),
-      });
-      setCaptchaLoaded(true);
-    };
-
-    window.onAdminRecaptchaLoaded = renderCaptcha;
-
-    if (window.grecaptcha) {
-      renderCaptcha();
-      return;
-    }
-
-    if (!document.querySelector('script[data-admin-recaptcha="true"]')) {
-      const script = document.createElement('script');
-      script.src =
-        'https://www.google.com/recaptcha/api.js?onload=onAdminRecaptchaLoaded&render=explicit';
-      script.async = true;
-      script.defer = true;
-      script.dataset.adminRecaptcha = 'true';
-      document.head.appendChild(script);
-    }
-  }, [authReady, isAllowed]);
-
-  const resetCaptcha = () => {
-    setCaptchaToken('');
-
-    if (captchaWidgetId.current !== null) {
-      window.grecaptcha?.reset(captchaWidgetId.current);
-    }
-  };
-
   const signIn = async () => {
     if (!auth) {
       setStatus('Firebase config belum tersedia.');
-      return;
-    }
-
-    if (!recaptchaSiteKey) {
-      setStatus('reCAPTCHA site key belum tersedia di environment.');
-      return;
-    }
-
-    if (!captchaToken) {
-      setStatus('Verifikasi manusia wajib diselesaikan sebelum login.');
       return;
     }
 
@@ -339,7 +255,6 @@ export default function AdminPage() {
     try {
       await signInWithPopup(auth, new GoogleAuthProvider());
     } catch (error) {
-      resetCaptcha();
       setStatus(
         error instanceof Error ? error.message : 'Login Google gagal.'
       );
@@ -411,7 +326,7 @@ export default function AdminPage() {
     }
 
     if (!isAllowed) {
-      setStatus(`Akses ditolak. Login harus memakai ${adminEmail}.`);
+      setStatus('Akses ditolak. Login harus memakai akun admin.');
       return;
     }
 
@@ -489,9 +404,8 @@ export default function AdminPage() {
       <p className="font-mono text-sm text-accent">Protected Admin /&gt;</p>
       <h2 className="mt-3 text-3xl font-black text-paper">Login required</h2>
       <p className="mt-4 text-sm leading-6 text-soft">
-        Selesaikan verifikasi manusia terlebih dahulu, lalu lanjut dengan
-        Google Sign-In. Setelah login, Firestore Rules hanya menerima akun
-        Google admin yang sudah dikonfigurasi.
+        Lanjutkan dengan Google Sign-In. Setelah login, Firestore Rules hanya
+        menerima akun Google admin yang sudah dikonfigurasi.
       </p>
 
       {!hasFirebaseConfig && (
@@ -508,33 +422,14 @@ export default function AdminPage() {
         </div>
       )}
 
-      <div className="mt-6">
-        <p className="mb-3 font-mono text-xs uppercase text-accent-2">
-          Step 1 - Human verification
-        </p>
-        {recaptchaSiteKey ? (
-          <div className="min-h-[78px]" data-native-cursor>
-            <div ref={captchaRef} />
-            {!captchaLoaded && (
-              <p className="mt-3 text-sm text-soft">Loading reCAPTCHA...</p>
-            )}
-          </div>
-        ) : (
-          <div className="border border-warm/50 bg-warm/10 p-4 text-sm text-warm">
-            Isi <code>NEXT_PUBLIC_RECAPTCHA_SITE_KEY</code> agar verifikasi
-            manusia aktif.
-          </div>
-        )}
-      </div>
-
       <button
         type="button"
         onClick={signIn}
-        disabled={!hasFirebaseConfig || !authReady || !captchaToken}
+        disabled={!hasFirebaseConfig || !authReady}
         className="mt-6 inline-flex items-center gap-2 border border-accent bg-accent/10 px-5 py-4 font-mono text-sm font-bold text-paper transition-colors hover:border-accent-2 disabled:opacity-40"
       >
         <FiLogIn />
-        Step 2 - Continue with Google
+        Continue with Google
       </button>
 
       {status && (

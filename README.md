@@ -74,10 +74,9 @@ NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
 NEXT_PUBLIC_FIREBASE_APP_ID=
 NEXT_PUBLIC_FIREBASE_ADMIN_EMAIL=fredyfajar46@gmail.com
-NEXT_PUBLIC_RECAPTCHA_SITE_KEY=
 ```
 
-The `/admin` page uses Google Sign-In and Google reCAPTCHA before opening the admin dashboard. Create a reCAPTCHA v2 Checkbox site key for your portfolio domain, then put the public site key in `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`.
+The `/admin` page uses Google Sign-In before opening the admin dashboard. Firestore Rules still restrict writes to the configured admin email.
 
 Deploy the included `firestore.rules`, then seed the curated projects:
 
