@@ -260,5 +260,57 @@
         "url": "https://github.com/fredyyfajarr/swapskill-fe"
       }
     ]
+  },
+  {
+    "id": "bi-dom",
+    "order": 6,
+    "published": true,
+    "title": "BI-DOM - Full-Stack Web App",
+    "tier": "featured",
+    "label": {
+      "en": "Featured Full-Stack Project",
+      "id": "Project Full-Stack Unggulan"
+    },
+    "description": {
+      "en": "Full-stack BI-DOM project combining a Laravel backend with a Next.js frontend for a database-driven application workflow.",
+      "id": "Project BI-DOM full-stack yang menggabungkan backend Laravel dan frontend Next.js untuk alur aplikasi berbasis database."
+    },
+    "features": {
+      "en": [
+        "Laravel backend foundation for application data and business flow",
+        "Next.js frontend structure for user-facing workflows",
+        "Database-oriented application architecture",
+        "Separated backend and frontend repositories for full-stack integration"
+      ],
+      "id": [
+        "Fondasi backend Laravel untuk data aplikasi dan business flow",
+        "Struktur frontend Next.js untuk workflow user-facing",
+        "Arsitektur aplikasi berbasis database",
+        "Repository backend dan frontend terpisah untuk integrasi full-stack"
+      ]
+    },
+    "role": {
+      "en": "Full-Stack Developer",
+      "id": "Full-Stack Developer"
+    },
+    "scope": {
+      "en": "Laravel backend, Next.js frontend, database flow, and full-stack integration",
+      "id": "Backend Laravel, frontend Next.js, alur database, dan integrasi full-stack"
+    },
+    "status": {
+      "en": "Source code, public demo reopening planned",
+      "id": "Source code, demo publik akan dibuka ulang"
+    },
+    "tags": ["Laravel", "Next.js", "PHP", "React", "MySQL", "Full-Stack"],
+    "repoLinks": [
+      {
+        "label": { "en": "Backend", "id": "Backend" },
+        "url": "https://github.com/fredyyfajarr/bi-dom-backend"
+      },
+      {
+        "label": { "en": "Frontend", "id": "Frontend" },
+        "url": "https://github.com/fredyyfajarr/bi-dom-frontend"
+      }
+    ]
   }
 ]

@@ -11,6 +11,7 @@ The portfolio is intentionally curated. It shows only stronger projects that are
 - DiBelajar.in, a MERN LMS with live Vercel demo.
 - Frevan, a MERN e-commerce project with live Vercel demo.
 - SwapSkill, a Laravel and Next.js skill-barter platform.
+- BI-DOM, a Laravel and Next.js full-stack web application.
 
 Smaller experiments, old academic archives, and simple projects are not shown in the main portfolio.
 
