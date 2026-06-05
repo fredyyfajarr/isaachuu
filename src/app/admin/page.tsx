@@ -489,9 +489,9 @@ export default function AdminPage() {
       <p className="font-mono text-sm text-accent">Protected Admin /&gt;</p>
       <h2 className="mt-3 text-3xl font-black text-paper">Login required</h2>
       <p className="mt-4 text-sm leading-6 text-soft">
-        Panel ini tidak menampilkan form sebelum login. Firestore Rules juga
-        membatasi write hanya untuk akun Google:{' '}
-        <code className="text-accent-2">{adminEmail}</code>.
+        Selesaikan verifikasi manusia terlebih dahulu, lalu lanjut dengan
+        Google Sign-In. Setelah login, Firestore Rules hanya menerima akun
+        Google portfolio: <code className="text-accent-2">{adminEmail}</code>.
       </p>
 
       {!hasFirebaseConfig && (
@@ -509,7 +509,7 @@ export default function AdminPage() {
 
       <div className="mt-6">
         <p className="mb-3 font-mono text-xs uppercase text-accent-2">
-          Human verification
+          Step 1 - Human verification
         </p>
         {recaptchaSiteKey ? (
           <div className="min-h-[78px]">
@@ -533,7 +533,7 @@ export default function AdminPage() {
         className="mt-6 inline-flex items-center gap-2 border border-accent bg-accent/10 px-5 py-4 font-mono text-sm font-bold text-paper transition-colors hover:border-accent-2 disabled:opacity-40"
       >
         <FiLogIn />
-        Login Google
+        Step 2 - Continue with Google
       </button>
 
       {status && (
