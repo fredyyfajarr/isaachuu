@@ -75,7 +75,7 @@ declare global {
 
 const adminEmail = (
   process.env.NEXT_PUBLIC_FIREBASE_ADMIN_EMAIL ??
-  'fredyfajaradiputra08@gmail.com'
+  'fredyfajar46@gmail.com'
 )
   .trim()
   .toLowerCase();

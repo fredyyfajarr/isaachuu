@@ -7,7 +7,6 @@ import About from '@/components/About';
 import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-import CustomCursor from '@/components/CustomCursor';
 import type { Locale } from '@/lib/content';
 
 const localeStorageKey = 'portfolio-locale';
@@ -43,7 +42,6 @@ export default function Home() {
 
   return (
     <>
-      <CustomCursor />
       <div className="noise" aria-hidden="true" />
       <div className="scroll-rail" aria-hidden="true" />
       <div className="scroll-label" aria-hidden="true">

@@ -186,7 +186,7 @@ button {
     display: block;
     pointer-events: none;
     border-radius: 999px;
-    transform: translate3d(-50%, -50%, 0);
+    translate: -50% -50%;
   }
 
   .cursor-ring {
