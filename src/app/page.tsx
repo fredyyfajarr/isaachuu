@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Projects from '@/components/Projects';
+import { TechMarquee } from '@/components/TechMarquee';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import type { Locale } from '@/lib/content';
@@ -50,6 +51,7 @@ export default function Home() {
       <Navbar locale={locale} onLocaleChange={setLocale} />
       <main>
         <Hero locale={locale} />
+        <TechMarquee />
         <Projects locale={locale} />
         <About locale={locale} />
         <Contact locale={locale} />
