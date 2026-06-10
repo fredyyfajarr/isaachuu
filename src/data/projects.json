@@ -409,9 +409,9 @@
     "imageUrl": "/projects/bi-dom-home.png",
     "galleryUrls": [
       "/projects/bi-dom-home.png",
+      "/projects/bi-dom-dashboard.png",
       "/projects/bi-dom-inventory.png",
-      "/projects/bi-dom-products.png",
-      "/projects/bi-dom-invoices.png"
+      "/projects/bi-dom-transactions.png"
     ]
   },
   {
