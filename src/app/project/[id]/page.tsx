@@ -17,48 +17,111 @@ import { TechTag } from '@/components/TechTag';
 
 const GalleryCarousel = ({ images }: { images: string[] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set([0]));
+
+  // Preload ALL images on mount
+  useEffect(() => {
+    images.forEach((src, i) => {
+      const img = new window.Image();
+      img.src = src;
+      img.onload = () => {
+        setLoadedImages((prev) => new Set(prev).add(i));
+      };
+    });
+  }, [images]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') goTo((currentIndex - 1 + images.length) % images.length);
+      if (e.key === 'ArrowRight') goTo((currentIndex + 1) % images.length);
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [currentIndex, images.length]);
 
   if (images.length === 0) return null;
 
-  const next = () => setCurrentIndex((c) => (c + 1) % images.length);
-  const prev = () =>
-    setCurrentIndex((c) => (c - 1 + images.length) % images.length);
+  const goTo = (index: number) => {
+    if (isTransitioning || index === currentIndex) return;
+    setIsTransitioning(true);
+    setCurrentIndex(index);
+    setTimeout(() => setIsTransitioning(false), 400);
+  };
+
+  const next = () => goTo((currentIndex + 1) % images.length);
+  const prev = () => goTo((currentIndex - 1 + images.length) % images.length);
 
   return (
     <div className="relative aspect-[16/10] w-full overflow-hidden border border-line bg-void/80 shadow-[0_24px_80px_rgba(0,0,0,0.38)]">
-      <Image
-        src={images[currentIndex]}
-        alt={`Gallery image ${currentIndex + 1}`}
-        fill
-        className="object-contain"
-      />
+      {/* Render ALL images stacked, only current one is visible */}
+      {images.map((src, i) => (
+        <div
+          key={src}
+          className="absolute inset-0 transition-opacity duration-400 ease-in-out"
+          style={{
+            opacity: i === currentIndex ? 1 : 0,
+            zIndex: i === currentIndex ? 10 : 1,
+            pointerEvents: i === currentIndex ? 'auto' : 'none',
+          }}
+        >
+          <Image
+            src={src}
+            alt={`Gallery image ${i + 1}`}
+            fill
+            className="object-contain"
+            priority={i === 0}
+            sizes="(max-width: 1280px) 100vw, 1280px"
+          />
+        </div>
+      ))}
+
+      {/* Loading indicator */}
+      {!loadedImages.has(currentIndex) && (
+        <div className="absolute inset-0 z-20 flex items-center justify-center bg-void/50">
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-accent-2 border-t-transparent" />
+        </div>
+      )}
+
       {images.length > 1 && (
         <>
           <button
             onClick={prev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 border border-line bg-panel/70 p-3 text-paper backdrop-blur transition-colors hover:border-accent-2 hover:text-accent-2"
+            disabled={isTransitioning}
+            className="absolute left-4 top-1/2 z-30 -translate-y-1/2 border border-line bg-panel/70 p-3 text-paper backdrop-blur transition-all duration-200 hover:border-accent-2 hover:text-accent-2 hover:scale-110 disabled:opacity-50"
+            aria-label="Previous image"
           >
             <FiChevronLeft size={24} />
           </button>
           <button
             onClick={next}
-            className="absolute right-4 top-1/2 -translate-y-1/2 border border-line bg-panel/70 p-3 text-paper backdrop-blur transition-colors hover:border-accent-2 hover:text-accent-2"
+            disabled={isTransitioning}
+            className="absolute right-4 top-1/2 z-30 -translate-y-1/2 border border-line bg-panel/70 p-3 text-paper backdrop-blur transition-all duration-200 hover:border-accent-2 hover:text-accent-2 hover:scale-110 disabled:opacity-50"
+            aria-label="Next image"
           >
             <FiChevronRight size={24} />
           </button>
-          <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
-            {images.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrentIndex(i)}
-                className={`h-2 transition-all ${
-                  currentIndex === i
-                    ? 'w-8 bg-accent-2'
-                    : 'w-2 bg-paper/40 hover:bg-paper/80'
-                }`}
-                aria-label={`Go to slide ${i + 1}`}
-              />
-            ))}
+
+          {/* Counter + dots */}
+          <div className="absolute bottom-4 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3">
+            <span className="font-mono text-xs text-paper/60">
+              {currentIndex + 1}/{images.length}
+            </span>
+            <div className="flex gap-2">
+              {images.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => goTo(i)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    currentIndex === i
+                      ? 'w-8 bg-accent-2'
+                      : 'w-2 bg-paper/40 hover:bg-paper/80'
+                  }`}
+                  aria-label={`Go to slide ${i + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </>
       )}
@@ -118,11 +181,12 @@ export default function ProjectDetail() {
     );
   }
 
-  // Combine imageUrl and galleryUrls for the carousel
-  const allImages = [
-    ...(project.imageUrl ? [project.imageUrl] : []),
-    ...(project.galleryUrls || []),
-  ];
+    // Use galleryUrls if available; fall back to imageUrl only
+    const allImages = project.galleryUrls && project.galleryUrls.length > 0
+      ? [...new Set(project.galleryUrls)]
+      : project.imageUrl
+        ? [project.imageUrl]
+        : [];
 
   return (
     <main className="min-h-screen bg-void pb-24 pt-10 text-paper">
