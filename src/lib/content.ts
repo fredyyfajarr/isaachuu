@@ -30,6 +30,7 @@ export type Project = {
   liveUrl?: string;
   repoLinks: RepoLink[];
   imageUrl?: string;
+  galleryUrls?: string[];
 };
 
 export const navContent = {

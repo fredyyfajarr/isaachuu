@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import {
   AnimatePresence,
@@ -21,7 +22,7 @@ type ProjectsProps = {
   locale: Locale;
 };
 
-const getPrimaryHref = (project: Project) => project.liveUrl ?? '#';
+const getPrimaryHref = (project: Project) => `/project/${project.id}`;
 
 const ProjectVisual = ({ project }: { project: Project }) => {
   const mouseX = useMotionValue(0);
@@ -167,15 +168,13 @@ const FeaturedProjectRow = ({
         </div>
 
         <div>
-          <a
+          <Link
             href={getPrimaryHref(project)}
-            target="_blank"
-            rel="noopener noreferrer"
             className="inline-flex items-start gap-4 text-balance text-[clamp(2rem,5vw,5.6rem)] font-black leading-none text-paper transition-colors duration-300 group-hover:text-accent-2"
           >
             {project.title}
             <FiArrowUpRight className="mt-2 shrink-0 text-2xl text-accent md:text-4xl" />
-          </a>
+          </Link>
           <p className="mt-5 max-w-3xl text-base leading-7 text-soft md:text-lg">
             {project.description[locale]}
           </p>
@@ -226,15 +225,13 @@ const LabProject = ({
           {String(index).padStart(2, '0')}
         </span>
         <div>
-          <a
+          <Link
             href={getPrimaryHref(project)}
-            target="_blank"
-            rel="noopener noreferrer"
             className="inline-flex items-center gap-3 text-2xl font-black text-paper transition-colors duration-300 group-hover:text-accent-2 md:text-3xl"
           >
             {project.title}
             <FiArrowUpRight className="text-accent" />
-          </a>
+          </Link>
           <p className="mt-3 max-w-3xl text-sm leading-6 text-soft">
             {project.description[locale]}
           </p>
@@ -325,15 +322,13 @@ const Projects = ({ locale }: ProjectsProps) => {
                   exit={{ opacity: 0, y: -22, filter: 'blur(14px)' }}
                   transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <a
+                  <Link
                     href={getPrimaryHref(previewProject)}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="group block"
                     aria-label={`Open ${previewProject.title}`}
                   >
                     <ProjectVisual project={previewProject} />
-                  </a>
+                  </Link>
                   <p className="mt-4 font-mono text-xs text-muted">
                     active_project ={' '}
                     <span className="text-accent-2">

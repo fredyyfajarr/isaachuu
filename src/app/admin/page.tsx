@@ -51,6 +51,7 @@ type ProjectForm = {
   repoLinks: string;
   liveUrl: string;
   imageUrl: string;
+  galleryUrls: string;
 };
 
 const adminEmail = (
@@ -82,6 +83,7 @@ const initialForm: ProjectForm = {
   repoLinks: 'Repository|Repository|https://github.com/fredyyfajarr/|true',
   liveUrl: '',
   imageUrl: '',
+  galleryUrls: '',
 };
 
 const inputClass =
@@ -155,6 +157,7 @@ const projectToForm = (project: Project): ProjectForm => ({
   repoLinks: repoLinksToText(project.repoLinks),
   liveUrl: project.liveUrl ?? '',
   imageUrl: project.imageUrl ?? '',
+  galleryUrls: project.galleryUrls?.join('\n') ?? '',
 });
 
 const isProject = (value: unknown): value is Project => {
@@ -314,6 +317,7 @@ export default function AdminPage() {
       repoLinks,
       ...(form.liveUrl ? { liveUrl: form.liveUrl } : {}),
       ...(form.imageUrl ? { imageUrl: form.imageUrl } : {}),
+      ...(form.galleryUrls ? { galleryUrls: lines(form.galleryUrls) } : {}),
     };
   };
 
@@ -796,6 +800,22 @@ export default function AdminPage() {
                   />
                 </label>
               </div>
+
+              <label className="block border border-line bg-void/50 p-4 transition-colors focus-within:border-accent-2/50 hover:border-accent-2/50">
+                <span className="mb-2 block font-mono text-xs font-bold text-accent-2">
+                  Gallery URLs (Optional)
+                </span>
+                <span className="mb-3 block text-xs text-muted">
+                  Satu URL per baris. Digunakan untuk halaman detail project.
+                </span>
+                <textarea
+                  className={inputClass}
+                  rows={4}
+                  value={form.galleryUrls}
+                  onChange={(event) => update('galleryUrls', event.target.value)}
+                  placeholder="https://..."
+                />
+              </label>
 
               <button
                 type="submit"
