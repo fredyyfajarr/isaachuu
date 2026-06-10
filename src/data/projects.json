@@ -325,6 +325,10 @@
         "url": "https://github.com/fredyyfajarr/swapskill-fe",
         "isPublic": true
       }
+    ],
+    "imageUrl": "/projects/swapskill-home.png",
+    "galleryUrls": [
+      "/projects/swapskill-home.png"
     ]
   },
   {
@@ -392,6 +396,10 @@
         "url": "https://github.com/fredyyfajarr/bi-dom-frontend",
         "isPublic": true
       }
+    ],
+    "imageUrl": "/projects/bi-dom-home.png",
+    "galleryUrls": [
+      "/projects/bi-dom-home.png"
     ]
   },
   {
@@ -727,6 +735,9 @@
       "Tailwind"
     ],
     "repoLinks": [],
-    "imageUrl": ""
+    "imageUrl": "/projects/warung-mama-fina-home.png",
+    "galleryUrls": [
+      "/projects/warung-mama-fina-home.png"
+    ]
   }
 ]
