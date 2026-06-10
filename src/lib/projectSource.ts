@@ -51,9 +51,23 @@ export const getPortfolioProjects = async (): Promise<Project[]> => {
       .filter(isProject)
       .sort((a, b) => a.order - b.order);
 
-    return firestoreProjects.length > 0
-      ? firestoreProjects
-      : getFallbackProjects();
+    const fallbackProjects = getFallbackProjects();
+    const mergedProjects = firestoreProjects.map((fp) => {
+      const local = fallbackProjects.find((p) => p.id === fp.id);
+      if (local) {
+        return {
+          ...fp,
+          imageUrl: fp.imageUrl || local.imageUrl,
+          galleryUrls: (fp.galleryUrls && fp.galleryUrls.length > 0) ? fp.galleryUrls : (local.galleryUrls || []),
+          liveUrl: fp.liveUrl || local.liveUrl,
+        };
+      }
+      return fp;
+    });
+
+    return mergedProjects.length > 0
+      ? mergedProjects
+      : fallbackProjects;
   } catch (error) {
     console.warn('Failed to load Firestore projects. Falling back to local data.', error);
     return getFallbackProjects();
