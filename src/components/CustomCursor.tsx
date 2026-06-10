@@ -39,8 +39,6 @@ const CustomCursor = () => {
     };
 
     const handleLeave = () => {
-      cursorX.set(-100);
-      cursorY.set(-100);
       setActive(false);
     };
 

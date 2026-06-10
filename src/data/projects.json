@@ -622,8 +622,65 @@
     "galleryUrls": []
   },
   {
-    "id": "warung-mama-fina",
+    "id": "puriva-fnb",
     "order": 11,
+    "published": true,
+    "title": "Puriva Automasi FNB Order",
+    "tier": "featured",
+    "label": {
+      "en": "Featured Complex Project",
+      "id": "Project Kompleks Unggulan"
+    },
+    "description": {
+      "en": "A complex, automated FNB ordering system built with Next.js and Supabase. Features a POS board, real-time stock control, admin dashboard, and integrated payment gateways.",
+      "id": "Sistem pemesanan FNB otomatis yang kompleks dengan Next.js dan Supabase. Memiliki POS board, kontrol stok real-time, dashboard admin, dan integrasi payment gateway."
+    },
+    "features": {
+      "en": [
+        "Real-time stock availability check",
+        "Comprehensive Admin Dashboard",
+        "POS Board with invoice details",
+        "Supabase backend & Migrations",
+        "Integrated payment handling"
+      ],
+      "id": [
+        "Pengecekan stok ketersediaan real-time",
+        "Dashboard admin komprehensif",
+        "POS Board dengan detail invoice",
+        "Supabase backend & migrasi",
+        "Penanganan pembayaran terintegrasi"
+      ]
+    },
+    "role": {
+      "en": "Full-Stack Engineer",
+      "id": "Full-Stack Engineer"
+    },
+    "scope": {
+      "en": "E2E development, UI/UX, Backend logic, Database schema, POS System",
+      "id": "Pengembangan E2E, UI/UX, Logic Backend, Skema Database, Sistem POS"
+    },
+    "status": {
+      "en": "Source code available, fully automated testing and screenshots integration",
+      "id": "Source code tersedia, integrasi otomatisasi testing & screenshot penuh"
+    },
+    "tags": [
+      "Next.js",
+      "React",
+      "Supabase",
+      "TypeScript",
+      "TailwindCSS",
+      "Playwright E2E"
+    ],
+    "repoLinks": [],
+    "imageUrl": "/projects/puriva-fnb-home.png",
+    "galleryUrls": [
+      "/projects/puriva-fnb-menu.png",
+      "/projects/puriva-fnb-admin.png"
+    ]
+  },
+  {
+    "id": "warung-mama-fina",
+    "order": 12,
     "published": true,
     "title": "Warung Mama Fina - Digital Menu & Order",
     "tier": "other",
