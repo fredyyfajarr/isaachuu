@@ -184,11 +184,13 @@
         "isPublic": true
       }
     ],
-    "imageUrl": "/projects/dibelajarin-home.png",
+    "imageUrl": "/projects/dibelajarin-home-part1.png",
     "galleryUrls": [
-      "/projects/dibelajarin-home.png",
-      "/projects/dibelajarin-courses.png",
-      "/projects/dibelajarin-login.png"
+      "/projects/dibelajarin-home-part1.png",
+      "/projects/dibelajarin-home-part2.png",
+      "/projects/dibelajarin-home-part3.png",
+      "/projects/dibelajarin-courses-part1.png",
+      "/projects/dibelajarin-courses-part2.png"
     ]
   },
   {
@@ -258,11 +260,12 @@
         "isPublic": true
       }
     ],
-    "imageUrl": "/projects/frevan-home.png",
+    "imageUrl": "/projects/frevan-home-part1.png",
     "galleryUrls": [
-      "/projects/frevan-home.png",
-      "/projects/frevan-products.png",
-      "/projects/frevan-cart.png"
+      "/projects/frevan-home-part1.png",
+      "/projects/frevan-home-part2.png",
+      "/projects/frevan-products-part1.png",
+      "/projects/frevan-products-part2.png"
     ]
   },
   {
@@ -461,9 +464,11 @@
     ],
     "liveUrl": "https://virtual-photobooth-freedayz.vercel.app/",
     "repoLinks": [],
-    "imageUrl": "/projects/photobooth-home.png",
+    "imageUrl": "/projects/photobooth-home-part1.png",
     "galleryUrls": [
-      "/projects/photobooth-home.png",
+      "/projects/photobooth-home-part1.png",
+      "/projects/photobooth-home-part2.png",
+      "/projects/photobooth-home-part3.png",
       "/projects/photobooth-gallery.png"
     ]
   },
@@ -517,9 +522,11 @@
     ],
     "liveUrl": "https://unpamcare.vercel.app/",
     "repoLinks": [],
-    "imageUrl": "/projects/unpamcare-home.png",
+    "imageUrl": "/projects/unpamcare-home-part1.png",
     "galleryUrls": [
-      "/projects/unpamcare-home.png",
+      "/projects/unpamcare-home-part1.png",
+      "/projects/unpamcare-home-part2.png",
+      "/projects/unpamcare-home-part3.png",
       "/projects/unpamcare-login.png",
       "/projects/unpamcare-dashboard.png"
     ]
@@ -574,11 +581,12 @@
     ],
     "liveUrl": "https://cvku.vercel.app/",
     "repoLinks": [],
-    "imageUrl": "/projects/cvku-home.png",
+    "imageUrl": "/projects/cvku-home-part1.png",
     "galleryUrls": [
-      "/projects/cvku-home.png",
-      "/projects/cvku-dashboard.png",
-      "/projects/cvku-editor.png"
+      "/projects/cvku-home-part1.png",
+      "/projects/cvku-home-part2.png",
+      "/projects/cvku-home-part3.png",
+      "/projects/cvku-dashboard.png"
     ]
   },
   {
@@ -634,8 +642,7 @@
     "imageUrl": "/projects/spk-aio-home.png",
     "galleryUrls": [
       "/projects/spk-aio-home.png",
-      "/projects/spk-aio-dashboard.png",
-      "/projects/spk-aio-criteria.png"
+      "/projects/spk-aio-dashboard.png"
     ]
   },
   {
