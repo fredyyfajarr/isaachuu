@@ -333,11 +333,13 @@
         "isPublic": true
       }
     ],
-    "imageUrl": "/projects/swapskill-home.png",
+    "imageUrl": "/projects/swapskill-home-part1.png",
     "galleryUrls": [
-      "/projects/swapskill-home.png",
-      "/projects/swapskill-dashboard.png",
-      "/projects/swapskill-barters.png"
+      "/projects/swapskill-home-part1.png",
+      "/projects/swapskill-home-part2.png",
+      "/projects/swapskill-home-part3.png",
+      "/projects/swapskill-profile.png",
+      "/projects/swapskill-posts.png"
     ]
   },
   {
