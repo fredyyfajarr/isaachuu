@@ -16,6 +16,7 @@ import {
   type Locale,
   type Project,
 } from '@/lib/content';
+import { TechTag } from './TechTag';
 import { getFallbackProjects, getPortfolioProjects } from '@/lib/projectSource';
 
 type ProjectsProps = {
@@ -187,9 +188,7 @@ const FeaturedProjectRow = ({
 
           <ul className="mt-5 flex flex-wrap gap-2 font-mono text-xs text-muted">
             {project.tags.map((tag) => (
-              <li key={tag} className="border border-line px-2 py-1">
-                {tag}
-              </li>
+              <TechTag key={tag} tag={tag} />
             ))}
           </ul>
 
@@ -242,7 +241,7 @@ const LabProject = ({
           </dl>
           <ul className="mt-4 flex flex-wrap gap-2 font-mono text-xs text-muted">
             {project.tags.map((tag) => (
-              <li key={tag}>{tag}</li>
+              <TechTag key={tag} tag={tag} />
             ))}
           </ul>
         </div>

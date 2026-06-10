@@ -13,6 +13,7 @@ import {
 } from 'react-icons/fi';
 import { getPortfolioProjects } from '@/lib/projectSource';
 import type { Project } from '@/lib/content';
+import { TechTag } from '@/components/TechTag';
 
 const GalleryCarousel = ({ images }: { images: string[] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -217,12 +218,7 @@ export default function ProjectDetail() {
                   <dd className="mt-3">
                     <ul className="flex flex-wrap gap-2 font-mono text-xs text-muted">
                       {project.tags.map((tag) => (
-                        <li
-                          key={tag}
-                          className="border border-line bg-void/50 px-2 py-1"
-                        >
-                          {tag}
-                        </li>
+                        <TechTag key={tag} tag={tag} />
                       ))}
                     </ul>
                   </dd>
