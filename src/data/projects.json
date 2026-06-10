@@ -277,16 +277,16 @@
     },
     "features": {
       "en": [
-        "Token authentication with Laravel Sanctum",
-        "Skill board, barter offers, bookmarks, and reviews",
-        "Next.js frontend with profile, settings, and notification UI",
-        "Filament admin panel and pragmatic clean architecture"
+        "Interactive Dashboard: View your skill points, recent notifications, and quick stats.",
+        "Skill Board & Barters: Explore available skills, submit barter offers, and accept/reject requests.",
+        "Token Authentication: Secure API authentication with Laravel Sanctum.",
+        "Next.js Frontend: Modern UI with profile management, user reviews, and bookmarks."
       ],
       "id": [
-        "Autentikasi token menggunakan Laravel Sanctum",
-        "Skill board, tawaran barter, bookmark, dan review",
-        "Frontend Next.js dengan UI profil, settings, dan notifikasi",
-        "Panel admin Filament dan clean architecture pragmatis"
+        "Dashboard Interaktif: Lihat poin skill, notifikasi, dan statistik performa (lihat screenshot).",
+        "Skill Board & Barter: Eksplorasi skill, ajukan barter, dan kelola request.",
+        "Keamanan Token: Autentikasi API yang aman menggunakan Laravel Sanctum.",
+        "Frontend Next.js: UI modern dengan manajemen profil, ulasan, dan bookmark."
       ]
     },
     "role": {
@@ -328,7 +328,9 @@
     ],
     "imageUrl": "/projects/swapskill-home.png",
     "galleryUrls": [
-      "/projects/swapskill-home.png"
+      "/projects/swapskill-home.png",
+      "/projects/swapskill-dashboard.png",
+      "/projects/swapskill-barters.png"
     ]
   },
   {
@@ -347,16 +349,16 @@
     },
     "features": {
       "en": [
-        "Laravel backend foundation for application data and business flow",
-        "Next.js frontend structure for user-facing workflows",
-        "Database-oriented application architecture",
-        "Separated backend and frontend repositories for full-stack integration"
+        "Inventory Management: Track and update inventory stock in real-time.",
+        "Products Catalog: Manage product listings, categories, and pricing.",
+        "Invoices System: Generate, view, and print detailed invoices.",
+        "Full-Stack Integration: Separated Next.js frontend and Laravel backend."
       ],
       "id": [
-        "Fondasi backend Laravel untuk data aplikasi dan business flow",
-        "Struktur frontend Next.js untuk workflow user-facing",
-        "Arsitektur aplikasi berbasis database",
-        "Repository backend dan frontend terpisah untuk integrasi full-stack"
+        "Manajemen Inventori: Lacak dan perbarui stok barang secara real-time (lengkap di screenshot).",
+        "Katalog Produk: Kelola daftar produk, kategori, dan pengaturan harga.",
+        "Sistem Invoice: Buat, lihat, dan cetak tagihan (invoice) dengan detail lengkap.",
+        "Integrasi Full-Stack: Frontend Next.js dan backend Laravel yang terpisah."
       ]
     },
     "role": {
@@ -399,7 +401,10 @@
     ],
     "imageUrl": "/projects/bi-dom-home.png",
     "galleryUrls": [
-      "/projects/bi-dom-home.png"
+      "/projects/bi-dom-home.png",
+      "/projects/bi-dom-inventory.png",
+      "/projects/bi-dom-products.png",
+      "/projects/bi-dom-invoices.png"
     ]
   },
   {
@@ -702,16 +707,16 @@
     },
     "features": {
       "en": [
-        "Full CRUD menu management",
-        "MongoDB + Mongoose",
-        "Debounced search",
-        "Server-rendered with Turbopack"
+        "Digital Menu Dashboard: Browse available foods and drinks seamlessly.",
+        "Order Management (Penjualan): Track incoming orders and manage sales records.",
+        "Inventory Management (Barang): Full CRUD capabilities for stock and items.",
+        "Real-time Search: Fast, debounced search using MongoDB + Mongoose."
       ],
       "id": [
-        "Manajemen menu CRUD penuh",
-        "MongoDB + Mongoose",
-        "Pencarian debounce",
-        "Server-rendered dengan Turbopack"
+        "Dashboard Menu Digital: Eksplorasi menu makanan dan minuman (lihat screenshot beranda).",
+        "Manajemen Pesanan (Penjualan): Lacak pesanan masuk dan rekap data penjualan.",
+        "Manajemen Inventaris (Barang): Fitur CRUD lengkap untuk mengelola stok bahan baku.",
+        "Pencarian Real-time: Pencarian cepat dan debounce menggunakan MongoDB + Mongoose."
       ]
     },
     "role": {
@@ -737,7 +742,9 @@
     "repoLinks": [],
     "imageUrl": "/projects/warung-mama-fina-home.png",
     "galleryUrls": [
-      "/projects/warung-mama-fina-home.png"
+      "/projects/warung-mama-fina-home.png",
+      "/projects/warung-mama-fina-barang.png",
+      "/projects/warung-mama-fina-penjualan.png"
     ]
   }
 ]

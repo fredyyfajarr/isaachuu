@@ -65,8 +65,16 @@ export const getPortfolioProjects = async (): Promise<Project[]> => {
       return fp;
     });
 
-    return mergedProjects.length > 0
-      ? mergedProjects
+    const missingProjects = fallbackProjects.filter(
+      (local) => !firestoreProjects.some((fp) => fp.id === local.id)
+    );
+
+    const allProjects = [...mergedProjects, ...missingProjects].sort(
+      (a, b) => a.order - b.order
+    );
+
+    return allProjects.length > 0
+      ? allProjects
       : fallbackProjects;
   } catch (error) {
     console.warn('Failed to load Firestore projects. Falling back to local data.', error);
