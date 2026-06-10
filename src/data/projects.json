@@ -133,16 +133,16 @@
     },
     "features": {
       "en": [
-        "Node.js and Express API for authentication, courses, and progress",
-        "MongoDB data modeling for LMS entities",
-        "React frontend with role-based dashboards and protected routes",
-        "Course, material, assignment, discussion, and notification flows"
+        "Interactive Course Catalog: Browse available classes with detailed descriptions.",
+        "Role-based Access Control: Distinct experiences for students and instructors.",
+        "Secure Authentication: Custom login flow powered by JWT and MongoDB.",
+        "Learning Progress Tracking: Monitor completion rates and assignment statuses."
       ],
       "id": [
-        "API Node.js dan Express untuk autentikasi, kursus, dan progress",
-        "Pemodelan data MongoDB untuk kebutuhan LMS",
-        "Frontend React dengan dashboard berbasis role dan protected routes",
-        "Alur kursus, materi, tugas, diskusi, dan notifikasi"
+        "Katalog Kursus Interaktif: Telusuri kelas yang tersedia dengan mudah (lihat screenshot).",
+        "Akses Berbasis Peran: Tampilan berbeda untuk pengajar dan murid.",
+        "Autentikasi Aman: Alur login menggunakan JWT dan database MongoDB.",
+        "Pelacakan Progress: Pantau tingkat penyelesaian kursus dan tugas."
       ]
     },
     "role": {
@@ -186,7 +186,9 @@
     ],
     "imageUrl": "/projects/dibelajarin-home.png",
     "galleryUrls": [
-      "/projects/dibelajarin-courses.png"
+      "/projects/dibelajarin-home.png",
+      "/projects/dibelajarin-courses.png",
+      "/projects/dibelajarin-login.png"
     ]
   },
   {
@@ -205,16 +207,16 @@
     },
     "features": {
       "en": [
-        "Secure REST API with JWT authentication",
-        "Cart and checkout business logic",
-        "React storefront built with Vite and Redux Toolkit",
-        "MongoDB data management for products and users"
+        "Product Discovery: Browse high-quality product listings and categories.",
+        "Shopping Cart Flow: Add items, update quantities, and prepare for checkout.",
+        "Storefront UI: Built with React, Vite, and Redux Toolkit for maximum performance.",
+        "Secure Backend API: Node.js and MongoDB handling users and product logic."
       ],
       "id": [
-        "REST API aman dengan autentikasi JWT",
-        "Logic bisnis untuk keranjang dan checkout",
-        "Storefront React menggunakan Vite dan Redux Toolkit",
-        "Manajemen data MongoDB untuk produk dan user"
+        "Pencarian Produk: Telusuri daftar produk dan kategori e-commerce (lihat screenshot).",
+        "Alur Keranjang Belanja: Tambah barang, ubah kuantitas, dan proses checkout.",
+        "UI Storefront Responsif: Dibangun dengan React, Vite, dan Redux Toolkit.",
+        "API Backend Tangguh: Menggunakan Node.js dan MongoDB untuk data produk."
       ]
     },
     "role": {
@@ -258,7 +260,9 @@
     ],
     "imageUrl": "/projects/frevan-home.png",
     "galleryUrls": [
-      "/projects/frevan-products.png"
+      "/projects/frevan-home.png",
+      "/projects/frevan-products.png",
+      "/projects/frevan-cart.png"
     ]
   },
   {
@@ -423,20 +427,16 @@
     },
     "features": {
       "en": [
-        "Client-side ML background removal",
-        "GIF encoding & media processing",
-        "Supabase cloud storage",
-        "Email delivery via Resend API",
-        "QR code sharing",
-        "Full PWA support"
+        "Interactive Camera Booth: Capture photos directly via web browser.",
+        "Cloud Gallery: View and share stored photobooth results securely.",
+        "AI Background Removal: Client-side ML processing for real-time background drops.",
+        "GIF Generation & Sharing: Export as animated GIFs with QR code sharing."
       ],
       "id": [
-        "Penghapusan background via ML di browser",
-        "Encoding GIF & pemrosesan media",
-        "Cloud storage Supabase",
-        "Pengiriman email via Resend API",
-        "Berbagi via QR code",
-        "Dukungan PWA penuh"
+        "Kamera Photobooth Interaktif: Ambil foto langsung melalui browser (lihat screenshot).",
+        "Galeri Cloud: Lihat dan bagikan hasil foto yang tersimpan aman di Supabase.",
+        "Hapus Background via AI: Pemrosesan ML langsung di klien untuk ganti background.",
+        "Pembuatan GIF & Share: Ekspor sebagai GIF animasi dengan fitur bagikan QR code."
       ]
     },
     "role": {
@@ -462,7 +462,10 @@
     "liveUrl": "https://virtual-photobooth-freedayz.vercel.app/",
     "repoLinks": [],
     "imageUrl": "/projects/photobooth-home.png",
-    "galleryUrls": []
+    "galleryUrls": [
+      "/projects/photobooth-home.png",
+      "/projects/photobooth-gallery.png"
+    ]
   },
   {
     "id": "unpamcare",
@@ -480,18 +483,16 @@
     },
     "features": {
       "en": [
-        "AI chatbot with Groq LLM",
-        "Custom JWT authentication",
-        "Web push notifications",
-        "Prisma ORM + PostgreSQL",
-        "Server Actions"
+        "Interactive Dashboard: View student schedules, grades, and campus news.",
+        "AI Chatbot Integration: Smart assistant powered by Groq LLM for student inquiries.",
+        "Secure Login: Custom JWT authentication flow for student access.",
+        "Push Notifications: Stay updated with real-time web push alerts."
       ],
       "id": [
-        "Chatbot AI dengan Groq LLM",
-        "Autentikasi JWT custom",
-        "Web push notifications",
-        "Prisma ORM + PostgreSQL",
-        "Server Actions"
+        "Dashboard Interaktif: Lihat jadwal, nilai, dan berita kampus mahasiswa (lihat screenshot).",
+        "Integrasi Chatbot AI: Asisten pintar berbasis Groq LLM untuk tanya jawab.",
+        "Login Aman: Sistem autentikasi JWT custom untuk keamanan akses.",
+        "Notifikasi Push: Tetap terhubung dengan peringatan real-time."
       ]
     },
     "role": {
@@ -518,7 +519,9 @@
     "repoLinks": [],
     "imageUrl": "/projects/unpamcare-home.png",
     "galleryUrls": [
-      "/projects/unpamcare-login.png"
+      "/projects/unpamcare-home.png",
+      "/projects/unpamcare-login.png",
+      "/projects/unpamcare-dashboard.png"
     ]
   },
   {
@@ -537,18 +540,16 @@
     },
     "features": {
       "en": [
-        "AI-powered content generation",
-        "Real-time CV preview",
-        "ATS-friendly PDF export",
-        "Supabase Auth + PostgreSQL",
-        "Prisma ORM"
+        "Modern Landing Page: Discover CV templates and AI features seamlessly.",
+        "CV Editor Dashboard: Organize sections and generate content with AI.",
+        "Real-Time PDF Preview: View changes instantly via React-PDF rendering.",
+        "ATS-Friendly Export: Download professional resumes ready for applications."
       ],
       "id": [
-        "Pembuatan konten berbasis AI",
-        "Preview CV real-time",
-        "Ekspor PDF ATS-friendly",
-        "Supabase Auth + PostgreSQL",
-        "Prisma ORM"
+        "Landing Page Modern: Jelajahi fitur pembuatan CV berbasis AI (lihat screenshot).",
+        "Dashboard Editor CV: Kelola bagian profil dan generate teks dengan bantuan AI.",
+        "Preview PDF Real-Time: Perubahan langsung terlihat berkat rendering React-PDF.",
+        "Ekspor Ramah ATS: Unduh resume profesional yang siap dikirim."
       ]
     },
     "role": {
@@ -575,8 +576,9 @@
     "repoLinks": [],
     "imageUrl": "/projects/cvku-home.png",
     "galleryUrls": [
-      "/projects/cvku.png",
-      "/projects/cvku_auth.png"
+      "/projects/cvku-home.png",
+      "/projects/cvku-dashboard.png",
+      "/projects/cvku-editor.png"
     ]
   },
   {
@@ -595,18 +597,16 @@
     },
     "features": {
       "en": [
-        "MOORA algorithm implementation",
-        "Interactive drag-and-drop UI",
-        "Charts & data visualization",
-        "PDF and Excel export",
-        "Zustand state management"
+        "Data Visualization Dashboard: Interactive charts and analytics overview.",
+        "Criteria Management: Configure weights and types for decision making.",
+        "MOORA Algorithm Evaluation: Transparent calculation and ranking of alternatives.",
+        "Export Capabilities: Download results in PDF and Excel formats."
       ],
       "id": [
-        "Implementasi algoritma MOORA",
-        "UI drag-and-drop interaktif",
-        "Grafik & visualisasi data",
-        "Ekspor PDF dan Excel",
-        "State management Zustand"
+        "Dashboard Visualisasi Data: Grafik interaktif dan ringkasan analitik (lihat screenshot).",
+        "Manajemen Kriteria: Atur bobot dan jenis kriteria (Benefit/Cost) dengan mudah.",
+        "Evaluasi Algoritma MOORA: Perhitungan transparan untuk merangking alternatif.",
+        "Fitur Ekspor: Unduh laporan hasil keputusan ke PDF dan Excel."
       ]
     },
     "role": {
@@ -632,7 +632,11 @@
     "liveUrl": "https://spk-all-in-one.vercel.app/",
     "repoLinks": [],
     "imageUrl": "/projects/spk-aio-home.png",
-    "galleryUrls": []
+    "galleryUrls": [
+      "/projects/spk-aio-home.png",
+      "/projects/spk-aio-dashboard.png",
+      "/projects/spk-aio-criteria.png"
+    ]
   },
   {
     "id": "puriva-fnb",
