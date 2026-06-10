@@ -21,9 +21,7 @@ type ProjectsProps = {
   locale: Locale;
 };
 
-const getPrimaryHref = (project: Project) =>
-  project.liveUrl ??
-  project.repoLinks.find((repo) => repo.isPublic !== false)?.url;
+const getPrimaryHref = (project: Project) => project.liveUrl ?? '#';
 
 const ProjectVisual = ({ project }: { project: Project }) => {
   const mouseX = useMotionValue(0);
@@ -75,7 +73,7 @@ const ProjectVisual = ({ project }: { project: Project }) => {
           <div className="absolute inset-0 flex flex-col justify-between bg-[radial-gradient(circle_at_30%_20%,rgba(0,215,255,0.18),transparent_32%),radial-gradient(circle_at_80%_80%,rgba(123,44,255,0.28),transparent_35%)] p-10">
             <div className="flex items-center justify-between font-mono text-xs text-accent-2">
               <span>{project.label.en}</span>
-              <FiGithub size={18} />
+              {project.liveUrl && <FiExternalLink size={18} />}
             </div>
             <div>
               <p className="mb-2 font-mono text-xs text-muted">
@@ -107,20 +105,6 @@ const ProjectLinks = ({ project, locale }: { project: Project; locale: Locale })
 
   return (
     <div className="flex flex-wrap items-center gap-3">
-      {project.repoLinks
-        .filter((repo) => repo.isPublic !== false)
-        .map((repo) => (
-        <a
-          key={repo.url}
-          href={repo.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 border border-line px-3 py-2 font-mono text-xs font-bold text-soft transition-all duration-300 hover:border-accent-2 hover:text-paper"
-        >
-          <FiGithub />
-          {repo.label[locale]}
-        </a>
-      ))}
       {project.liveUrl && (
         <a
           href={project.liveUrl}

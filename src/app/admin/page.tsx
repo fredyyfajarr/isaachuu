@@ -270,12 +270,12 @@ export default function AdminPage() {
     const projectId = form.id || slugify(form.title);
     const repoLinks = parseRepoLinks(form.repoLinks);
 
-    if (!projectId || !form.title || repoLinks.length === 0) {
-      setStatus('ID/title/repository wajib diisi.');
+    if (!projectId || !form.title) {
+      setStatus('ID/title wajib diisi.');
       return null;
     }
 
-    if (repoLinks.some((repo) => !repo.url.startsWith('https://'))) {
+    if (repoLinks.length > 0 && repoLinks.some((repo) => !repo.url.startsWith('https://'))) {
       setStatus('Semua repo URL harus memakai https://.');
       return null;
     }
@@ -762,8 +762,13 @@ export default function AdminPage() {
                 />
               </label>
 
-              <label>
-                <span className={labelClass}>Repo links, one per line</span>
+              <label className="block border border-line bg-void/50 p-4 transition-colors focus-within:border-accent-2/50 hover:border-accent-2/50">
+                <span className="mb-2 block font-mono text-xs font-bold text-accent-2">
+                  Repository Links (Optional)
+                </span>
+                <span className="mb-3 block text-xs text-muted">
+                  Satu per baris. Format: <code>LabelEN|LabelID|URL|isPublic</code>
+                </span>
                 <textarea
                   className={inputClass}
                   rows={4}
