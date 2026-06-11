@@ -1,5 +1,3 @@
-import curatedProjects from '@/data/projects.json';
-
 export type Locale = 'en' | 'id';
 
 export type LocalizedText = Record<Locale, string>;
@@ -183,4 +181,3 @@ export const skills = [
   'Git & GitHub',
 ];
 
-export const projects = curatedProjects as Project[];

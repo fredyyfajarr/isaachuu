@@ -17,7 +17,7 @@ import {
   type Project,
 } from '@/lib/content';
 import { TechTag } from './TechTag';
-import { getFallbackProjects, getPortfolioProjects } from '@/lib/projectSource';
+import { getPortfolioProjects } from '@/lib/projectSource';
 
 type ProjectsProps = {
   locale: Locale;
@@ -253,9 +253,7 @@ const LabProject = ({
 
 const Projects = ({ locale }: ProjectsProps) => {
   const copy = projectsContent[locale];
-  const [portfolioProjects, setPortfolioProjects] = useState<Project[]>(
-    getFallbackProjects()
-  );
+  const [portfolioProjects, setPortfolioProjects] = useState<Project[]>([]);
   const featuredProjects = portfolioProjects.filter(
     (project) => project.tier === 'featured'
   );
@@ -314,27 +312,29 @@ const Projects = ({ locale }: ProjectsProps) => {
 
             <aside className="sticky top-28 hidden h-fit lg:block">
               <AnimatePresence mode="wait">
-                <motion.div
-                  key={previewProject.id}
-                  initial={{ opacity: 0, y: 22, filter: 'blur(14px)' }}
-                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  exit={{ opacity: 0, y: -22, filter: 'blur(14px)' }}
-                  transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <Link
-                    href={getPrimaryHref(previewProject)}
-                    className="group block"
-                    aria-label={`Open ${previewProject.title}`}
+                {previewProject && (
+                  <motion.div
+                    key={previewProject.id}
+                    initial={{ opacity: 0, y: 22, filter: 'blur(14px)' }}
+                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, y: -22, filter: 'blur(14px)' }}
+                    transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <ProjectVisual project={previewProject} />
-                  </Link>
-                  <p className="mt-4 font-mono text-xs text-muted">
-                    active_project ={' '}
-                    <span className="text-accent-2">
-                      {previewProject.title}
-                    </span>
-                  </p>
-                </motion.div>
+                    <Link
+                      href={getPrimaryHref(previewProject)}
+                      className="group block"
+                      aria-label={`Open ${previewProject.title}`}
+                    >
+                      <ProjectVisual project={previewProject} />
+                    </Link>
+                    <p className="mt-4 font-mono text-xs text-muted">
+                      active_project ={' '}
+                      <span className="text-accent-2">
+                        {previewProject.title}
+                      </span>
+                    </p>
+                  </motion.div>
+                )}
               </AnimatePresence>
             </aside>
           </div>

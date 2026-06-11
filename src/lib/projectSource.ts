@@ -5,7 +5,7 @@ import {
   where,
 } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
-import { projects, type Project } from '@/lib/content';
+import type { Project } from '@/lib/content';
 
 const projectsCollection = 'projects';
 
@@ -29,14 +29,10 @@ const isProject = (value: unknown): value is Project => {
   );
 };
 
-export const getFallbackProjects = () =>
-  [...projects]
-    .filter((project) => project.published)
-    .sort((a, b) => a.order - b.order);
-
 export const getPortfolioProjects = async (): Promise<Project[]> => {
   if (!db) {
-    return getFallbackProjects();
+    console.warn('Firestore is not initialized.');
+    return [];
   }
 
   try {
@@ -51,33 +47,9 @@ export const getPortfolioProjects = async (): Promise<Project[]> => {
       .filter(isProject)
       .sort((a, b) => a.order - b.order);
 
-    const fallbackProjects = getFallbackProjects();
-    const mergedProjects = firestoreProjects.map((fp) => {
-      const local = fallbackProjects.find((p) => p.id === fp.id);
-      if (local) {
-        return {
-          ...fp,
-          imageUrl: fp.imageUrl || local.imageUrl,
-          galleryUrls: (fp.galleryUrls && fp.galleryUrls.length > 0) ? fp.galleryUrls : (local.galleryUrls || []),
-          liveUrl: fp.liveUrl || local.liveUrl,
-        };
-      }
-      return fp;
-    });
-
-    const missingProjects = fallbackProjects.filter(
-      (local) => !firestoreProjects.some((fp) => fp.id === local.id)
-    );
-
-    const allProjects = [...mergedProjects, ...missingProjects].sort(
-      (a, b) => a.order - b.order
-    );
-
-    return allProjects.length > 0
-      ? allProjects
-      : fallbackProjects;
+    return firestoreProjects;
   } catch (error) {
-    console.warn('Failed to load Firestore projects. Falling back to local data.', error);
-    return getFallbackProjects();
+    console.error('Failed to load Firestore projects.', error);
+    return [];
   }
 };
