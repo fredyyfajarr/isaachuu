@@ -52,6 +52,9 @@ service cloud.firestore {
         "liveUrl",
         "imageUrl",
         "galleryUrls",
+        "caseStudy",
+        "codeSnippet",
+        "architecture",
         "updatedAt"
       ])
       && data.id is string
@@ -67,7 +70,20 @@ service cloud.firestore {
       && validLocalizedText(data.status)
       && data.tags is list
       && data.repoLinks is list
-      && (!("galleryUrls" in data) || data.galleryUrls is list);
+      && (!("galleryUrls" in data) || data.galleryUrls is list)
+      && (!("architecture" in data) || data.architecture is list)
+      && (!("caseStudy" in data) || (
+          data.caseStudy is map
+          && validLocalizedText(data.caseStudy.challenge)
+          && validLocalizedText(data.caseStudy.approach)
+          && validLocalizedText(data.caseStudy.impact)
+      ))
+      && (!("codeSnippet" in data) || (
+          data.codeSnippet is map
+          && data.codeSnippet.title is string
+          && data.codeSnippet.language is string
+          && data.codeSnippet.code is string
+      ));
     }
 
     match /projects/{projectId} {

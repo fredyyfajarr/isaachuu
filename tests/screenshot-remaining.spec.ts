@@ -1,5 +1,4 @@
 import { test } from '@playwright/test';
-import * as fs from 'fs';
 
 test.use({
   viewport: { width: 1920, height: 1080 },
@@ -28,25 +27,18 @@ async function capturePieces(page, url, baseName) {
   }
 }
 
-test.describe('SwapSkill Screenshots with Login', () => {
-  test('Local SwapSkill', async ({ page }) => {
-    // 1. Visit Login
-    await page.goto('http://localhost:3004/login', { waitUntil: 'load' });
-    await page.waitForTimeout(2000);
-    // 2. Screenshot Login
-    await page.screenshot({ path: `public/projects/swapskill-login.png` });
-    
-    // 3. Login
-    await page.fill('input[type="email"]', 'student.verified@swapskill.com');
-    await page.fill('input[type="password"]', 'password');
-    await page.click('button[type="submit"]');
-    
-    // 4. Wait for dashboard/navigation
-    await page.waitForTimeout(5000);
-    
-    // 5. Screenshot inside
-    await capturePieces(page, 'http://localhost:3004/', 'swapskill-home');
-    await capturePieces(page, 'http://localhost:3004/posts', 'swapskill-posts');
-    await capturePieces(page, 'http://localhost:3004/profile', 'swapskill-profile');
+test.describe('Remaining Local Apps', () => {
+  test('Puriva FNB', async ({ page }) => {
+    // Puriva Automasi FNB (port 3006)
+    await capturePieces(page, 'http://localhost:3006/', 'puriva-fnb-home');
+    await capturePieces(page, 'http://localhost:3006/menu', 'puriva-fnb-menu');
+    await capturePieces(page, 'http://localhost:3006/admin', 'puriva-fnb-admin');
+  });
+
+  test('Warung Mama Fina', async ({ page }) => {
+    // Warung Mama Fina (port 3005)
+    await capturePieces(page, 'http://localhost:3005/', 'wmf-home');
+    await capturePieces(page, 'http://localhost:3005/menu', 'wmf-menu');
+    await capturePieces(page, 'http://localhost:3005/about', 'wmf-about');
   });
 });

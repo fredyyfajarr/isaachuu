@@ -14,6 +14,7 @@ import {
 import { getPortfolioProjects } from '@/lib/projectSource';
 import type { Project } from '@/lib/content';
 import { TechTag } from '@/components/TechTag';
+import { CodeWindow } from '@/components/CodeWindow';
 
 const GalleryCarousel = ({ images }: { images: string[] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -249,18 +250,76 @@ export default function ProjectDetail() {
           )}
 
           <div className="grid gap-12 md:grid-cols-[1fr_300px]">
-            <div>
-              <h2 className="mb-6 font-mono text-lg font-bold text-accent-2">
-                &gt; Key Features
-              </h2>
-              <ul className="grid gap-4">
-                {project.features[locale].map((feature, i) => (
-                  <li key={i} className="flex items-start gap-3 text-soft">
-                    <span className="mt-1 shrink-0 text-accent">■</span>
-                    <span className="leading-7">{feature}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="space-y-16">
+              {project.caseStudy ? (
+                <div className="space-y-12">
+                  <section>
+                    <h2 className="mb-4 font-mono text-lg font-bold text-accent-2">
+                      &gt; The Challenge
+                    </h2>
+                    <p className="leading-8 text-soft whitespace-pre-wrap">{project.caseStudy.challenge[locale]}</p>
+                  </section>
+                  <section>
+                    <h2 className="mb-4 font-mono text-lg font-bold text-accent-2">
+                      &gt; The Approach
+                    </h2>
+                    <p className="leading-8 text-soft whitespace-pre-wrap">{project.caseStudy.approach[locale]}</p>
+                  </section>
+                  <section>
+                    <h2 className="mb-4 font-mono text-lg font-bold text-accent-2">
+                      &gt; The Impact
+                    </h2>
+                    <p className="leading-8 text-soft whitespace-pre-wrap">{project.caseStudy.impact[locale]}</p>
+                  </section>
+                </div>
+              ) : (
+                <section>
+                  <h2 className="mb-6 font-mono text-lg font-bold text-accent-2">
+                    &gt; Key Features
+                  </h2>
+                  <ul className="grid gap-4">
+                    {project.features[locale].map((feature, i) => (
+                      <li key={i} className="flex items-start gap-3 text-soft">
+                        <span className="mt-1 shrink-0 text-accent">■</span>
+                        <span className="leading-7">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
+              {project.architecture && project.architecture.length > 0 && (
+                <section>
+                  <h2 className="mb-8 font-mono text-lg font-bold text-accent-2">
+                    &gt; System Architecture
+                  </h2>
+                  <div className="flex flex-wrap items-center gap-4">
+                    {project.architecture.map((node, i) => (
+                      <div key={i} className="flex items-center gap-4">
+                        <div className="flex h-16 items-center justify-center rounded border border-accent-2/30 bg-accent-2/10 px-6 font-mono text-sm font-bold text-paper shadow-[0_0_15px_rgba(var(--color-accent-2),0.1)]">
+                          {node}
+                        </div>
+                        {i < (project.architecture?.length ?? 0) - 1 && (
+                          <div className="h-0.5 w-8 bg-line" />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {project.codeSnippet && (
+                <section>
+                  <h2 className="mb-4 font-mono text-lg font-bold text-accent-2">
+                    &gt; Code Highlight
+                  </h2>
+                  <CodeWindow
+                    title={project.codeSnippet.title}
+                    language={project.codeSnippet.language}
+                    code={project.codeSnippet.code}
+                  />
+                </section>
+              )}
             </div>
 
             <aside className="h-fit border border-line bg-panel/30 p-6 backdrop-blur">

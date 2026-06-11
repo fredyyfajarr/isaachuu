@@ -14,6 +14,18 @@ export type RepoLink = {
   isPublic?: boolean;
 };
 
+export type CaseStudy = {
+  challenge: LocalizedText;
+  approach: LocalizedText;
+  impact: LocalizedText;
+};
+
+export type CodeSnippet = {
+  title: string;
+  language: string;
+  code: string;
+};
+
 export type Project = {
   id: string;
   order: number;
@@ -31,6 +43,9 @@ export type Project = {
   repoLinks: RepoLink[];
   imageUrl?: string;
   galleryUrls?: string[];
+  caseStudy?: CaseStudy;
+  codeSnippet?: CodeSnippet;
+  architecture?: string[]; // Array of tech stack items or flow steps
 };
 
 export const navContent = {
@@ -138,6 +153,24 @@ export const footerContent = {
   en: 'Built by Fredy Fajar Adi Putra with Next.js, Tailwind CSS, and Firebase-ready data.',
   id: 'Dibuat oleh Fredy Fajar Adi Putra dengan Next.js, Tailwind CSS, dan data yang siap Firebase.',
 };
+
+export const careerTimeline = [
+  {
+    year: '2022',
+    title: { en: 'Started Coding Journey', id: 'Mulai Belajar Coding' },
+    description: { en: 'Began exploring PHP and basic web development.', id: 'Mulai mengeksplorasi PHP dan dasar-dasar web development.' },
+  },
+  {
+    year: '2023',
+    title: { en: 'Deep Dive into Laravel', id: 'Mendalami Laravel' },
+    description: { en: 'Focused on building full-stack applications, CRUD systems, and understanding MVC architecture.', id: 'Fokus membangun aplikasi full-stack, sistem CRUD, dan memahami arsitektur MVC.' },
+  },
+  {
+    year: '2024',
+    title: { en: 'Modern Stack & System Design', id: 'Modern Stack & Desain Sistem' },
+    description: { en: 'Transitioned to Node.js, Next.js, and complex system architectures like ticketing and LMS platforms.', id: 'Transisi ke Node.js, Next.js, dan arsitektur sistem kompleks seperti ticketing dan platform LMS.' },
+  },
+];
 
 export const skills = [
   'PHP (Laravel)',

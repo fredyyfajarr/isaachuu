@@ -52,6 +52,16 @@ type ProjectForm = {
   liveUrl: string;
   imageUrl: string;
   galleryUrls: string;
+  caseStudyChallengeEn: string;
+  caseStudyChallengeId: string;
+  caseStudyApproachEn: string;
+  caseStudyApproachId: string;
+  caseStudyImpactEn: string;
+  caseStudyImpactId: string;
+  codeSnippetTitle: string;
+  codeSnippetLanguage: string;
+  codeSnippetCode: string;
+  architecture: string;
 };
 
 const adminEmail = (
@@ -84,6 +94,16 @@ const initialForm: ProjectForm = {
   liveUrl: '',
   imageUrl: '',
   galleryUrls: '',
+  caseStudyChallengeEn: '',
+  caseStudyChallengeId: '',
+  caseStudyApproachEn: '',
+  caseStudyApproachId: '',
+  caseStudyImpactEn: '',
+  caseStudyImpactId: '',
+  codeSnippetTitle: '',
+  codeSnippetLanguage: '',
+  codeSnippetCode: '',
+  architecture: '',
 };
 
 const inputClass =
@@ -157,7 +177,17 @@ const projectToForm = (project: Project): ProjectForm => ({
   repoLinks: repoLinksToText(project.repoLinks),
   liveUrl: project.liveUrl ?? '',
   imageUrl: project.imageUrl ?? '',
-  galleryUrls: project.galleryUrls?.join('\n') ?? '',
+  galleryUrls: (project.galleryUrls ?? []).join('\n'),
+  caseStudyChallengeEn: project.caseStudy?.challenge.en ?? '',
+  caseStudyChallengeId: project.caseStudy?.challenge.id ?? '',
+  caseStudyApproachEn: project.caseStudy?.approach.en ?? '',
+  caseStudyApproachId: project.caseStudy?.approach.id ?? '',
+  caseStudyImpactEn: project.caseStudy?.impact.en ?? '',
+  caseStudyImpactId: project.caseStudy?.impact.id ?? '',
+  codeSnippetTitle: project.codeSnippet?.title ?? '',
+  codeSnippetLanguage: project.codeSnippet?.language ?? '',
+  codeSnippetCode: project.codeSnippet?.code ?? '',
+  architecture: (project.architecture ?? []).join(', '),
 });
 
 const isProject = (value: unknown): value is Project => {
@@ -341,7 +371,7 @@ export default function AdminPage() {
       return null;
     }
 
-    return {
+    const data: Project = {
       id: projectId,
       order: Number(form.order) || 999,
       published: form.published,
@@ -373,10 +403,33 @@ export default function AdminPage() {
       },
       tags: csv(form.tags),
       repoLinks,
-      ...(form.liveUrl ? { liveUrl: form.liveUrl } : {}),
-      ...(form.imageUrl ? { imageUrl: form.imageUrl } : {}),
-      ...(form.galleryUrls ? { galleryUrls: lines(form.galleryUrls) } : {}),
     };
+
+    if (form.liveUrl) data.liveUrl = form.liveUrl;
+    if (form.imageUrl) data.imageUrl = form.imageUrl;
+    if (form.galleryUrls) data.galleryUrls = lines(form.galleryUrls);
+    
+    if (form.caseStudyChallengeEn || form.caseStudyChallengeId) {
+      data.caseStudy = {
+        challenge: { en: form.caseStudyChallengeEn, id: form.caseStudyChallengeId },
+        approach: { en: form.caseStudyApproachEn, id: form.caseStudyApproachId },
+        impact: { en: form.caseStudyImpactEn, id: form.caseStudyImpactId },
+      };
+    }
+    
+    if (form.codeSnippetCode) {
+      data.codeSnippet = {
+        title: form.codeSnippetTitle,
+        language: form.codeSnippetLanguage || 'typescript',
+        code: form.codeSnippetCode,
+      };
+    }
+    
+    if (form.architecture) {
+      data.architecture = csv(form.architecture);
+    }
+
+    return data;
   };
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
@@ -838,6 +891,74 @@ export default function AdminPage() {
                   onChange={(event) => update('repoLinks', event.target.value)}
                 />
               </label>
+
+              <label className="block border border-line bg-void/50 p-4 transition-colors focus-within:border-accent-2/50 hover:border-accent-2/50">
+                <span className="mb-2 block font-mono text-xs font-bold text-accent-2">
+                  Architecture Nodes, comma separated
+                </span>
+                <input
+                  className={inputClass}
+                  value={form.architecture}
+                  onChange={(event) => update('architecture', event.target.value)}
+                  placeholder="Next.js, Node.js, MySQL, Firebase"
+                />
+              </label>
+
+              <div className="border border-line bg-void/50 p-4 transition-colors focus-within:border-accent-2/50 hover:border-accent-2/50">
+                <span className="mb-4 block font-mono text-sm font-bold text-accent-2">
+                  CASE STUDY (Optional)
+                </span>
+                <div className="grid gap-5 md:grid-cols-2 mb-4">
+                  <label>
+                    <span className={labelClass}>Challenge EN</span>
+                    <textarea className={inputClass} rows={3} value={form.caseStudyChallengeEn} onChange={(e) => update('caseStudyChallengeEn', e.target.value)} />
+                  </label>
+                  <label>
+                    <span className={labelClass}>Challenge ID</span>
+                    <textarea className={inputClass} rows={3} value={form.caseStudyChallengeId} onChange={(e) => update('caseStudyChallengeId', e.target.value)} />
+                  </label>
+                </div>
+                <div className="grid gap-5 md:grid-cols-2 mb-4">
+                  <label>
+                    <span className={labelClass}>Approach EN</span>
+                    <textarea className={inputClass} rows={3} value={form.caseStudyApproachEn} onChange={(e) => update('caseStudyApproachEn', e.target.value)} />
+                  </label>
+                  <label>
+                    <span className={labelClass}>Approach ID</span>
+                    <textarea className={inputClass} rows={3} value={form.caseStudyApproachId} onChange={(e) => update('caseStudyApproachId', e.target.value)} />
+                  </label>
+                </div>
+                <div className="grid gap-5 md:grid-cols-2">
+                  <label>
+                    <span className={labelClass}>Impact EN</span>
+                    <textarea className={inputClass} rows={3} value={form.caseStudyImpactEn} onChange={(e) => update('caseStudyImpactEn', e.target.value)} />
+                  </label>
+                  <label>
+                    <span className={labelClass}>Impact ID</span>
+                    <textarea className={inputClass} rows={3} value={form.caseStudyImpactId} onChange={(e) => update('caseStudyImpactId', e.target.value)} />
+                  </label>
+                </div>
+              </div>
+
+              <div className="border border-line bg-void/50 p-4 transition-colors focus-within:border-accent-2/50 hover:border-accent-2/50">
+                <span className="mb-4 block font-mono text-sm font-bold text-accent-2">
+                  CODE SNIPPET (Optional)
+                </span>
+                <div className="grid gap-5 md:grid-cols-2 mb-4">
+                  <label>
+                    <span className={labelClass}>Title (e.g. auth.ts)</span>
+                    <input className={inputClass} value={form.codeSnippetTitle} onChange={(e) => update('codeSnippetTitle', e.target.value)} />
+                  </label>
+                  <label>
+                    <span className={labelClass}>Language (e.g. typescript)</span>
+                    <input className={inputClass} value={form.codeSnippetLanguage} onChange={(e) => update('codeSnippetLanguage', e.target.value)} />
+                  </label>
+                </div>
+                <label>
+                  <span className={labelClass}>Code</span>
+                  <textarea className={inputClass} rows={6} value={form.codeSnippetCode} onChange={(e) => update('codeSnippetCode', e.target.value)} />
+                </label>
+              </div>
 
               <div className="grid gap-5 md:grid-cols-2">
                 <label>
