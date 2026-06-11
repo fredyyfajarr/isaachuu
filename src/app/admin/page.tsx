@@ -16,6 +16,7 @@ import {
   serverTimestamp,
   setDoc,
 } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import {
   FiEdit3,
   FiEye,
@@ -26,7 +27,7 @@ import {
   FiSave,
   FiTrash2,
 } from 'react-icons/fi';
-import { auth, db, hasFirebaseConfig } from '@/lib/firebase';
+import { auth, db, storage, hasFirebaseConfig } from '@/lib/firebase';
 import type { Project, ProjectTier, RepoLink } from '@/lib/content';
 
 type ProjectForm = {
@@ -188,6 +189,52 @@ export default function AdminPage() {
   const [status, setStatus] = useState('');
   const [saving, setSaving] = useState(false);
   const [loadingProjects, setLoadingProjects] = useState(false);
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const [uploadingGallery, setUploadingGallery] = useState(false);
+
+  const handleUploadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !storage || !form.id) {
+        if (!form.id) alert("Isi Project ID terlebih dahulu sebelum upload gambar!");
+        return;
+    }
+    setUploadingImage(true);
+    try {
+      const storageRef = ref(storage, `projects/${form.id}/${Date.now()}_${file.name}`);
+      await uploadBytes(storageRef, file);
+      const url = await getDownloadURL(storageRef);
+      update('imageUrl', url);
+    } catch (err) {
+      alert("Gagal upload gambar: " + (err instanceof Error ? err.message : String(err)));
+    } finally {
+      setUploadingImage(false);
+      e.target.value = ''; // reset input
+    }
+  };
+
+  const handleUploadGallery = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    if (!files.length || !storage || !form.id) {
+        if (!form.id) alert("Isi Project ID terlebih dahulu sebelum upload gambar!");
+        return;
+    }
+    setUploadingGallery(true);
+    try {
+      const urls: string[] = [];
+      for (const file of files) {
+        const storageRef = ref(storage, `projects/${form.id}/gallery_${Date.now()}_${file.name}`);
+        await uploadBytes(storageRef, file);
+        urls.push(await getDownloadURL(storageRef));
+      }
+      const existing = form.galleryUrls.trim() ? form.galleryUrls.trim() + '\n' : '';
+      update('galleryUrls', existing + urls.join('\n'));
+    } catch (err) {
+      alert("Gagal upload gallery: " + (err instanceof Error ? err.message : String(err)));
+    } finally {
+      setUploadingGallery(false);
+      e.target.value = ''; // reset input
+    }
+  };
 
   const isAllowed = useMemo(
     () =>
@@ -798,6 +845,16 @@ export default function AdminPage() {
                     onChange={(event) => update('imageUrl', event.target.value)}
                     placeholder="/images/example.png"
                   />
+                  <div className="mt-2 flex items-center gap-2">
+                    <input 
+                      type="file" 
+                      accept="image/*" 
+                      onChange={handleUploadImage}
+                      disabled={uploadingImage}
+                      className="text-xs file:mr-4 file:py-1 file:px-3 file:border-0 file:text-xs file:font-semibold file:bg-accent/10 file:text-accent hover:file:bg-accent/20 cursor-pointer disabled:opacity-50"
+                    />
+                    {uploadingImage && <span className="text-xs text-accent animate-pulse">Uploading...</span>}
+                  </div>
                 </label>
               </div>
 
@@ -815,6 +872,17 @@ export default function AdminPage() {
                   onChange={(event) => update('galleryUrls', event.target.value)}
                   placeholder="https://..."
                 />
+                <div className="mt-3 flex items-center gap-2">
+                  <input 
+                    type="file" 
+                    accept="image/*" 
+                    multiple
+                    onChange={handleUploadGallery}
+                    disabled={uploadingGallery}
+                    className="text-xs file:mr-4 file:py-1 file:px-3 file:border-0 file:text-xs file:font-semibold file:bg-accent/10 file:text-accent hover:file:bg-accent/20 cursor-pointer disabled:opacity-50"
+                  />
+                  {uploadingGallery && <span className="text-xs text-accent animate-pulse">Uploading multiple files...</span>}
+                </div>
               </label>
 
               <button

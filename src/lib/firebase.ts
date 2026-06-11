@@ -35,3 +35,9 @@ export const auth = (() => {
   const app = getFirebaseApp();
   return app ? getAuth(app) : null;
 })();
+
+import { getStorage } from 'firebase/storage';
+export const storage = (() => {
+  const app = getFirebaseApp();
+  return app ? getStorage(app) : null;
+})();
