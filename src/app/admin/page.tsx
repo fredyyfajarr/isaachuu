@@ -16,7 +16,6 @@ import {
   serverTimestamp,
   setDoc,
 } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import {
   FiEdit3,
   FiEye,
@@ -27,7 +26,7 @@ import {
   FiSave,
   FiTrash2,
 } from 'react-icons/fi';
-import { auth, db, storage, hasFirebaseConfig } from '@/lib/firebase';
+import { auth, db, hasFirebaseConfig } from '@/lib/firebase';
 import type { Project, ProjectTier, RepoLink } from '@/lib/content';
 
 type ProjectForm = {
@@ -192,20 +191,36 @@ export default function AdminPage() {
   const [uploadingImage, setUploadingImage] = useState(false);
   const [uploadingGallery, setUploadingGallery] = useState(false);
 
+  const uploadToHost = async (file: File): Promise<string> => {
+    // Menggunakan public API key dari freeimage.host (gratis, tanpa limit, tanpa auth)
+    const PUBLIC_API_KEY = '6d207e02198a847aa98d0a2a901485a5';
+    
+    const formData = new FormData();
+    formData.append('image', file);
+    
+    const res = await fetch(`https://freeimage.host/api/1/upload?key=${PUBLIC_API_KEY}`, {
+      method: 'POST',
+      body: formData,
+    });
+    
+    const data = await res.json();
+    if (data.status_code === 200) {
+      return data.image.url;
+    } else {
+      throw new Error(data.error?.message || 'Gagal upload gambar ke server');
+    }
+  };
+
   const handleUploadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (!file || !storage || !form.id) {
-        if (!form.id) alert("Isi Project ID terlebih dahulu sebelum upload gambar!");
-        return;
-    }
+    if (!file) return;
+    
     setUploadingImage(true);
     try {
-      const storageRef = ref(storage, `projects/${form.id}/${Date.now()}_${file.name}`);
-      await uploadBytes(storageRef, file);
-      const url = await getDownloadURL(storageRef);
+      const url = await uploadToHost(file);
       update('imageUrl', url);
     } catch (err) {
-      alert("Gagal upload gambar: " + (err instanceof Error ? err.message : String(err)));
+      alert("Error: " + (err instanceof Error ? err.message : String(err)));
     } finally {
       setUploadingImage(false);
       e.target.value = ''; // reset input
@@ -214,22 +229,18 @@ export default function AdminPage() {
 
   const handleUploadGallery = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
-    if (!files.length || !storage || !form.id) {
-        if (!form.id) alert("Isi Project ID terlebih dahulu sebelum upload gambar!");
-        return;
-    }
+    if (!files.length) return;
+    
     setUploadingGallery(true);
     try {
       const urls: string[] = [];
       for (const file of files) {
-        const storageRef = ref(storage, `projects/${form.id}/gallery_${Date.now()}_${file.name}`);
-        await uploadBytes(storageRef, file);
-        urls.push(await getDownloadURL(storageRef));
+        urls.push(await uploadToHost(file));
       }
       const existing = form.galleryUrls.trim() ? form.galleryUrls.trim() + '\n' : '';
       update('galleryUrls', existing + urls.join('\n'));
     } catch (err) {
-      alert("Gagal upload gallery: " + (err instanceof Error ? err.message : String(err)));
+      alert("Error: " + (err instanceof Error ? err.message : String(err)));
     } finally {
       setUploadingGallery(false);
       e.target.value = ''; // reset input
