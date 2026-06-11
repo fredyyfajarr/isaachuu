@@ -20,28 +20,37 @@ const GalleryCarousel = ({ images }: { images: string[] }) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set([0]));
 
+  // Parse strings "url|caption" to objects
+  const parsedImages = images.map((item) => {
+    const [url, ...captionParts] = item.split('|');
+    return {
+      url: url.trim(),
+      caption: captionParts.join('|').trim() || '',
+    };
+  });
+
   // Preload ALL images on mount
   useEffect(() => {
-    images.forEach((src, i) => {
+    parsedImages.forEach((imgObj, i) => {
       const img = new window.Image();
-      img.src = src;
+      img.src = imgObj.url;
       img.onload = () => {
         setLoadedImages((prev) => new Set(prev).add(i));
       };
     });
-  }, [images]);
+  }, [images]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Keyboard navigation
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') goTo((currentIndex - 1 + images.length) % images.length);
-      if (e.key === 'ArrowRight') goTo((currentIndex + 1) % images.length);
+      if (e.key === 'ArrowLeft') goTo((currentIndex - 1 + parsedImages.length) % parsedImages.length);
+      if (e.key === 'ArrowRight') goTo((currentIndex + 1) % parsedImages.length);
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
-  }, [currentIndex, images.length]);
+  }, [currentIndex, parsedImages.length]);
 
-  if (images.length === 0) return null;
+  if (parsedImages.length === 0) return null;
 
   const goTo = (index: number) => {
     if (isTransitioning || index === currentIndex) return;
@@ -50,15 +59,15 @@ const GalleryCarousel = ({ images }: { images: string[] }) => {
     setTimeout(() => setIsTransitioning(false), 500);
   };
 
-  const next = () => goTo((currentIndex + 1) % images.length);
-  const prev = () => goTo((currentIndex - 1 + images.length) % images.length);
+  const next = () => goTo((currentIndex + 1) % parsedImages.length);
+  const prev = () => goTo((currentIndex - 1 + parsedImages.length) % parsedImages.length);
 
   return (
-    <div className="relative aspect-[16/10] w-full overflow-hidden border border-line bg-void/80 shadow-[0_24px_80px_rgba(0,0,0,0.38)]">
+    <div className="relative aspect-[16/10] w-full overflow-hidden border border-line bg-void/80 shadow-[0_24px_80px_rgba(0,0,0,0.38)] group">
       {/* Render ALL images stacked, only current one is visible */}
-      {images.map((src, i) => (
+      {parsedImages.map((img, i) => (
         <div
-          key={src}
+          key={i}
           className="absolute inset-0 transition-opacity duration-500 ease-in-out"
           style={{
             opacity: i === currentIndex ? 1 : 0,
@@ -67,13 +76,18 @@ const GalleryCarousel = ({ images }: { images: string[] }) => {
           }}
         >
           <Image
-            src={src}
-            alt={`Gallery image ${i + 1}`}
+            src={img.url}
+            alt={img.caption || `Gallery image ${i + 1}`}
             fill
             className="object-contain"
             priority={true}
             sizes="(max-width: 1280px) 100vw, 1280px"
           />
+          {img.caption && (
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-void/90 via-void/50 to-transparent p-6 pt-20 text-center">
+              <p className="font-mono text-sm font-medium text-paper md:text-base">{img.caption}</p>
+            </div>
+          )}
         </div>
       ))}
 
@@ -84,12 +98,12 @@ const GalleryCarousel = ({ images }: { images: string[] }) => {
         </div>
       )}
 
-      {images.length > 1 && (
+      {parsedImages.length > 1 && (
         <>
           <button
             onClick={prev}
             disabled={isTransitioning}
-            className="absolute left-4 top-1/2 z-30 -translate-y-1/2 border border-line bg-panel/70 p-3 text-paper backdrop-blur transition-all duration-200 hover:border-accent-2 hover:text-accent-2 hover:scale-110 disabled:opacity-50"
+            className="absolute left-4 top-1/2 z-30 -translate-y-1/2 border border-line bg-panel/70 p-3 text-paper backdrop-blur transition-all duration-200 hover:border-accent-2 hover:text-accent-2 hover:scale-110 disabled:opacity-50 opacity-0 group-hover:opacity-100"
             aria-label="Previous image"
           >
             <FiChevronLeft size={24} />
@@ -97,7 +111,7 @@ const GalleryCarousel = ({ images }: { images: string[] }) => {
           <button
             onClick={next}
             disabled={isTransitioning}
-            className="absolute right-4 top-1/2 z-30 -translate-y-1/2 border border-line bg-panel/70 p-3 text-paper backdrop-blur transition-all duration-200 hover:border-accent-2 hover:text-accent-2 hover:scale-110 disabled:opacity-50"
+            className="absolute right-4 top-1/2 z-30 -translate-y-1/2 border border-line bg-panel/70 p-3 text-paper backdrop-blur transition-all duration-200 hover:border-accent-2 hover:text-accent-2 hover:scale-110 disabled:opacity-50 opacity-0 group-hover:opacity-100"
             aria-label="Next image"
           >
             <FiChevronRight size={24} />
@@ -105,11 +119,11 @@ const GalleryCarousel = ({ images }: { images: string[] }) => {
 
           {/* Counter + dots */}
           <div className="absolute bottom-4 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3">
-            <span className="font-mono text-xs text-paper/60">
-              {currentIndex + 1}/{images.length}
+            <span className="font-mono text-xs text-paper/80 bg-void/50 px-2 py-0.5 rounded backdrop-blur">
+              {currentIndex + 1}/{parsedImages.length}
             </span>
-            <div className="flex gap-2">
-              {images.map((_, i) => (
+            <div className="flex gap-2 bg-void/50 px-2 py-1.5 rounded backdrop-blur">
+              {parsedImages.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => goTo(i)}

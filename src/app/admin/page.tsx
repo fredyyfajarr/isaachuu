@@ -873,15 +873,17 @@ export default function AdminPage() {
                 <span className="mb-2 block font-mono text-xs font-bold text-accent-2">
                   Gallery URLs (Optional)
                 </span>
-                <span className="mb-3 block text-xs text-muted">
-                  Satu URL per baris. Digunakan untuk halaman detail project.
+                <span className="mb-3 block text-xs text-muted leading-relaxed">
+                  Satu URL per baris. Digunakan untuk halaman detail project.<br/>
+                  <span className="text-accent/80">Tips: Anda bisa menambahkan caption/penjelasan dengan tanda <b>|</b> setelah URL.<br/>
+                  Contoh: <code>https://img.com/a.png | Halaman Login</code></span>
                 </span>
                 <textarea
                   className={inputClass}
                   rows={4}
                   value={form.galleryUrls}
                   onChange={(event) => update('galleryUrls', event.target.value)}
-                  placeholder="https://..."
+                  placeholder="https://... | Caption penjelasan gambar"
                 />
                 <div className="mt-3 flex items-center gap-2">
                   <input 
