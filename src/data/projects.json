@@ -56,7 +56,12 @@
         "isPublic": true
       }
     ],
-    "imageUrl": "/projects/sacket.png"
+    "imageUrl": "/projects/sacket-home-part1.png",
+    "galleryUrls": [
+      "/projects/sacket-home-part1.png",
+      "/projects/sacket-home-part2.png",
+      "/projects/sacket-login.png"
+    ]
   },
   {
     "id": "dibelajarin-laravel",
@@ -115,7 +120,15 @@
         "isPublic": true
       }
     ],
-    "imageUrl": "/images/dibelajarin-preview.png"
+    "imageUrl": "/projects/dibelajarin-laravel-home-part1.png",
+    "galleryUrls": [
+      "/projects/dibelajarin-laravel-home-part1.png",
+      "/projects/dibelajarin-laravel-home-part2.png",
+      "/projects/dibelajarin-laravel-login-part1.png",
+      "/projects/dibelajarin-laravel-login-part2.png",
+      "/projects/dibelajarin-laravel-register-part1.png",
+      "/projects/dibelajarin-laravel-register-part2.png"
+    ]
   },
   {
     "id": "dibelajarin-mern",
@@ -189,6 +202,8 @@
       "/projects/dibelajarin-home-part1.png",
       "/projects/dibelajarin-home-part2.png",
       "/projects/dibelajarin-home-part3.png",
+      "/projects/dibelajarin-home-part4.png",
+      "/projects/dibelajarin-home-part5.png",
       "/projects/dibelajarin-courses-part1.png",
       "/projects/dibelajarin-courses-part2.png"
     ]
@@ -264,8 +279,13 @@
     "galleryUrls": [
       "/projects/frevan-home-part1.png",
       "/projects/frevan-home-part2.png",
+      "/projects/frevan-home-part3.png",
+      "/projects/frevan-home-part4.png",
       "/projects/frevan-products-part1.png",
-      "/projects/frevan-products-part2.png"
+      "/projects/frevan-products-part2.png",
+      "/projects/frevan-products-part3.png",
+      "/projects/frevan-products-part4.png",
+      "/projects/frevan-cart.png"
     ]
   },
   {
@@ -333,13 +353,18 @@
         "isPublic": true
       }
     ],
-    "imageUrl": "/projects/swapskill-home-part1.png",
+    "imageUrl": "/projects/swapskill-dashboard.png",
     "galleryUrls": [
-      "/projects/swapskill-home-part1.png",
-      "/projects/swapskill-home-part2.png",
-      "/projects/swapskill-home-part3.png",
+      "/projects/swapskill-landing-part1.png",
+      "/projects/swapskill-landing-part2.png",
+      "/projects/swapskill-landing-part3.png",
+      "/projects/swapskill-login.png",
+      "/projects/swapskill-dashboard.png",
       "/projects/swapskill-profile.png",
-      "/projects/swapskill-posts.png"
+      "/projects/swapskill-barters.png",
+      "/projects/swapskill-messages.png",
+      "/projects/swapskill-settings-part1.png",
+      "/projects/swapskill-settings-part2.png"
     ]
   },
   {
@@ -408,12 +433,14 @@
         "isPublic": true
       }
     ],
-    "imageUrl": "/projects/bi-dom-home.png",
+    "imageUrl": "/projects/bi-dom-dashboard.png",
     "galleryUrls": [
-      "/projects/bi-dom-home.png",
+      "/projects/bi-dom-login.png",
       "/projects/bi-dom-dashboard.png",
       "/projects/bi-dom-inventory.png",
-      "/projects/bi-dom-transactions.png"
+      "/projects/bi-dom-products.png",
+      "/projects/bi-dom-invoices.png",
+      "/projects/bi-dom-import.png"
     ]
   },
   {
@@ -471,7 +498,8 @@
       "/projects/photobooth-home-part1.png",
       "/projects/photobooth-home-part2.png",
       "/projects/photobooth-home-part3.png",
-      "/projects/photobooth-gallery.png"
+      "/projects/photobooth-gallery.png",
+      "/projects/photobooth-booth.png"
     ]
   },
   {
@@ -529,8 +557,8 @@
       "/projects/unpamcare-home-part1.png",
       "/projects/unpamcare-home-part2.png",
       "/projects/unpamcare-home-part3.png",
-      "/projects/unpamcare-login.png",
-      "/projects/unpamcare-dashboard.png"
+      "/projects/unpamcare-home-part4.png",
+      "/projects/unpamcare-login.png"
     ]
   },
   {
@@ -587,8 +615,7 @@
     "galleryUrls": [
       "/projects/cvku-home-part1.png",
       "/projects/cvku-home-part2.png",
-      "/projects/cvku-home-part3.png",
-      "/projects/cvku-dashboard.png"
+      "/projects/cvku-home-part3.png"
     ]
   },
   {
@@ -644,7 +671,16 @@
     "imageUrl": "/projects/spk-aio-home.png",
     "galleryUrls": [
       "/projects/spk-aio-home.png",
-      "/projects/spk-aio-dashboard.png"
+      "/projects/spk-aio-project-part1.png",
+      "/projects/spk-aio-project-part2.png",
+      "/projects/spk-aio-criteria-part1.png",
+      "/projects/spk-aio-criteria-part2.png",
+      "/projects/spk-aio-alternatives.png",
+      "/projects/spk-aio-calculate-part1.png",
+      "/projects/spk-aio-calculate-part2.png",
+      "/projects/spk-aio-result-part1.png",
+      "/projects/spk-aio-result-part2.png",
+      "/projects/spk-aio-result-part3.png"
     ]
   },
   {
