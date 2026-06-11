@@ -51,6 +51,7 @@ service cloud.firestore {
         "repoLinks",
         "liveUrl",
         "imageUrl",
+        "galleryUrls",
         "updatedAt"
       ])
       && data.id is string
@@ -65,7 +66,8 @@ service cloud.firestore {
       && validLocalizedText(data.scope)
       && validLocalizedText(data.status)
       && data.tags is list
-      && data.repoLinks is list;
+      && data.repoLinks is list
+      && (!("galleryUrls" in data) || data.galleryUrls is list);
     }
 
     match /projects/{projectId} {
