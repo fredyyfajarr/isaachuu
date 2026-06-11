@@ -47,7 +47,7 @@ const GalleryCarousel = ({ images }: { images: string[] }) => {
     if (isTransitioning || index === currentIndex) return;
     setIsTransitioning(true);
     setCurrentIndex(index);
-    setTimeout(() => setIsTransitioning(false), 400);
+    setTimeout(() => setIsTransitioning(false), 500);
   };
 
   const next = () => goTo((currentIndex + 1) % images.length);
@@ -59,7 +59,7 @@ const GalleryCarousel = ({ images }: { images: string[] }) => {
       {images.map((src, i) => (
         <div
           key={src}
-          className="absolute inset-0 transition-opacity duration-400 ease-in-out"
+          className="absolute inset-0 transition-opacity duration-500 ease-in-out"
           style={{
             opacity: i === currentIndex ? 1 : 0,
             zIndex: i === currentIndex ? 10 : 1,
@@ -71,7 +71,7 @@ const GalleryCarousel = ({ images }: { images: string[] }) => {
             alt={`Gallery image ${i + 1}`}
             fill
             className="object-contain"
-            priority={i === 0}
+            priority={true}
             sizes="(max-width: 1280px) 100vw, 1280px"
           />
         </div>

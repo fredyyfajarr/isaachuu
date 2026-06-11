@@ -56,12 +56,8 @@
         "isPublic": true
       }
     ],
-    "imageUrl": "/projects/sacket-home-part1.png",
-    "galleryUrls": [
-      "/projects/sacket-home-part1.png",
-      "/projects/sacket-home-part2.png",
-      "/projects/sacket-login.png"
-    ]
+    "imageUrl": "",
+    "galleryUrls": []
   },
   {
     "id": "dibelajarin-laravel",
@@ -120,15 +116,8 @@
         "isPublic": true
       }
     ],
-    "imageUrl": "/projects/dibelajarin-laravel-home-part1.png",
-    "galleryUrls": [
-      "/projects/dibelajarin-laravel-home-part1.png",
-      "/projects/dibelajarin-laravel-home-part2.png",
-      "/projects/dibelajarin-laravel-login-part1.png",
-      "/projects/dibelajarin-laravel-login-part2.png",
-      "/projects/dibelajarin-laravel-register-part1.png",
-      "/projects/dibelajarin-laravel-register-part2.png"
-    ]
+    "imageUrl": "",
+    "galleryUrls": []
   },
   {
     "id": "dibelajarin-mern",
@@ -353,19 +342,8 @@
         "isPublic": true
       }
     ],
-    "imageUrl": "/projects/swapskill-dashboard.png",
-    "galleryUrls": [
-      "/projects/swapskill-landing-part1.png",
-      "/projects/swapskill-landing-part2.png",
-      "/projects/swapskill-landing-part3.png",
-      "/projects/swapskill-login.png",
-      "/projects/swapskill-dashboard.png",
-      "/projects/swapskill-profile.png",
-      "/projects/swapskill-barters.png",
-      "/projects/swapskill-messages.png",
-      "/projects/swapskill-settings-part1.png",
-      "/projects/swapskill-settings-part2.png"
-    ]
+    "imageUrl": "",
+    "galleryUrls": []
   },
   {
     "id": "bi-dom",
@@ -433,15 +411,8 @@
         "isPublic": true
       }
     ],
-    "imageUrl": "/projects/bi-dom-dashboard.png",
-    "galleryUrls": [
-      "/projects/bi-dom-login.png",
-      "/projects/bi-dom-dashboard.png",
-      "/projects/bi-dom-inventory.png",
-      "/projects/bi-dom-products.png",
-      "/projects/bi-dom-invoices.png",
-      "/projects/bi-dom-import.png"
-    ]
+    "imageUrl": "",
+    "galleryUrls": []
   },
   {
     "id": "virtual-photobooth",
