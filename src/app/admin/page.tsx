@@ -65,10 +65,7 @@ type ProjectForm = {
   architecture: string;
 };
 
-const adminEmail = (
-  process.env.NEXT_PUBLIC_FIREBASE_ADMIN_EMAIL ??
-  'fredyfajar46@gmail.com'
-)
+const adminEmail = (process.env.NEXT_PUBLIC_FIREBASE_ADMIN_EMAIL ?? '')
   .trim()
   .toLowerCase();
 

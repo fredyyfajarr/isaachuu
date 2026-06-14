@@ -73,7 +73,7 @@ NEXT_PUBLIC_FIREBASE_PROJECT_ID=
 NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
 NEXT_PUBLIC_FIREBASE_APP_ID=
-NEXT_PUBLIC_FIREBASE_ADMIN_EMAIL=fredyfajar46@gmail.com
+NEXT_PUBLIC_FIREBASE_ADMIN_EMAIL=your-admin-google-email@example.com
 ```
 
 The `/admin` page uses Google Sign-In before opening the admin dashboard. Firestore Rules still restrict writes to the configured admin email.
