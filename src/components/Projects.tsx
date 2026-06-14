@@ -10,7 +10,7 @@ import {
   useSpring,
   useTransform,
 } from 'framer-motion';
-import { FiArrowUpRight, FiExternalLink, FiGithub } from 'react-icons/fi';
+import { FiArrowUpRight, FiExternalLink } from 'react-icons/fi';
 import {
   projectsContent,
   type Locale,

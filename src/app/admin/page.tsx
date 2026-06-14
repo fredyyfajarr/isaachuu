@@ -16,6 +16,7 @@ import {
   serverTimestamp,
   setDoc,
 } from 'firebase/firestore';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import {
   FiEdit3,
   FiEye,
@@ -26,7 +27,7 @@ import {
   FiSave,
   FiTrash2,
 } from 'react-icons/fi';
-import { auth, db, hasFirebaseConfig } from '@/lib/firebase';
+import { auth, db, hasFirebaseConfig, storage } from '@/lib/firebase';
 import type { Project, ProjectTier, RepoLink } from '@/lib/content';
 
 type ProjectForm = {
@@ -221,24 +222,31 @@ export default function AdminPage() {
   const [uploadingImage, setUploadingImage] = useState(false);
   const [uploadingGallery, setUploadingGallery] = useState(false);
 
-  const uploadToHost = async (file: File): Promise<string> => {
-    // Menggunakan public API key dari freeimage.host (gratis, tanpa limit, tanpa auth)
-    const PUBLIC_API_KEY = '6d207e02198a847aa98d0a2a901485a5';
-    
-    const formData = new FormData();
-    formData.append('image', file);
-    
-    const res = await fetch(`https://freeimage.host/api/1/upload?key=${PUBLIC_API_KEY}`, {
-      method: 'POST',
-      body: formData,
-    });
-    
-    const data = await res.json();
-    if (data.status_code === 200) {
-      return data.image.url;
-    } else {
-      throw new Error(data.error?.message || 'Gagal upload gambar ke server');
+  const uploadToStorage = async (file: File): Promise<string> => {
+    if (!storage || !isAllowed) {
+      throw new Error('Firebase Storage belum aktif atau akses admin ditolak.');
     }
+
+    if (!file.type.startsWith('image/')) {
+      throw new Error('File harus berupa gambar.');
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      throw new Error('Ukuran gambar maksimal 5MB.');
+    }
+
+    const projectId = form.id || slugify(form.title) || 'draft-project';
+    const safeName = file.name
+      .toLowerCase()
+      .replace(/[^a-z0-9.]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+    const imageRef = ref(
+      storage,
+      `projects/${projectId}/${Date.now()}-${safeName}`
+    );
+
+    await uploadBytes(imageRef, file, { contentType: file.type });
+    return getDownloadURL(imageRef);
   };
 
   const handleUploadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -247,7 +255,7 @@ export default function AdminPage() {
     
     setUploadingImage(true);
     try {
-      const url = await uploadToHost(file);
+      const url = await uploadToStorage(file);
       update('imageUrl', url);
     } catch (err) {
       alert("Error: " + (err instanceof Error ? err.message : String(err)));
@@ -265,7 +273,7 @@ export default function AdminPage() {
     try {
       const urls: string[] = [];
       for (const file of files) {
-        urls.push(await uploadToHost(file));
+        urls.push(await uploadToStorage(file));
       }
       const existing = form.galleryUrls.trim() ? form.galleryUrls.trim() + '\n' : '';
       update('galleryUrls', existing + urls.join('\n'));

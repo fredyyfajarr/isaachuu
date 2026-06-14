@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -22,13 +22,17 @@ const GalleryCarousel = ({ images }: { images: string[] }) => {
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set([0]));
 
   // Parse strings "url|caption" to objects
-  const parsedImages = images.map((item) => {
-    const [url, ...captionParts] = item.split('|');
-    return {
-      url: url.trim(),
-      caption: captionParts.join('|').trim() || '',
-    };
-  });
+  const parsedImages = useMemo(
+    () =>
+      images.map((item) => {
+        const [url, ...captionParts] = item.split('|');
+        return {
+          url: url.trim(),
+          caption: captionParts.join('|').trim() || '',
+        };
+      }),
+    [images]
+  );
 
   // Preload ALL images on mount
   useEffect(() => {
@@ -39,7 +43,17 @@ const GalleryCarousel = ({ images }: { images: string[] }) => {
         setLoadedImages((prev) => new Set(prev).add(i));
       };
     });
-  }, [images]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [parsedImages]);
+
+  const goTo = useCallback(
+    (index: number) => {
+      if (isTransitioning || index === currentIndex) return;
+      setIsTransitioning(true);
+      setCurrentIndex(index);
+      setTimeout(() => setIsTransitioning(false), 500);
+    },
+    [currentIndex, isTransitioning]
+  );
 
   // Keyboard navigation
   useEffect(() => {
@@ -49,16 +63,9 @@ const GalleryCarousel = ({ images }: { images: string[] }) => {
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
-  }, [currentIndex, parsedImages.length]);
+  }, [currentIndex, goTo, parsedImages.length]);
 
   if (parsedImages.length === 0) return null;
-
-  const goTo = (index: number) => {
-    if (isTransitioning || index === currentIndex) return;
-    setIsTransitioning(true);
-    setCurrentIndex(index);
-    setTimeout(() => setIsTransitioning(false), 500);
-  };
 
   const next = () => goTo((currentIndex + 1) % parsedImages.length);
   const prev = () => goTo((currentIndex - 1 + parsedImages.length) % parsedImages.length);
